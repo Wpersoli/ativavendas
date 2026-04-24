@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -6,11 +6,13 @@
   <title>AtivaVendas — Kit de mensagens prontas para WhatsApp e Instagram</title>
   <meta name="description" content="Venda mais com mensagens prontas para WhatsApp e Instagram. Um material em PDF com prompts, ofertas, campanhas e scripts para pequenos negócios.">
   <meta name="theme-color" content="#080414">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; script-src 'self'; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="preload" as="image" href="assets/hero-visual.webp" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +24,7 @@
   <header class="site-header" id="topo">
     <div class="container nav-wrap">
       <a class="brand brand-image" href="#topo" aria-label="AtivaVendas, voltar ao topo">
-        <img class="brand-logo" src="assets/logo.webp" alt="AtivaVendas" width="180" height="42" decoding="async">
+        <img class="brand-logo" src="assets/logo.webp" width="457" height="144" fetchpriority="high" alt="AtivaVendas">
       </a>
 
       <button class="menu-toggle glow-click" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="siteMenu">
@@ -74,12 +76,8 @@
           </div>
         </div>
 
-        <div class="hero-visual card card-neon">
-          <div class="hero-visual-badge hero-visual-badge--left">PDF prático</div>
-          <div class="hero-visual-badge hero-visual-badge--right">Copie e adapte</div>
-          <div class="hero-glow hero-glow-a"></div>
-          <div class="hero-glow hero-glow-b"></div>
-          <img class="hero-product-img" src="assets/pdf-card.webp" alt="Kit de mensagens prontas AtivaVendas em PDF." width="814" height="739" loading="eager" fetchpriority="high" decoding="async">
+        <div class="hero-visual" aria-hidden="true">
+          <img class="hero-art" src="assets/hero-visual.webp" width="760" height="690" fetchpriority="high" alt="Kit de mensagens prontas AtivaVendas em PDF." loading="eager" decoding="async">
         </div>
       </div>
     </section>
@@ -164,28 +162,36 @@
 
           <div class="segments-carousel" id="segmentsCarousel">
             <button class="segment-card segment-card--1 card lift glow-click" type="button" data-segment="beleza">
-              <img loading="lazy" decoding="async" src="assets/segment1.webp" alt="Segmento beleza e estética">
+              <div class="segment-media">
+                <img src="assets/segment1.webp" width="820" height="1092" alt="Segmento beleza e estética" loading="lazy" decoding="async">
+              </div>
               <div class="segment-copy">
                 <h3>Beleza e estética</h3>
                 <p>Salões, clínicas e profissionais da beleza.</p>
               </div>
             </button>
             <button class="segment-card segment-card--2 card lift glow-click" type="button" data-segment="delivery">
-              <img loading="lazy" decoding="async" src="assets/segment2.webp" alt="Segmento delivery e restaurantes">
+              <div class="segment-media">
+                <img src="assets/segment2.webp" width="820" height="1092" alt="Segmento delivery e restaurantes" loading="lazy" decoding="async">
+              </div>
               <div class="segment-copy">
                 <h3>Delivery e restaurantes</h3>
                 <p>Delivery, lanchonetes, restaurantes e cafés.</p>
               </div>
             </button>
             <button class="segment-card segment-card--3 card lift glow-click" type="button" data-segment="servicos">
-              <img loading="lazy" decoding="async" src="assets/segment3.webp" alt="Segmento prestadores de serviço">
+              <div class="segment-media">
+                <img src="assets/segment3.webp" width="820" height="1092" alt="Segmento prestadores de serviço" loading="lazy" decoding="async">
+              </div>
               <div class="segment-copy">
                 <h3>Prestadores de serviço</h3>
                 <p>Agende, confirme e fidelize clientes.</p>
               </div>
             </button>
             <button class="segment-card segment-card--4 card lift glow-click" type="button" data-segment="ecommerce">
-              <img loading="lazy" decoding="async" src="assets/segment4.webp" alt="Segmento e-commerce">
+              <div class="segment-media">
+                <img src="assets/segment4.webp" width="820" height="1092" alt="Segmento e-commerce" loading="lazy" decoding="async">
+              </div>
               <div class="segment-copy">
                 <h3>E-commerce</h3>
                 <p>Mais conversões e recompra com mensagens que vendem.</p>
@@ -260,7 +266,7 @@
     <section class="section preview-section" id="preview">
       <div class="container preview-grid">
         <article class="preview-side card card-flat">
-          <img class="preview-character" loading="lazy" decoding="async" src="assets/assistant.webp" alt="Mascote feminina da AtivaVendas segurando um kit em PDF">
+          <img class="preview-character" src="assets/assistant.webp" width="670" height="990" alt="Mascote feminina da AtivaVendas segurando um kit em PDF" loading="lazy" decoding="async">
           <div class="preview-side-copy">
 
           </div>
@@ -276,7 +282,7 @@
               <li>Modelos para conversas, ofertas e campanhas rápidas</li>
               <li>Mais clareza para vender com menos improviso</li>
             </ul>
-            <img loading="lazy" decoding="async" src="assets/preview-row.webp" alt="Prévia das páginas do kit em PDF com mensagens, ofertas e calendário de campanhas.">
+            <img src="assets/preview-row.webp" width="1080" height="656" alt="Prévia das páginas do kit em PDF com mensagens, ofertas e calendário de campanhas." loading="lazy" decoding="async">
           </div>
           <div class="preview-pages">+90 <span>páginas</span><small>de conteúdo para você vender mais</small></div>
         </article>
@@ -317,7 +323,7 @@
               <h2>Chat automático</h2>
               <p>Sem suporte humano. Apenas respostas rápidas e objetivas.</p>
             </div>
-            <img loading="lazy" decoding="async" src="assets/char2.webp" alt="Mascote da AtivaVendas no chat automático">
+            <img src="assets/char2.webp" alt="Mascote da AtivaVendas no chat automático" loading="lazy" decoding="async" width="800" height="990">
           </div>
 
           <div class="chat-questions" id="chatQuestions">
@@ -367,7 +373,7 @@
     <div class="modal-backdrop" data-close="modal"></div>
     <div class="modal-panel card card-flat" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close glow-click" type="button" data-close="modal" aria-label="Fechar modal">×</button>
-      <div class="modal-media"><img id="modalImage" loading="lazy" decoding="async" src="assets/segment1.webp" alt="Segmento"></div>
+      <div class="modal-media"><img id="modalImage" src="assets/segment1.webp" alt="Segmento" loading="lazy" decoding="async" width="820" height="1092"></div>
       <div class="modal-copy">
         <p class="eyebrow" id="modalKicker">Segmento</p>
         <h2 id="modalTitle">Beleza e estética</h2>
