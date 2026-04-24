@@ -4,399 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AtivaVendas | Mensagens Prontas para WhatsApp e Instagram</title>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            dark: '#0B090A',
-                            card: '#141218',
-                            primary: '#8B5CF6',
-                            accent: '#D946EF',
-                            success: '#10B981',
-                            whatsapp: '#25D366'
-                        }
+                        brand: { dark: '#0B090A', card: '#141218', primary: '#8B5CF6', accent: '#D946EF', success: '#10B981', whatsapp: '#25D366' }
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
+                        float: 'float 6s ease-in-out infinite',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } }
                     }
                 }
             }
         }
     </script>
-
     <style>
         body { background-color: #0B090A; color: white; overflow-x: hidden; }
-        .gradient-text {
-            background: linear-gradient(to right, #D946EF, #8B5CF6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glass-card {
-            background: rgba(20, 18, 24, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(139, 92, 246, 0.15);
-        }
-        .glow-hover:hover {
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
-            border-color: #D946EF;
-        }
+        .gradient-text { background: linear-gradient(to right, #D946EF, #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-card { background: rgba(20, 18, 24, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(139, 92, 246, 0.15); }
+        .glow-hover:hover { box-shadow: 0 0 25px rgba(139, 92, 246, 0.4); border-color: #D946EF; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0B090A; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
 
-        .wa-modal-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            background: rgba(0,0,0,.88);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .35s ease;
+        /* ===== WHATSAPP CONVERSATION STYLES ===== */
+        .talk-tabs { display:flex; justify-content:center; gap:10px; margin-bottom:28px; flex-wrap:wrap; padding:0 20px; }
+        .talk-tab {
+            padding:10px 20px; border-radius:50px; border:1px solid rgba(139,92,246,.2);
+            background:rgba(255,255,255,.03); color:#8696a0; font-size:13px; font-weight:600;
+            cursor:pointer; transition:all .3s ease; white-space:nowrap;
         }
-        .wa-modal-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
+        .talk-tab:hover { border-color:rgba(139,92,246,.4); color:#fff; }
+        .talk-tab.active {
+            background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(255,73,199,.15));
+            border-color:rgba(168,85,247,.5); color:#fff;
+            box-shadow:0 0 20px rgba(139,92,246,.15);
         }
-        .wa-modal {
-            width: min(460px, 94vw);
-            max-height: 90vh;
-            background: #0B141A;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 0 80px rgba(37,211,102,.18), 0 30px 80px rgba(0,0,0,.6);
-            transform: scale(.85) translateY(30px);
-            transition: transform .35s cubic-bezier(.2,.8,.2,1);
-            display: flex;
-            flex-direction: column;
+        .talk-tab .tab-icon { margin-right:6px; font-size:14px; }
+        .chat-wrapper {
+            max-width:520px; margin:0 auto; position:relative;
+            background:#111128; border-radius:24px;
+            border:1px solid rgba(139,92,246,.2);
+            box-shadow:0 0 60px rgba(139,92,246,.06),0 0 120px rgba(255,73,199,.04),0 20px 60px rgba(0,0,0,.4);
+            overflow:hidden;
         }
-        .wa-modal-overlay.open .wa-modal {
-            transform: scale(1) translateY(0);
+        .sim-progress { height:3px; background:rgba(37,211,102,.10); }
+        .sim-progress-bar { height:100%; background:linear-gradient(90deg,#25d366,#a855f7); width:0%; transition:width .4s ease; border-radius:0 3px 3px 0; }
+        .phone-header { background:#075E54; padding:16px 20px; display:flex; align-items:center; gap:14px; }
+        .phone-header .avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; color:#fff; flex-shrink:0; }
+        .avatar-conv1 { background:linear-gradient(135deg,#a855f7,#ec4899); }
+        .avatar-conv2 { background:linear-gradient(135deg,#f97316,#ef4444); }
+        .avatar-conv3 { background:linear-gradient(135deg,#06b6d4,#3b82f6); }
+        .phone-header .info { flex:1; min-width:0; }
+        .phone-header .info .name { color:#fff; font-size:15px; font-weight:600; }
+        .phone-header .info .status { color:rgba(255,255,255,.7); font-size:12px; }
+        .phone-header .actions { display:flex; gap:16px; color:rgba(255,255,255,.7); font-size:16px; }
+        .chat-area {
+            height:480px; overflow-y:auto; padding:16px 14px;
+            display:flex; flex-direction:column; gap:6px;
+            background:#0b141a;
+            background-image:url("image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' width='70' height='70' patternUnits='userSpaceOnUse'%3E%3Cpath d='M35 5c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23p)'/%3E%3C/svg%3E");
+            scroll-behavior:smooth;
         }
-        .wa-modal-header {
-            background: #075E54;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-shrink: 0;
-        }
-        .wa-modal-header .avatar-lg {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255,255,255,.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .wa-modal-header .contact-info { flex: 1; min-width: 0; }
-        .wa-modal-header .contact-name { color: white; font-size: 16px; font-weight: 600; }
-        .wa-modal-header .contact-status { color: rgba(255,255,255,.75); font-size: 12px; }
-        .wa-modal-header .close-btn { cursor: pointer; transition: color .2s; }
-        .wa-modal-header .close-btn:hover { color: white; }
-        .wa-chat-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            background: #0B141A;
-            background-image: url("image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
-            scroll-behavior: smooth;
-        }
-        .wa-chat-area::-webkit-scrollbar { width: 6px; }
-        .wa-chat-area::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 3px; }
-        .date-separator {
-            align-self: center;
-            background: rgba(11,20,26,.8);
-            color: #8696A0;
-            font-size: 11px;
-            padding: 5px 14px;
-            border-radius: 8px;
-            margin: 8px 0;
-            box-shadow: 0 1px 2px rgba(0,0,0,.2);
-        }
-        .encryption-note {
-            align-self: center;
-            background: rgba(255,215,64,.08);
-            color: rgba(255,215,64,.8);
-            font-size: 11px;
-            padding: 6px 12px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            text-align: center;
-            line-height: 1.4;
-        }
+        .chat-area::-webkit-scrollbar { width:5px; }
+        .chat-area::-webkit-scrollbar-thumb { background:rgba(255,255,255,.12); border-radius:3px; }
+        .date-sep { align-self:center; background:rgba(11,20,26,.85); color:#8696a0; font-size:11px; padding:5px 14px; border-radius:8px; margin:6px 0; }
+        .enc-note { align-self:center; background:rgba(255,215,64,.06); color:rgba(255,215,64,.7); font-size:10px; padding:6px 10px; border-radius:6px; text-align:center; line-height:1.4; margin-bottom:8px; }
         .msg {
-            max-width: 85%;
-            padding: 7px 10px 6px;
-            border-radius: 8px;
-            font-size: 13.5px;
-            line-height: 1.45;
-            position: relative;
-            opacity: 0;
-            transform: translateY(16px) scale(.95);
-            animation: msgAppear .4s cubic-bezier(.2,.8,.2,1) forwards;
-            word-wrap: break-word;
+            max-width:82%; padding:7px 10px 6px; border-radius:8px; font-size:13px; line-height:1.45;
+            opacity:0; transform:translateY(14px) scale(.96);
+            animation:msgIn .35s cubic-bezier(.2,.8,.2,1) forwards;
         }
-        @keyframes msgAppear {
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes msgIn { to { opacity:1; transform:translateY(0) scale(1); } }
+        .msg.recv { background:#202c33; color:#e9edef; align-self:flex-start; border-top-left-radius:0; }
+        .msg.sent { background:#005c4b; color:#e9edef; align-self:flex-end; border-top-right-radius:0; }
+        .msg .mtext { display:inline; }
+        .msg .mmeta { float:right; margin-left:8px; margin-top:3px; display:flex; align-items:center; gap:3px; }
+        .msg .mtime { font-size:10px; color:rgba(255,255,255,.45); }
+        .msg .mcheck { font-size:13px; color:#53bdeb; }
+        .typing {
+            align-self:flex-start; background:#202c33; border-radius:12px; border-top-left-radius:0;
+            padding:12px 16px; display:none; gap:4px; align-items:center;
+            opacity:0; transform:translateY(14px); transition:opacity .3s,transform .3s;
         }
-        .msg.received {
-            background: #202C33;
-            color: #E9EDEF;
-            align-self: flex-start;
-            border-top-left-radius: 0;
+        .typing.show { opacity:1; transform:translateY(0); }
+        .typing .dot { width:7px; height:7px; background:rgba(255,255,255,.35); border-radius:50%; animation:tb 1.4s infinite; }
+        .typing .dot:nth-child(2) { animation-delay:.2s; }
+        .typing .dot:nth-child(3) { animation-delay:.4s; }
+        @keyframes tb { 0%,60%,100%{transform:translateY(0);opacity:.35} 30%{transform:translateY(-6px);opacity:1} }
+        .chat-input { background:#111b21; padding:10px 14px; display:flex; align-items:center; gap:10px; border-top:1px solid #222d34; }
+        .chat-input .emoji { color:#8696a0; font-size:20px; cursor:pointer; }
+        .chat-input .field { flex:1; background:#2a3942; border:none; border-radius:22px; padding:10px 16px; color:#e9edef; font-size:13px; outline:none; }
+        .chat-input .field::placeholder { color:#8696a0; }
+        .chat-input .send { width:38px; height:38px; border-radius:50%; background:#25d366; display:grid; place-items:center; cursor:pointer; font-size:16px; color:#fff; }
+        .bottom-section { padding:24px 24px 28px; text-align:center; border-top:1px solid rgba(139,92,246,.1); }
+        .bottom-section .explain { font-size:13px; color:#8696a0; line-height:1.6; margin-bottom:20px; }
+        .bottom-section .explain strong { color:#ec4899; font-weight:600; }
+        .bottom-section .explain .tag-yellow { color:#ffd700; font-weight:600; }
+        .btn-replay {
+            display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:50px; border:none;
+            background:linear-gradient(135deg,#a855f7,#ec4899); color:#fff; font-size:15px; font-weight:700;
+            cursor:pointer; box-shadow:0 4px 24px rgba(168,85,247,.35); transition:transform .2s,box-shadow .2s;
         }
-        .msg.sent {
-            background: #005C4B;
-            color: #E9EDEF;
-            align-self: flex-end;
-            border-top-right-radius: 0;
+        .btn-replay:hover { transform:translateY(-2px); box-shadow:0 6px 30px rgba(168,85,247,.45); }
+        .replay-float {
+            position:absolute; bottom:80px; right:18px; width:46px; height:46px; border-radius:50%;
+            background:linear-gradient(135deg,#25d366,#075e54); color:#fff; font-size:18px; border:none; cursor:pointer;
+            display:none; align-items:center; justify-content:center;
+            box-shadow:0 4px 18px rgba(37,211,102,.3); transition:transform .2s; z-index:5;
         }
-        .msg .msg-text { display: inline; }
-        .msg .msg-meta {
-            float: right;
-            margin-left: 8px;
-            margin-top: 3px;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-        .msg .msg-time { font-size: 10px; color: rgba(255,255,255,.45); }
-        .msg .msg-check { font-size: 14px; color: #53BDEB; line-height: 1; }
-        .typing-indicator {
-            align-self: flex-start;
-            background: #202C33;
-            border-radius: 12px;
-            border-top-left-radius: 0;
-            padding: 12px 16px;
-            display: none;
-            gap: 4px;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity .3s ease, transform .3s ease;
-        }
-        .typing-indicator.show { opacity: 1; transform: translateY(0); }
-        .typing-dot {
-            width: 7px;
-            height: 7px;
-            background: rgba(255,255,255,.4);
-            border-radius: 50%;
-            animation: typingBounce 1.4s infinite;
-        }
-        .typing-dot:nth-child(2) { animation-delay: .2s; }
-        .typing-dot:nth-child(3) { animation-delay: .4s; }
-        @keyframes typingBounce {
-            0%, 60%, 100% { transform: translateY(0); opacity: .4; }
-            30% { transform: translateY(-6px); opacity: 1; }
-        }
-        .wa-input-area {
-            background: #111B21;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-            border-top: 1px solid #222D34;
-        }
-        .wa-input-area .emoji-btn { color: #8696A0; font-size: 22px; cursor: pointer; }
-        .wa-input-area .input-field {
-            flex: 1;
-            background: #2A3942;
-            border: none;
-            border-radius: 22px;
-            padding: 10px 16px;
-            color: #E9EDEF;
-            font-size: 14px;
-            outline: none;
-        }
-        .wa-input-area .input-field::placeholder { color: #8696A0; }
-        .wa-input-area .mic-btn {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            background: transparent;
-            color: #8696A0;
-            font-size: 20px;
-            cursor: pointer;
-            display: grid;
-            place-items: center;
-        }
-        .sim-progress { height: 3px; background: rgba(37,211,102,.15); flex-shrink: 0; }
-        .sim-progress-bar { height: 100%; background: #25D366; width: 0%; transition: width .3s ease; border-radius: 0 2px 2px 0; }
-        .replay-btn {
-            position: absolute;
-            bottom: 70px;
-            right: 20px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #25D366;
-            color: white;
-            font-size: 20px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(37,211,102,.3);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: transform .2s, box-shadow .2s;
-            z-index: 5;
-        }
-        .replay-btn:hover { transform: scale(1.1); box-shadow: 0 4px 30px rgba(37,211,102,.45); }
-        .replay-btn.show { display: flex; }
+        .replay-float:hover { transform:scale(1.1); }
+        .replay-float.show { display:flex; }
+        .talk-panel { display:none; }
+        .talk-panel.active { display:block; }
+        .tech-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:16px; }
+        .tech-tag { padding:5px 14px; border-radius:50px; font-size:11px; font-weight:700; letter-spacing:.3px; }
+        .tag-purple { background:rgba(168,85,247,.15); color:#c084fc; border:1px solid rgba(168,85,247,.25); }
+        .tag-pink { background:rgba(236,72,153,.15); color:#f472b6; border:1px solid rgba(236,72,153,.2); }
+        .tag-green { background:rgba(37,211,102,.12); color:#4ade80; border:1px solid rgba(37,211,102,.2); }
+        .tag-yellow { background:rgba(255,215,0,.1); color:#fde047; border:1px solid rgba(255,215,0,.18); }
+        .tag-blue { background:rgba(59,130,246,.12); color:#60a5fa; border:1px solid rgba(59,130,246,.2); }
+        @media(max-width:560px) { .chat-area{height:400px} .talk-tab{padding:8px 14px;font-size:12px} .btn-replay{padding:12px 24px;font-size:14px} }
 
-        .trigger-section { padding: 20px 0 40px; }
-        .trigger-card {
-            position: relative;
-            cursor: pointer;
-            text-align: center;
-            transition: transform .35s ease, box-shadow .35s ease;
+        /* ===== MODAL ===== */
+        .wa-modal-overlay {
+            position:fixed; inset:0; z-index:1000;
+            background:rgba(0,0,0,.88); backdrop-filter:blur(8px);
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none; transition:opacity .35s ease;
         }
-        .trigger-card:hover { transform: translateY(-8px) scale(1.02); }
-        .trigger-card:hover .phone-mockup {
-            box-shadow: 0 0 60px rgba(37,211,102,.35), 0 0 120px rgba(37,211,102,.15);
+        .wa-modal-overlay.open { opacity:1; pointer-events:auto; }
+        .wa-modal {
+            width:min(460px,94vw); max-height:90vh; background:#0B141A; border-radius:16px; overflow:hidden;
+            box-shadow:0 0 80px rgba(37,211,102,.18),0 30px 80px rgba(0,0,0,.6);
+            transform:scale(.85) translateY(30px); transition:transform .35s cubic-bezier(.2,.8,.2,1);
+            display:flex; flex-direction:column;
         }
-        .trigger-card:hover .wa-icon-wrap { transform: scale(1.1) rotate(8deg); }
-        .trigger-card:hover .pulse-ring { animation: pulseRing 1.8s ease-out infinite; }
-        .phone-mockup {
-            width: 280px;
-            height: 480px;
-            background: #202C33;
-            border-radius: 36px;
-            border: 3px solid #2A3942;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(37,211,102,.2), 0 20px 60px rgba(0,0,0,.5);
-            transition: box-shadow .35s ease;
-            position: relative;
+        .wa-modal-overlay.open .wa-modal { transform:scale(1) translateY(0); }
+        .wa-modal-header { background:#075E54; padding:14px 18px; display:flex; align-items:center; gap:14px; flex-shrink:0; }
+        .wa-modal-header .avatar-lg { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .wa-modal-header .contact-info { flex:1; min-width:0; }
+        .wa-modal-header .contact-name { color:white; font-size:16px; font-weight:600; }
+        .wa-modal-header .contact-status { color:rgba(255,255,255,.75); font-size:12px; }
+        .wa-modal-header .close-btn { cursor:pointer; transition:color .2s; }
+        .wa-modal-header .close-btn:hover { color:white; }
+        .wa-modal-input-area { background:#111b21; padding:10px 14px; display:flex; align-items:center; gap:10px; flex-shrink:0; border-top:1px solid #222d34; }
+        .wa-modal-input-area .emoji-btn { color:#8696a0; font-size:22px; cursor:pointer; }
+        .wa-modal-input-area .input-field { flex:1; background:#2a3942; border:none; border-radius:22px; padding:10px 16px; color:#e9edef; font-size:14px; outline:none; }
+        .wa-modal-input-area .input-field::placeholder { color:#8696a0; }
+        .wa-modal-input-area .mic-btn { width:40px; height:40px; border-radius:50%; background:transparent; color:#8696a0; font-size:20px; cursor:pointer; display:grid; place-items:center; }
+        .wa-modal-progress { height:3px; background:rgba(37,211,102,.15); }
+        .wa-modal-progress-bar { height:100%; background:#25d366; width:0%; transition:width .3s ease; border-radius:0 2px 2px 0; }
+        .wa-modal-replay {
+            position:absolute; bottom:70px; right:20px; width:48px; height:48px; border-radius:50%;
+            background:#25d366; color:white; font-size:20px; border:none; cursor:pointer;
+            box-shadow:0 4px 20px rgba(37,211,102,.3); display:none; align-items:center; justify-content:center;
+            transition:transform .2s; z-index:5;
         }
-        .phone-header-bar {
-            background: #075E54;
-            padding: 40px 16px 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .phone-header-bar .avatar {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            background: rgba(255,255,255,.2);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .phone-header-bar .info .name { color: white; font-size: 14px; font-weight: 600; }
-        .phone-header-bar .info .status { color: rgba(255,255,255,.7); font-size: 11px; }
-        .phone-body {
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            background: #0B141A;
-            background-image: url("image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
-        }
-        .phone-bubble {
-            max-width: 80%;
-            padding: 7px 10px;
-            border-radius: 8px;
-            font-size: 12px;
-            line-height: 1.4;
-            opacity: .7;
-        }
-        .phone-bubble.received {
-            background: #202C33;
-            color: #E9EDEF;
-            align-self: flex-start;
-            border-top-left-radius: 0;
-        }
-        .phone-bubble.sent {
-            background: #005C4B;
-            color: #E9EDEF;
-            align-self: flex-end;
-            border-top-right-radius: 0;
-        }
-        .phone-bubble .time { font-size: 9px; color: rgba(255,255,255,.45); float: right; margin-left: 8px; margin-top: 3px; }
-        .phone-input-bar {
-            padding: 10px 12px;
-            background: #111B21;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .phone-input-bar .input-fake { flex: 1; height: 34px; background: #2A3942; border-radius: 18px; border: 1px solid rgba(255,255,255,.06); }
-        .phone-input-bar .send-fake {
-            width: 34px; height: 34px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .wa-icon-wrap {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 52px; height: 52px;
-            background: #25D366;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            box-shadow: 0 4px 20px rgba(37,211,102,.4);
-            transition: transform .35s ease;
-            z-index: 2;
-        }
-        .pulse-ring {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 52px; height: 52px;
-            border-radius: 50%;
-            border: 2px solid rgba(37,211,102,.4);
-            animation: none;
-        }
-        @keyframes pulseRing {
-            0% { transform: scale(1); opacity: .7; }
-            100% { transform: scale(2.2); opacity: 0; }
-        }
-        .trigger-label { margin-top: 28px; font-size: 15px; color: #8696A0; font-weight: 500; }
-        .trigger-label strong { color: #25D366; }
-        .trigger-sublabel { font-size: 12px; color: #8696A0; opacity: .6; margin-top: 6px; }
-
-        @media (max-width: 500px) {
-            .phone-mockup { width: 240px; height: 400px; border-radius: 30px; }
-            .wa-modal { width: 100vw; max-height: 100vh; border-radius: 0; }
-            .msg { max-width: 90%; }
-        }
+        .wa-modal-replay:hover { transform:scale(1.1); }
+        .wa-modal-replay.show { display:flex; }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- Navbar -->
     <nav class="fixed w-full z-50 glass-card border-b-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -408,8 +188,8 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#conversas" class="hover:text-brand-accent transition-colors">Conversas</a>
                         <a href="#catalogo" class="hover:text-brand-accent transition-colors">Catálogo</a>
-                        <a href="#como-funciona" class="hover:text-brand-accent transition-colors">Como Funciona</a>
                         <a href="#bonus" class="hover:text-brand-accent transition-colors">Bônus</a>
                     </div>
                 </div>
@@ -423,10 +203,10 @@
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px] -z-10"></div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center">
             <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-accent text-xs font-semibold mb-6">
@@ -449,20 +229,12 @@
                         <i class="fa-brands fa-whatsapp"></i> Ver Simulação
                     </button>
                 </div>
-                
                 <div class="mt-10 flex items-center gap-8 justify-center lg:justify-start text-sm text-gray-500">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-check text-brand-success"></i> Acesso Imediato
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-check text-brand-success"></i> Pagamento Seguro
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-check text-brand-success"></i> 10% Cashback
-                    </div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-success"></i> Acesso Imediato</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-success"></i> Pagamento Seguro</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-success"></i> 10% Cashback</div>
                 </div>
             </div>
-            
             <div class="lg:w-1/2 relative">
                 <div class="relative w-full max-w-md mx-auto animate-float">
                     <div class="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-accent blur-3xl opacity-30 rounded-full"></div>
@@ -472,149 +244,166 @@
                                 <div class="w-10 h-10 rounded-full bg-gray-700 overflow-hidden">
                                     <img src="https://ui-avatars.com/api/?name=Admin&background=random" alt="Admin" class="w-full h-full object-cover">
                                 </div>
-                                <div>
-                                    <p class="text-sm font-bold">AtivaVendas Admin</p>
-                                    <p class="text-xs text-gray-400">Novo cliente baixou o Pack!</p>
-                                </div>
+                                <div><p class="text-sm font-bold">AtivaVendas Admin</p><p class="text-xs text-gray-400">Novo cliente baixou o Pack!</p></div>
                             </div>
                             <span class="text-xs bg-green-900/50 text-green-400 px-2 py-1 rounded">+PDF Entregue</span>
                         </div>
-                        <div class="space-y-3">
-                            <div class="h-2 bg-gray-700 rounded w-3/4"></div>
-                            <div class="h-2 bg-gray-700 rounded w-1/2"></div>
-                        </div>
+                        <div class="space-y-3"><div class="h-2 bg-gray-700 rounded w-3/4"></div><div class="h-2 bg-gray-700 rounded w-1/2"></div></div>
                         <div class="mt-6 flex gap-3">
-                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600">
-                                <div class="text-center">
-                                    <i class="fa-solid fa-spa text-3xl text-brand-accent mb-2"></i>
-                                    <p class="text-xs text-gray-400">Pack Beleza</p>
-                                </div>
-                            </div>
-                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600">
-                                <div class="text-center">
-                                    <i class="fa-solid fa-burger text-3xl text-orange-500 mb-2"></i>
-                                    <p class="text-xs text-gray-400">Pack Delivery</p>
-                                </div>
-                            </div>
+                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600"><div class="text-center"><i class="fa-solid fa-spa text-3xl text-brand-accent mb-2"></i><p class="text-xs text-gray-400">Pack Beleza</p></div></div>
+                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600"><div class="text-center"><i class="fa-solid fa-burger text-3xl text-orange-500 mb-2"></i><p class="text-xs text-gray-400">Pack Delivery</p></div></div>
                         </div>
                     </div>
-                    <div class="absolute -bottom-6 -right-6 bg-gray-900 border border-gray-700 p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
-                        <div class="bg-green-500/20 p-2 rounded-lg text-green-400">
-                            <i class="fa-solid fa-arrow-trend-up"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-400">Vendas via Chat</p>
-                            <p class="text-lg font-bold text-white">+285%</p>
-                        </div>
+                    <div class="absolute -bottom-6 -right-6 bg-gray-900 border border-gray-700 p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce" style="animation-duration:3s;">
+                        <div class="bg-green-500/20 p-2 rounded-lg text-green-400"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                        <div><p class="text-xs text-gray-400">Vendas via Chat</p><p class="text-lg font-bold text-white">+285%</p></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Stats -->
     <section class="py-12 border-y border-gray-800 bg-black/30">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-                <p class="text-3xl font-bold text-white">+10k</p>
-                <p class="text-gray-500 text-sm mt-1">Empreendedores Ativos</p>
-            </div>
-            <div>
-                <p class="text-3xl font-bold text-white">+2M</p>
-                <p class="text-gray-500 text-sm mt-1">Mensagens Enviadas</p>
-            </div>
-            <div>
-                <p class="text-3xl font-bold text-white">98%</p>
-                <p class="text-gray-500 text-sm mt-1">Taxa de Satisfação</p>
-            </div>
-            <div>
-                <p class="text-3xl font-bold text-white">4.9</p>
-                <p class="text-gray-500 text-sm mt-1">Avaliação Média</p>
-            </div>
+            <div><p class="text-3xl font-bold text-white">+10k</p><p class="text-gray-500 text-sm mt-1">Empreendedores Ativos</p></div>
+            <div><p class="text-3xl font-bold text-white">+2M</p><p class="text-gray-500 text-sm mt-1">Mensagens Enviadas</p></div>
+            <div><p class="text-3xl font-bold text-white">98%</p><p class="text-gray-500 text-sm mt-1">Taxa de Satisfação</p></div>
+            <div><p class="text-3xl font-bold text-white">4.9</p><p class="text-gray-500 text-sm mt-1">Avaliação Média</p></div>
         </div>
     </section>
 
-    <section class="trigger-section">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-center">
-                <div class="trigger-card" onclick="openWaModal()">
-                    <div class="phone-mockup">
-                        <div class="phone-header-bar">
-                            <div class="avatar">
-                                <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                            </div>
-                            <div class="info">
-                                <div class="name">AtivaVendas</div>
-                                <div class="status">online</div>
-                            </div>
-                        </div>
-                        <div class="phone-body">
-                            <div class="phone-bubble received">Olá! Tudo bem? 😊<span class="time">10:30</span></div>
-                            <div class="phone-bubble sent">Tudo ótimo! Preciso de ajuda<span class="time">10:31</span></div>
-                            <div class="phone-bubble received">Claro! Como posso ajudar?<span class="time">10:31</span></div>
-                            <div class="phone-bubble sent">Quero vender mais no WhatsApp<span class="time">10:32</span></div>
-                        </div>
-                        <div class="phone-input-bar">
-                            <div class="input-fake"></div>
-                            <div class="send-fake">
-                                <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                            </div>
-                        </div>
-                        <div class="pulse-ring"></div>
-                        <div class="wa-icon-wrap">
-                            <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
-                        </div>
+    <!-- ===== WHATSAPP CONVERSATIONS ===== -->
+    <section id="conversas" class="py-20">
+        <div style="max-width:580px;margin:0 auto;padding:0 20px;">
+            <div style="text-align:center;margin-bottom:36px;">
+                <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#8696a0;margin-bottom:8px;">Exemplos reais de conversas</p>
+                <h1 style="font-size:clamp(22px,4vw,30px);font-weight:800;line-height:1.2;margin-bottom:12px;">
+                    Veja a <span class="gradient-text">psicologia</span> funcionando no WhatsApp
+                </h1>
+                <p style="font-size:14px;color:#8696a0;line-height:1.6;max-width:460px;margin:0 auto;">
+                    3 cenários diferentes com técnicas de persuasão prontas para copiar, colar e vender.
+                </p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="talk-tabs">
+                <button class="talk-tab active" data-talk="1" onclick="switchTalk(1)"><span class="tab-icon">📅</span>Escassez de Horário</button>
+                <button class="talk-tab" data-talk="2" onclick="switchTalk(2)"><span class="tab-icon">🔥</span>Oferta Relâmpago</button>
+                <button class="talk-tab" data-talk="3" onclick="switchTalk(3)"><span class="tab-icon">💌</span>Cliente Sumido</button>
+            </div>
+
+            <!-- Conversation 1 -->
+            <div class="talk-panel active" id="talk1">
+                <div class="chat-wrapper">
+                    <div class="sim-progress"><div class="sim-progress-bar" id="prog1"></div></div>
+                    <div class="phone-header">
+                        <div class="avatar avatar-conv1">A</div>
+                        <div class="info"><div class="name" id="name1">Seu Salão de Beleza</div><div class="status" id="status1">online agora</div></div>
+                        <div class="actions"><span>📞</span><span>📹</span><span>⋮</span></div>
                     </div>
-                    <p class="trigger-label">Veja como as <strong>mensagens prontas</strong> funcionam</p>
-                    <p class="trigger-sublabel">Clique para simular uma conversa real</p>
+                    <div class="chat-area" id="chat1">
+                        <div class="enc-note">🔒 Mensagens criptografadas de ponta a ponta</div>
+                        <div class="date-sep">HOJE</div>
+                        <div class="typing" id="typ1"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="chat-input"><span class="emoji">😊</span><input class="field" type="text" placeholder="Digite uma mensagem..." disabled><div class="send">➤</div></div>
+                    <button class="replay-float" id="replay1" onclick="replay(1)">↻</button>
+                    <div class="bottom-section">
+                        <p class="explain">Essa resposta usa <strong>escassez</strong> + <span class="tag-yellow">urgência</span> + <strong>facilidade</strong> — técnicas que estão no kit.</p>
+                        <div class="tech-tags"><span class="tech-tag tag-purple">Escassez</span><span class="tech-tag tag-yellow">Urgência</span><span class="tech-tag tag-green">Facilidade</span></div>
+                        <button class="btn-replay" onclick="replay(1)" style="margin-top:16px"><i class="fa-solid fa-rotate"></i> Assistir conversa novamente</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversation 2 -->
+            <div class="talk-panel" id="talk2">
+                <div class="chat-wrapper">
+                    <div class="sim-progress"><div class="sim-progress-bar" id="prog2"></div></div>
+                    <div class="phone-header">
+                        <div class="avatar avatar-conv2">A</div>
+                        <div class="info"><div class="name" id="name2">Lanchonete Sabor & Cia</div><div class="status" id="status2">online agora</div></div>
+                        <div class="actions"><span>📞</span><span>📹</span><span>⋮</span></div>
+                    </div>
+                    <div class="chat-area" id="chat2">
+                        <div class="enc-note">🔒 Mensagens criptografadas de ponta a ponta</div>
+                        <div class="date-sep">HOJE</div>
+                        <div class="typing" id="typ2"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="chat-input"><span class="emoji">😊</span><input class="field" type="text" placeholder="Digite uma mensagem..." disabled><div class="send">➤</div></div>
+                    <button class="replay-float" id="replay2" onclick="replay(2)">↻</button>
+                    <div class="bottom-section">
+                        <p class="explain">Essa resposta usa <span class="tag-yellow">urgência temporal</span> + <strong>prova social</strong> + <strong>ancoragem de preço</strong>.</p>
+                        <div class="tech-tags"><span class="tech-tag tag-yellow">Urgência Temporal</span><span class="tech-tag tag-pink">Prova Social</span><span class="tech-tag tag-purple">Ancoragem</span></div>
+                        <button class="btn-replay" onclick="replay(2)" style="margin-top:16px"><i class="fa-solid fa-rotate"></i> Assistir conversa novamente</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversation 3 -->
+            <div class="talk-panel" id="talk3">
+                <div class="chat-wrapper">
+                    <div class="sim-progress"><div class="sim-progress-bar" id="prog3"></div></div>
+                    <div class="phone-header">
+                        <div class="avatar avatar-conv3">A</div>
+                        <div class="info"><div class="name" id="name3">Clínica Estética Bella</div><div class="status" id="status3">online agora</div></div>
+                        <div class="actions"><span>📞</span><span>📹</span><span>⋮</span></div>
+                    </div>
+                    <div class="chat-area" id="chat3">
+                        <div class="enc-note">🔒 Mensagens criptografadas de ponta a ponta</div>
+                        <div class="date-sep">HOJE</div>
+                        <div class="typing" id="typ3"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="chat-input"><span class="emoji">😊</span><input class="field" type="text" placeholder="Digite uma mensagem..." disabled><div class="send">➤</div></div>
+                    <button class="replay-float" id="replay3" onclick="replay(3)">↻</button>
+                    <div class="bottom-section">
+                        <p class="explain">Essa resposta usa <strong>empatia</strong> + <span class="tag-yellow">oferta exclusiva</span> + <strong>reconexão emocional</strong>.</p>
+                        <div class="tech-tags"><span class="tech-tag tag-blue">Empatia</span><span class="tech-tag tag-yellow">Oferta Exclusiva</span><span class="tech-tag tag-pink">Reconexão</span></div>
+                        <button class="btn-replay" onclick="replay(3)" style="margin-top:16px"><i class="fa-solid fa-rotate"></i> Assistir conversa novamente</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ===== WHATSAPP MODAL (Full Screen Simulation) ===== -->
     <div class="wa-modal-overlay" id="waModal">
         <div class="wa-modal" style="position:relative;">
-            <div class="sim-progress">
-                <div class="sim-progress-bar" id="simProgress"></div>
-            </div>
+            <div class="wa-modal-progress"><div class="wa-modal-progress-bar" id="waSimProgress"></div></div>
             <div class="wa-modal-header">
                 <span style="color:white;font-size:20px;cursor:pointer;" onclick="closeWaModal()">←</span>
                 <div class="avatar-lg">
                     <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
                 </div>
                 <div class="contact-info">
-                    <div class="contact-name" id="contactName">AtivaVendas</div>
-                    <div class="contact-status" id="contactStatus">digitando...</div>
+                    <div class="contact-name" id="waContactName">AtivaVendas</div>
+                    <div class="contact-status" id="waContactStatus">digitando...</div>
                 </div>
                 <div style="display:flex;gap:18px;color:rgba(255,255,255,.7);font-size:18px;">
-                    <span>📹</span>
-                    <span>📞</span>
-                    <span class="close-btn" onclick="closeWaModal()">✕</span>
+                    <span>📹</span><span>📞</span><span class="close-btn" onclick="closeWaModal()">✕</span>
                 </div>
             </div>
-            <div class="wa-chat-area" id="chatArea">
-                <div class="encryption-note">🔒 As mensagens são criptografadas de ponta a ponta.</div>
-                <div class="date-separator">HOJE</div>
-                <div class="typing-indicator" id="typingIndicator">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
+            <div class="wa-chat-area" id="waChatArea" style="background:#0b141a;background-image:url('image/svg+xml,%3Csvg width=\'400\' height=\'400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cpattern id=\'p\' width=\'70\' height=\'70\' patternUnits=\'userSpaceOnUse\'%3E%3Cpath d=\'M35 5c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z\' fill=\'rgba(255,255,255,.025)\'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=\'400\' height=\'400\' fill=\'url(%23p)\'/%3E%3C/svg%3E');scroll-behavior:smooth;">
+                <div class="enc-note">🔒 As mensagens são criptografadas de ponta a ponta.</div>
+                <div class="date-sep">HOJE</div>
+                <div class="typing" id="waTyping"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
             </div>
-            <div class="wa-input-area">
+            <div class="wa-modal-input-area">
                 <span class="emoji-btn">😊</span>
                 <input class="input-field" type="text" placeholder="Mensagem" disabled>
                 <span class="mic-btn">🎤</span>
             </div>
-            <button class="replay-btn" id="replayBtn" onclick="replayConversation()" title="Repetir conversa">↻</button>
+            <button class="wa-modal-replay" id="waReplayBtn" onclick="replayWaConversation()">↻</button>
         </div>
     </div>
 
+    <!-- Catalog -->
     <section id="catalogo" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Escolha seu <span class="text-brand-primary">Pack de Mensagens</span></h2>
                 <p class="text-gray-400">Conteúdo testado e validado para aumentar suas vendas.</p>
-                
                 <div class="flex flex-wrap justify-center gap-3 mt-8">
                     <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2 rounded-full border border-brand-primary bg-brand-primary/20 text-white text-sm font-medium hover:bg-brand-primary transition">Todos</button>
                     <button onclick="filterProducts('beleza')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Beleza & Estética</button>
@@ -622,7 +411,6 @@
                     <button onclick="filterProducts('servicos')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Prestadores de Serviço</button>
                 </div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
                 <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="beleza">
                     <div class="relative h-48 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center overflow-hidden">
@@ -630,108 +418,67 @@
                         <div class="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-green-400">R$ 49,90</div>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xs font-semibold text-pink-400 bg-pink-500/10 px-2 py-0.5 rounded">Beleza</span>
-                            <span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 15 Scripts</span>
-                        </div>
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-semibold text-pink-400 bg-pink-500/10 px-2 py-0.5 rounded">Beleza</span><span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 15 Scripts</span></div>
                         <h3 class="text-xl font-bold mb-2 group-hover:text-brand-primary transition">Pack Salão & Estética</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Mensagens de antes e depois, promoções de dia da beleza, lembretes de horário e ofertas de pacotes.</p>
-                        <button onclick="openCheckout('Pack Salão & Estética', 49.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">
-                            Quero esse pack <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <button onclick="openCheckout('Pack Salão & Estética', 49.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">Quero esse pack <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
-
                 <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="delivery">
                     <div class="relative h-48 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-burger text-6xl text-orange-400/50 group-hover:scale-110 transition duration-500"></i>
                         <div class="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-green-400">R$ 59,90</div>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xs font-semibold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">Delivery</span>
-                            <span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 20 Scripts</span>
-                        </div>
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-semibold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">Delivery</span><span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 20 Scripts</span></div>
                         <h3 class="text-xl font-bold mb-2 group-hover:text-brand-primary transition">Pack Lanchonete & Delivery</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Mensagens suculentas de hambúrgueres, combos, promoções do dia e frete grátis. Alto apetite!</p>
-                        <button onclick="openCheckout('Pack Lanchonete & Delivery', 59.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">
-                            Quero esse pack <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <button onclick="openCheckout('Pack Lanchonete & Delivery', 59.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">Quero esse pack <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
-
                 <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="servicos">
                     <div class="relative h-48 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-briefcase text-6xl text-blue-400/50 group-hover:scale-110 transition duration-500"></i>
                         <div class="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-green-400">R$ 39,90</div>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xs font-semibold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Serviços</span>
-                            <span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 12 Scripts</span>
-                        </div>
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-semibold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Serviços</span><span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 12 Scripts</span></div>
                         <h3 class="text-xl font-bold mb-2 group-hover:text-brand-primary transition">Pack Consultoria & Serviços</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Mensagens de autoridade, prova social, agendamento de consultas e dicas rápidas de valor.</p>
-                        <button onclick="openCheckout('Pack Consultoria & Serviços', 39.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">
-                            Quero esse pack <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <button onclick="openCheckout('Pack Consultoria & Serviços', 39.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">Quero esse pack <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Bonus -->
     <section id="bonus" class="py-20 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
         <div class="max-w-5xl mx-auto px-4">
             <div class="glass-card rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border-brand-primary/30 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                
                 <div class="md:w-1/2 relative z-10">
                     <div class="inline-block px-3 py-1 bg-brand-accent/20 text-brand-accent rounded-full text-xs font-bold mb-4">PROGRAMA DE INDICAÇÃO</div>
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">Compartilhe e Ganhe <span class="text-brand-accent">Bônus</span></h2>
-                    <p class="text-gray-400 mb-6">Ajudamos você a crescer organicamente. Quando você indica um amigo e ele compra, você ganha 10% de crédito na sua próxima compra + acesso liberado a packs premium.</p>
-                    
+                    <p class="text-gray-400 mb-6">Ajudamos você a crescer organicamente. Quando você indica um amigo e ele compra, você ganha 10% de crédito na sua próxima compra.</p>
                     <div class="space-y-4">
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">1</div>
-                            <div>
-                                <h4 class="font-semibold text-white">Compartilhe seu link único</h4>
-                                <p class="text-sm text-gray-500">Use os botões abaixo para enviar para seus amigos.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">2</div>
-                            <div>
-                                <h4 class="font-semibold text-white">Amigo faz a primeira compra</h4>
-                                <p class="text-sm text-gray-500">Ele ganha 5% de desconto e você ganha 10% de bônus.</p>
-                            </div>
-                        </div>
+                        <div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">1</div><div><h4 class="font-semibold text-white">Compartilhe seu link único</h4><p class="text-sm text-gray-500">Use os botões abaixo para enviar para seus amigos.</p></div></div>
+                        <div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">2</div><div><h4 class="font-semibold text-white">Amigo faz a primeira compra</h4><p class="text-sm text-gray-500">Ele ganha 5% de desconto e você ganha 10% de bônus.</p></div></div>
                     </div>
-
                     <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                        <button onclick="shareReferral('whatsapp')" class="flex-1 py-3 bg-[#25D366] hover:bg-[#20BD5A] text-black font-bold rounded-xl transition flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-xl"></i> Indicar no WhatsApp
-                        </button>
-                        <button onclick="shareReferral('telegram')" class="flex-1 py-3 bg-[#0088CC] hover:bg-[#0077B5] text-white font-bold rounded-xl transition flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-telegram text-xl"></i> Indicar no Telegram
-                        </button>
+                        <button onclick="shareReferral('whatsapp')" class="flex-1 py-3 bg-[#25D366] hover:bg-[#20BD5A] text-black font-bold rounded-xl transition flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp text-xl"></i> Indicar no WhatsApp</button>
+                        <button onclick="shareReferral('telegram')" class="flex-1 py-3 bg-[#0088CC] hover:bg-[#0077B5] text-white font-bold rounded-xl transition flex items-center justify-center gap-2"><i class="fa-brands fa-telegram text-xl"></i> Indicar no Telegram</button>
                     </div>
                 </div>
-
                 <div class="md:w-1/2 relative z-10 w-full">
                     <div class="bg-black/50 p-6 rounded-2xl border border-gray-700">
                         <p class="text-gray-400 text-sm mb-2">Seu link de indicação:</p>
                         <div class="flex items-center gap-2 bg-gray-800 rounded-lg p-2">
                             <input type="text" id="referral-link" value="ativavendas.com.br/ref/user123" readonly class="bg-transparent text-white text-sm w-full focus:outline-none">
-                            <button onclick="copyLink()" class="text-brand-primary hover:text-white transition p-1">
-                                <i class="fa-regular fa-copy"></i>
-                            </button>
+                            <button onclick="copyLink()" class="text-brand-primary hover:text-white transition p-1"><i class="fa-regular fa-copy"></i></button>
                         </div>
                         <div class="mt-6 p-4 bg-brand-success/10 border border-brand-success/20 rounded-xl flex items-center justify-between">
-                            <div>
-                                <p class="text-xs text-brand-success">Saldo de Bônus Disponível</p>
-                                <p class="text-2xl font-bold text-white">R$ 0,00</p>
-                            </div>
+                            <div><p class="text-xs text-brand-success">Saldo de Bônus Disponível</p><p class="text-2xl font-bold text-white">R$ 0,00</p></div>
                             <i class="fa-solid fa-piggy-bank text-3xl text-brand-success/50"></i>
                         </div>
                     </div>
@@ -740,300 +487,347 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
         <p>&copy; 2024 AtivaVendas. Todos os direitos reservados.</p>
         <p class="mt-2">Desenvolvido para impulsionar seus negócios.</p>
     </footer>
 
+    <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('checkout')"></div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#141218] border border-gray-700 rounded-2xl p-8 shadow-2xl">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold">Finalizar Compra</h3>
-                <button onclick="closeModal('checkout')" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div class="mb-6 bg-gray-800/50 p-4 rounded-xl border border-gray-700">
-                <p class="text-sm text-gray-400">Você está comprando:</p>
-                <p class="text-lg font-bold text-brand-primary" id="modal-product-name">Nome do Pack</p>
-                <p class="text-2xl font-bold mt-1" id="modal-product-price">R$ 00,00</p>
-            </div>
-
+            <div class="flex justify-between items-center mb-6"><h3 class="text-xl font-bold">Finalizar Compra</h3><button onclick="closeModal('checkout')" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="mb-6 bg-gray-800/50 p-4 rounded-xl border border-gray-700"><p class="text-sm text-gray-400">Você está comprando:</p><p class="text-lg font-bold text-brand-primary" id="modal-product-name">Nome do Pack</p><p class="text-2xl font-bold mt-1" id="modal-product-price">R$ 00,00</p></div>
             <form id="checkout-form" onsubmit="handleCheckout(event)">
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">Seu Nome Completo</label>
-                        <input type="text" name="name" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">Seu WhatsApp (com DDD)</label>
-                        <input type="tel" name="whatsapp" required placeholder="(11) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">Seu Melhor E-mail</label>
-                        <input type="email" name="email" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
-                    </div>
+                    <div><label class="block text-xs text-gray-400 mb-1">Seu Nome Completo</label><input type="text" name="name" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
+                    <div><label class="block text-xs text-gray-400 mb-1">Seu WhatsApp (com DDD)</label><input type="tel" name="whatsapp" required placeholder="(11) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
+                    <div><label class="block text-xs text-gray-400 mb-1">Seu Melhor E-mail</label><input type="email" name="email" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
                 </div>
-
-                <button type="submit" class="w-full mt-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl font-bold text-white shadow-lg hover:opacity-90 transition transform hover:scale-[1.02]">
-                    Confirmar e Receber Bônus
-                </button>
+                <button type="submit" class="w-full mt-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl font-bold text-white shadow-lg hover:opacity-90 transition transform hover:scale-[1.02]">Confirmar e Receber Bônus</button>
                 <p class="text-xs text-center text-gray-500 mt-4">Ao confirmar, enviaremos uma notificação à equipe AtivaVendas para facilitar seu suporte.</p>
             </form>
         </div>
     </div>
 
-    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brand-success text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]">
-        <span id="toast-message">Sucesso!</span>
-    </div>
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brand-success text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]"><span id="toast-message">Sucesso!</span></div>
 
     <script>
-        let currentProduct = { name: '', price: 0 };
+    // ==================== CONVERSATION SCRIPTS ====================
+    const SCRIPTS = {
+        1: [
+            {t:'recv',x:'Oi! Boa tarde 😊',d:800,ty:1200},
+            {t:'sent',x:'Boa tarde! Tudo bem? Como posso te ajudar? 💜',d:2200},
+            {t:'recv',x:'Vocês têm horário para o final de semana?',d:2800},
+            {t:'sent',x:'Se você conseguir, tenho um horário para <strong>hoje no final do dia</strong>! 😊',d:2000},
+            {t:'sent',x:'É um horário exclusivo que acabou de abrir agora. Quer que eu reserve pra você?',d:1500,ty:2200},
+            {t:'recv',x:'Sim! Quero reservar 🙌',d:3000},
+            {t:'sent',x:'Perfeito! ✅ Reserva confirmada! Te espero às 18h. Vai adorar o resultado! 💜',d:1800,ty:2000},
+            {t:'sent',x:'🔥',d:500,ty:400}
+        ],
+        2: [
+            {t:'recv',x:'Oi, quanto tá o combo hambúrguer + batata + refri?',d:800,ty:1200},
+            {t:'sent',x:'Oi! Tudo bem? 😊\n\nO combo completo tá <strong>R$ 42,90</strong> no valor normal.',d:2200,ty:1800},
+            {t:'recv',x:'Hmm um pouco caro...',d:2500},
+            {t:'sent',x:'Te entendo! Mas olha só, agora às 18h começou nossa <strong>hora relâmpago</strong>! ⚡',d:1500,ty:2200},
+            {t:'sent',x:'Até às 19h o combo sai por <strong>R$ 29,90</strong> + FRETE GRÁTIS! 🍔',d:1000,ty:2000},
+            {t:'sent',x:'Já são <strong>47 pedidos</strong> nessa promoção só na última hora! Vai esgotar rapidinho...',d:1200,ty:1800},
+            {t:'recv',x:'Sério?! Pô então manda 2 combos!',d:2800},
+            {t:'sent',x:'Perfeito! 2 combos + frete grátis = R$ 59,80! 🎉',d:1500,ty:1200},
+            {t:'sent',x:'Pix ou cartão? Mando o link de pagamento! 💳',d:1000,ty:1500},
+            {t:'recv',x:'Pix! Manda aí!',d:2000},
+            {t:'sent',x:'Pronto! Link enviado ✅\n\nTeu pedido chega em ~35min. Bom apetite! 🍟❤️',d:1800,ty:2000},
+            {t:'sent',x:'🔥🔥',d:500,ty:400}
+        ],
+        3: [
+            {t:'recv',x:'Boa tarde! Faz tanto tempo que não venho... como estão as coisas aí? 😊',d:800,ty:1500},
+            {t:'sent',x:'Oi, Ana! 💜 Que bom que você escreveu!',d:2200,ty:1800},
+            {t:'sent',x:'Confesso que senti sua falta por aqui! Sempre lembro da última sessão que você fez — ficou maravilhosa! ✨',d:1000,ty:2800},
+            {t:'recv',x:'Ah que lindo! Sim, eu preciso voltar, a rotina tá corrida mas queria muito cuidar de mim de novo 🥹',d:3500},
+            {t:'sent',x:'Te entendo perfeitamente, Ana. A vida corre mesmo! 💛',d:1500,ty:1800},
+            {t:'sent',x:'E já que você voltou a pensar em se cuidar, tenho algo especial pra você...',d:1000,ty:2200},
+            {t:'sent',x:'Como você é uma cliente que a gente ama e sente falta, liberei um <strong>cupom exclusivo de 25% OFF</strong> no seu próximo procedimento! 🎁',d:1200,ty:2800},
+            {t:'sent',x:'Válido até o dia 31. É nosso jeitinho de te trazer de volta com carinho! 💜',d:1000,ty:1800},
+            {t:'recv',x:'Gente, vocês são demais! 🥰 25%?? Que incrível!',d:3000},
+            {t:'recv',x:'Posso agendar pra semana que vem então?',d:1500},
+            {t:'sent',x:'Claro! Tenho horário na terça às 14h e quinta às 10h. Qual prefere? 😊',d:1500,ty:2000},
+            {t:'recv',x:'Terça às 14h fica perfeito! Me coloca na lista! 🙌',d:2500},
+            {t:'sent',x:'Fechado! ✅ Terça, 14h, com seu cupom de 25%. Te espero! 💜',d:1500,ty:1800},
+            {t:'sent',x:'Vai ser ótimo te ter aqui de novo! ❤️',d:1000,ty:1500},
+            {t:'recv',x:'Obrigada demais! ❤️',d:2000},
+            {t:'recv',x:'❤️❤️',d:500,ty:400}
+        ]
+    };
 
-        const conversationScript = [
-            { type: 'received', text: 'Olá! 👋 Tudo bem com você?', delay: 800, typing: 1200 },
-            { type: 'sent', text: 'Oi! Tudo sim 😊 Estou procurando um jeito de vender mais pelo WhatsApp', delay: 2200 },
-            { type: 'received', text: 'Que bom que veio falar comigo! 🙌\n\nO AtivaVendas tem exatamente o que você precisa.', delay: 1500, typing: 2000 },
-            { type: 'received', text: 'É um kit com mensagens prontas para WhatsApp e Instagram que você só precisa copiar, adaptar e enviar! 📲', delay: 500, typing: 1800 },
-            { type: 'sent', text: 'Sério? Mas funciona mesmo? 🤔', delay: 3000 },
-            { type: 'received', text: 'Com certeza! ✅\n\nVeja só o que está incluído:', delay: 1500, typing: 1500 },
-            { type: 'received', text: '📝 Mensagens prontas para atrair e engajar\n\n💰 Ofertas que convertem de verdade\n\n📅 Calendário de campanhas\n\n🎯 Scripts de atendimento\n\n🎁 Bônus exclusivos', delay: 500, typing: 2500 },
-            { type: 'sent', text: 'E serve para qualquer tipo de negócio?', delay: 2500 },
-            { type: 'received', text: 'Sim! Temos packs para:\n\n💇 Beleza e Estética\n🍔 Delivery e Restaurantes\n💼 Prestadores de Serviço\n🛒 E-commerce\n\nE muitos mais! 😎', delay: 1500, typing: 2800 },
-            { type: 'sent', text: 'Quanto custa?', delay: 2000 },
-            { type: 'received', text: 'Por um investimento super acessível você recebe tudo num PDF prático! 💸\n\nAcesso imediato após a compra ⚡', delay: 1500, typing: 2200 },
-            { type: 'sent', text: 'Hmm... é mais por curiosidade apenas, vou pensar se compro ou não.. 😅', delay: 3500 },
-            { type: 'received', text: 'Tudo bem! Entendo perfeitamente 🤝\n\nFicamos à sua espera, sem pressão nenhuma! 😊', delay: 1500, typing: 2000 },
-            { type: 'received', text: 'Mas posso te contar uma coisa que a maioria das pessoas não sabe... 🤫', delay: 1200, typing: 1800 },
-            { type: 'received', text: 'Como estamos no FINAL DO MÊS, liberamos uma CONDIÇÃO ESPECIAL de 10% OFF para quem garantir até o último dia! 🎁🔥', delay: 1500, typing: 2800 },
-            { type: 'received', text: 'É a nossa forma de ajudar quem quer começar a vender mais agora! 💪', delay: 800, typing: 1500 },
-            { type: 'received', text: 'Então se você já estava pensando em usar as mensagens... por que não garantir AGORA com desconto? 😊', delay: 1200, typing: 2200 },
-            { type: 'received', text: 'Além dos 10% de desconto, você ainda ganha:\n\n✅ Bônus de indicações\n✅ Acesso imediato\n✅ Garantia de 7 dias\n\nOu seja, risco ZERO! 🛡️', delay: 1000, typing: 3200 },
-            { type: 'sent', text: 'Hmm, bom ponto... 10% é um bom desconto hein! E ainda tem garantia? 😄', delay: 3000 },
-            { type: 'received', text: 'ISSO! E olha só... 🎯\n\nSe você comprar HOJE, além dos 10% você ainda libera o BÔNUS de indicações que dá mais 10% de crédito na próxima compra! 💰💰', delay: 1500, typing: 2800 },
-            { type: 'received', text: 'No total você pode economizar até 20%! 🚀', delay: 800, typing: 1200 },
-            { type: 'received', text: 'Mas atenção: essa condição especial vale SÓ até o último dia do mês! Depois volta ao preço normal... ⏰', delay: 1200, typing: 2000 },
-            { type: 'received', text: 'Clica no botão "Quero esse pack" aqui embaixo e aproveita ANTES que acabe! 🔥', delay: 1000, typing: 1800 },
-            { type: 'received', text: '🔥🔥', delay: 500, typing: 400 },
-        ];
+    // Full modal conversation
+    const FULL_SCRIPT = [
+        {t:'recv',x:'Oi! Boa tarde 😊',d:800,ty:1200},
+        {t:'sent',x:'Boa tarde! Tudo bem? Como posso te ajudar? 💜',d:2200},
+        {t:'recv',x:'Vocês têm horário para o final de semana?',d:2800},
+        {t:'sent',x:'Se você conseguir, tenho um horário para <strong>hoje no final do dia</strong>! 😊',d:2000},
+        {t:'sent',x:'É um horário exclusivo que acabou de abrir agora. Quer que eu reserve pra você?',d:1500,ty:2200},
+        {t:'recv',x:'Sim! Quero reservar 🙌',d:3000},
+        {t:'sent',x:'Perfeito! ✅ Reserva confirmada! Te espero às 18h. Vai adorar o resultado! 💜',d:1800,ty:2000},
+        {t:'sent',x:'🔥',d:500,ty:400}
+    ];
 
-        let currentMsgIndex = 0;
-        let isPlaying = false;
-        let timeouts = [];
+    let currentProduct = {name:'',price:0};
+    const state = {};
+    [1,2,3].forEach(id => { state[id] = {idx:0, playing:false, tos:[], done:false}; });
+    let waState = {idx:0, playing:false, tos:[]};
 
-        function getTimestamp(offset) {
-            const now = new Date();
-            const h = now.getHours();
-            const m = (now.getMinutes() + offset) % 60;
-            return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}`;
+    function getTimestamp(offset) {
+        const n = new Date(), h = n.getHours(), m = (n.getMinutes() + offset) % 60;
+        return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    }
+
+    function mkMsg(m, i, sentClass, recvClass) {
+        const el = document.createElement('div');
+        el.className = `msg ${m.t === 'sent' ? sentClass : recvClass}`;
+        const tm = getTimestamp(i);
+        if (m.t === 'sent') el.innerHTML = `<span class="mtext">${m.x.replace(/\n/g, '<br>')}</span><span class="mmeta"><span class="mtime">${tm}</span><span class="mcheck">✓✓</span></span>`;
+        else el.innerHTML = `<span class="mtext">${m.x.replace(/\n/g, '<br>')}</span><span class="mmeta"><span class="mtime">${tm}</span></span>`;
+        return el;
+    }
+
+    function showTyp(id, typId, statusId) {
+        const ind = document.getElementById(typId);
+        const st = document.getElementById(statusId);
+        ind.style.display = 'flex';
+        requestAnimationFrame(() => { ind.classList.add('show'); st.textContent = 'digitando...'; });
+    }
+
+    function hideTyp(id, typId) {
+        const ind = document.getElementById(typId);
+        ind.classList.remove('show');
+        setTimeout(() => { ind.style.display = 'none'; }, 300);
+    }
+
+    function updProg(id, p) { document.getElementById('prog'+id).style.width = p+'%'; }
+
+    function playNext(id) {
+        const s = state[id];
+        const script = SCRIPTS[id];
+        if (s.idx >= script.length) { finish(id); return; }
+        const m = script[s.idx];
+        if (m.t === 'recv' && m.ty) {
+            showTyp(id, 'typ'+id, 'status'+id);
+            const t = setTimeout(() => {
+                hideTyp(id, 'typ'+id);
+                addMsg(id, m, s.idx);
+                updProg(id, ((s.idx+1)/script.length)*100);
+                s.idx++;
+                const n = setTimeout(() => playNext(id), m.d || 800);
+                s.tos.push(n);
+            }, m.ty);
+            s.tos.push(t);
+        } else {
+            addMsg(id, m, s.idx);
+            updProg(id, ((s.idx+1)/script.length)*100);
+            s.idx++;
+            const t = setTimeout(() => playNext(id), m.d || 800);
+            s.tos.push(t);
         }
+    }
 
-        function createMessage(msg, index) {
-            const el = document.createElement('div');
-            el.className = `msg ${msg.type}`;
-            const time = getTimestamp(index);
-            if (msg.type === 'sent') {
-                el.innerHTML = `<span class="msg-text">${msg.text.replace(/\n/g, '<br>')}</span><span class="msg-meta"><span class="msg-time">${time}</span><span class="msg-check">✓✓</span></span>`;
-            } else {
-                el.innerHTML = `<span class="msg-text">${msg.text.replace(/\n/g, '<br>')}</span><span class="msg-meta"><span class="msg-time">${time}</span></span>`;
-            }
-            return el;
-        }
+    function addMsg(id, m, i) {
+        const area = document.getElementById('chat'+id);
+        const ind = document.getElementById('typ'+id);
+        area.insertBefore(mkMsg(m, i, 'sent', 'recv'), ind);
+        area.scrollTop = area.scrollHeight;
+    }
 
-        function showTyping() {
-            const indicator = document.getElementById('typingIndicator');
-            const status = document.getElementById('contactStatus');
-            indicator.style.display = 'flex';
-            requestAnimationFrame(() => { indicator.classList.add('show'); status.textContent = 'digitando...'; });
-        }
+    function finish(id) {
+        state[id].playing = false;
+        document.getElementById('status'+id).textContent = 'online agora';
+        document.getElementById('replay'+id).classList.add('show');
+        updProg(id, 100);
+    }
 
-        function hideTyping() {
-            const indicator = document.getElementById('typingIndicator');
-            indicator.classList.remove('show');
-            setTimeout(() => { indicator.style.display = 'none'; }, 300);
-        }
-
-        function updateProgress(percent) {
-            document.getElementById('simProgress').style.width = `${percent}%`;
-        }
-
-        function playNext() {
-            if (currentMsgIndex >= conversationScript.length) { finishConversation(); return; }
-            const msg = conversationScript[currentMsgIndex];
-            if (msg.type === 'received' && msg.typing) {
-                showTyping();
-                const typingTimeout = setTimeout(() => {
-                    hideTyping();
-                    addMessage(msg, currentMsgIndex);
-                    updateProgress(((currentMsgIndex + 1) / conversationScript.length) * 100);
-                    currentMsgIndex++;
-                    const nextTimeout = setTimeout(playNext, msg.delay || 800);
-                    timeouts.push(nextTimeout);
-                }, msg.typing);
-                timeouts.push(typingTimeout);
-            } else {
-                addMessage(msg, currentMsgIndex);
-                updateProgress(((currentMsgIndex + 1) / conversationScript.length) * 100);
-                currentMsgIndex++;
-                const timeout = setTimeout(playNext, msg.delay || 800);
-                timeouts.push(timeout);
-            }
-        }
-
-        function addMessage(msg, index) {
-            const chatArea = document.getElementById('chatArea');
-            const typingIndicator = document.getElementById('typingIndicator');
-            const msgEl = createMessage(msg, index);
-            chatArea.insertBefore(msgEl, typingIndicator);
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }
-
-        function finishConversation() {
-            isPlaying = false;
-            document.getElementById('contactStatus').textContent = 'online';
-            document.getElementById('replayBtn').classList.add('show');
-            updateProgress(100);
-        }
-
-        function startConversation() {
-            const chatArea = document.getElementById('chatArea');
-            const typingIndicator = document.getElementById('typingIndicator');
-            const status = document.getElementById('contactStatus');
-            const children = Array.from(chatArea.children);
-            children.forEach(child => {
-                if (!child.classList.contains('encryption-note') && !child.classList.contains('date-separator') && !child.classList.contains('typing-indicator')) {
-                    chatArea.removeChild(child);
-                }
-            });
-            typingIndicator.style.display = 'none';
-            typingIndicator.classList.remove('show');
-            status.textContent = 'digitando...';
-            updateProgress(0);
-            currentMsgIndex = 0;
-            isPlaying = true;
-            document.getElementById('replayBtn').classList.remove('show');
-            const timeout = setTimeout(playNext, 500);
-            timeouts.push(timeout);
-        }
-
-        function replayConversation() {
-            clearAllTimeouts();
-            startConversation();
-        }
-
-        function clearAllTimeouts() {
-            timeouts.forEach(t => clearTimeout(t));
-            timeouts = [];
-            isPlaying = false;
-        }
-
-        function openWaModal() {
-            const modal = document.getElementById('waModal');
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => { startConversation(); }, 400);
-        }
-
-        function closeWaModal() {
-            clearAllTimeouts();
-            hideTyping();
-            document.getElementById('replayBtn').classList.remove('show');
-            const modal = document.getElementById('waModal');
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        document.getElementById('waModal').addEventListener('click', function(e) {
-            if (e.target === this) closeWaModal();
+    function start(id) {
+        const area = document.getElementById('chat'+id);
+        const ind = document.getElementById('typ'+id);
+        const st = document.getElementById('status'+id);
+        Array.from(area.children).forEach(c => {
+            if (!c.classList.contains('enc-note') && !c.classList.contains('date-sep') && !c.classList.contains('typing')) area.removeChild(c);
         });
+        ind.style.display = 'none'; ind.classList.remove('show');
+        st.textContent = 'online agora'; updProg(id, 0);
+        state[id].idx = 0; state[id].playing = true; state[id].done = false;
+        document.getElementById('replay'+id).classList.remove('show');
+        setTimeout(() => playNext(id), 500);
+    }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeWaModal();
-                closeModal('checkout');
+    function replay(id) {
+        state[id].tos.forEach(t => clearTimeout(t)); state[id].tos = []; state[id].playing = false;
+        start(id);
+    }
+
+    function clearAll(id) { state[id].tos.forEach(t => clearTimeout(t)); state[id].tos = []; state[id].playing = false; }
+
+    // ===== TAB SWITCH =====
+    function switchTalk(id) {
+        document.querySelectorAll('.talk-tab').forEach(t => t.classList.toggle('active', +t.dataset.tab === id));
+        document.querySelectorAll('.talk-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('talk'+id).classList.add('active');
+        clearAll(id);
+        setTimeout(() => start(id), 100);
+    }
+
+    // ===== FULL MODAL CONVERSATION =====
+    function waShowTyp() {
+        const ind = document.getElementById('waTyping');
+        const st = document.getElementById('waContactStatus');
+        ind.style.display = 'flex';
+        requestAnimationFrame(() => { ind.classList.add('show'); st.textContent = 'digitando...'; });
+    }
+    function waHideTyp() {
+        const ind = document.getElementById('waTyping');
+        ind.classList.remove('show');
+        setTimeout(() => { ind.style.display = 'none'; }, 300);
+    }
+    function waPlayNext() {
+        if (waState.idx >= FULL_SCRIPT.length) { waFinish(); return; }
+        const m = FULL_SCRIPT[waState.idx];
+        if (m.t === 'recv' && m.ty) {
+            waShowTyp();
+            const t = setTimeout(() => {
+                waHideTyp();
+                waAddMsg(m, waState.idx);
+                document.getElementById('waSimProgress').style.width = ((waState.idx+1)/FULL_SCRIPT.length)*100+'%';
+                waState.idx++;
+                const n = setTimeout(waPlayNext, m.d || 800);
+                waState.tos.push(n);
+            }, m.ty);
+            waState.tos.push(t);
+        } else {
+            waAddMsg(m, waState.idx);
+            document.getElementById('waSimProgress').style.width = ((waState.idx+1)/FULL_SCRIPT.length)*100+'%';
+            waState.idx++;
+            const t = setTimeout(waPlayNext, m.d || 800);
+            waState.tos.push(t);
+        }
+    }
+    function waAddMsg(m, i) {
+        const area = document.getElementById('waChatArea');
+        const ind = document.getElementById('waTyping');
+        area.insertBefore(mkMsg(m, i, 'sent', 'recv'), ind);
+        area.scrollTop = area.scrollHeight;
+    }
+    function waFinish() {
+        waState.playing = false;
+        document.getElementById('waContactStatus').textContent = 'online agora';
+        document.getElementById('waReplayBtn').classList.add('show');
+        document.getElementById('waSimProgress').style.width = '100%';
+    }
+    function waStart() {
+        const area = document.getElementById('waChatArea');
+        const ind = document.getElementById('waTyping');
+        const st = document.getElementById('waContactStatus');
+        Array.from(area.children).forEach(c => {
+            if (!c.classList.contains('enc-note') && !c.classList.contains('date-sep') && !c.classList.contains('typing')) area.removeChild(c);
+        });
+        ind.style.display = 'none'; ind.classList.remove('show');
+        st.textContent = 'online agora';
+        document.getElementById('waSimProgress').style.width = '0%';
+        waState.idx = 0; waState.playing = true;
+        document.getElementById('waReplayBtn').classList.remove('show');
+        setTimeout(() => waPlayNext(), 500);
+    }
+    function replayWaConversation() {
+        waState.tos.forEach(t => clearTimeout(t)); waState.tos = []; waState.playing = false;
+        waStart();
+    }
+    function openWaModal() {
+        document.getElementById('waModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => waStart(), 400);
+    }
+    function closeWaModal() {
+        waState.tos.forEach(t => clearTimeout(t)); waState.tos = []; waState.playing = false;
+        waHideTyp();
+        document.getElementById('waReplayBtn').classList.remove('show');
+        document.getElementById('waModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('waModal').addEventListener('click', function(e) { if (e.target === this) closeWaModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeWaModal(); closeModal('checkout'); } });
+
+    // ===== FILTER =====
+    function filterProducts(category) {
+        const cards = document.querySelectorAll('.product-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('bg-brand-primary/20','text-white','border-brand-primary');
+            btn.classList.add('border-gray-700','text-gray-300');
+            if (btn.textContent.toLowerCase().includes(category === 'all' ? 'todos' : category)) {
+                btn.classList.add('bg-brand-primary/20','text-white','border-brand-primary');
+                btn.classList.remove('border-gray-700','text-gray-300');
             }
         });
-
-        function filterProducts(category) {
-            const cards = document.querySelectorAll('.product-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-brand-primary/20', 'text-white', 'border-brand-primary');
-                btn.classList.add('border-gray-700', 'text-gray-300');
-                if (btn.textContent.toLowerCase().includes(category === 'all' ? 'todos' : category)) {
-                    btn.classList.add('bg-brand-primary/20', 'text-white', 'border-brand-primary');
-                    btn.classList.remove('border-gray-700', 'text-gray-300');
-                }
-            });
-            cards.forEach(card => {
-                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
-            });
-        }
-
-        function openModal(type) {
-            if (type === 'login') showToast('Área de login em breve!');
-        }
-
-        function openCheckout(name, price) {
-            currentProduct = { name, price };
-            document.getElementById('modal-product-name').textContent = name;
-            document.getElementById('modal-product-price').textContent = `R$ ${price.toFixed(2).replace('.', ',')}`;
-            document.getElementById('checkout-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(type) {
-            document.getElementById('checkout-modal').classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        function handleCheckout(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData.entries());
-            const message = `🚀 NOVO LEAD\nProduto: ${currentProduct.name}\nValor: R$ ${currentProduct.price.toFixed(2)}\nNome: ${data.name}\nWhatsApp: ${data.whatsapp}\nEmail: ${data.email}`;
-            console.log("--- ENVIANDO NOTIFICAÇÃO ---");
-            console.log(message);
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
-            btn.disabled = true;
-            setTimeout(() => {
-                closeModal('checkout');
-                showToast('Pedido enviado! Verifique seu WhatsApp.');
-                btn.textContent = originalText;
-                btn.disabled = false;
-                e.target.reset();
-            }, 2000);
-        }
-
-        function shareReferral(platform) {
-            const referralId = Math.random().toString(36).substring(7);
-            const link = `https://ativavendas.com.br/ref/${referralId}`;
-            const text = `Olha esse material incrível para vendas! Ganhei 10% de bônus indicando. Baixe o Kit AtivaVendas aqui: ${link}`;
-            let url = '';
-            if (platform === 'whatsapp') url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-            else if (platform === 'telegram') url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
-            window.open(url, '_blank');
-        }
-
-        function copyLink() {
-            const copyText = document.getElementById("referral-link");
-            copyText.select();
-            navigator.clipboard.writeText(copyText.value);
-            showToast('Link copiado!');
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').textContent = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3000);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('referral-link').value = `https://ativavendas.com.br/ref/${Math.random().toString(36).substring(7)}`;
+        cards.forEach(card => {
+            card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
         });
+    }
+
+    // ===== MODAL =====
+    function openModal(type) { if (type === 'login') showToast('Área de login em breve!'); }
+    function openCheckout(name, price) {
+        currentProduct = {name, price};
+        document.getElementById('modal-product-name').textContent = name;
+        document.getElementById('modal-product-price').textContent = `R$ ${price.toFixed(2).replace('.', ',')}`;
+        document.getElementById('checkout-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal(type) { document.getElementById('checkout-modal').classList.add('hidden'); document.body.style.overflow = ''; }
+
+    function handleCheckout(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+        const message = `🚀 NOVO LEAD\nProduto: ${currentProduct.name}\nValor: R$ ${currentProduct.price.toFixed(2)}\nNome: ${data.name}\nWhatsApp: ${data.whatsapp}\nEmail: ${data.email}`;
+        console.log("--- ENVIANDO NOTIFICAÇÃO ---"); console.log(message);
+        const btn = e.target.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
+        btn.disabled = true;
+        setTimeout(() => {
+            closeModal('checkout');
+            showToast('Pedido enviado! Verifique seu WhatsApp.');
+            btn.textContent = originalText; btn.disabled = false; e.target.reset();
+        }, 2000);
+    }
+
+    // ===== REFERRAL =====
+    function shareReferral(platform) {
+        const referralId = Math.random().toString(36).substring(7);
+        const link = `https://ativavendas.com.br/ref/${referralId}`;
+        const text = `Olha esse material incrível para vendas! Ganhei 10% de bônus indicando. Baixe o Kit AtivaVendas aqui: ${link}`;
+        let url = '';
+        if (platform === 'whatsapp') url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+        else if (platform === 'telegram') url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+    }
+    function copyLink() {
+        const copyText = document.getElementById("referral-link");
+        copyText.select();
+        navigator.clipboard.writeText(copyText.value);
+        showToast('Link copiado!');
+    }
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-message').textContent = message;
+        toast.classList.remove('translate-y-20','opacity-0');
+        setTimeout(() => { toast.classList.add('translate-y-20','opacity-0'); }, 3000);
+    }
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('referral-link').value = `https://ativavendas.com.br/ref/${Math.random().toString(36).substring(7)}`;
+        setTimeout(() => start(1), 600);
+    });
     </script>
 </body>
 </html>
