@@ -67,7 +67,6 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
 
-        /* WhatsApp Modal Styles */
         .wa-modal-overlay {
             position: fixed;
             inset: 0;
@@ -86,8 +85,8 @@
             pointer-events: auto;
         }
         .wa-modal {
-            width: min(440px, 94vw);
-            max-height: 92vh;
+            width: min(460px, 94vw);
+            max-height: 90vh;
             background: #0B141A;
             border-radius: 16px;
             overflow: hidden;
@@ -131,7 +130,7 @@
             flex-direction: column;
             gap: 6px;
             background: #0B141A;
-            background-image: url("data:image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
+            background-image: url("image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
             scroll-behavior: smooth;
         }
         .wa-chat-area::-webkit-scrollbar { width: 6px; }
@@ -277,7 +276,6 @@
         .replay-btn:hover { transform: scale(1.1); box-shadow: 0 4px 30px rgba(37,211,102,.45); }
         .replay-btn.show { display: flex; }
 
-        /* Trigger Card */
         .trigger-section { padding: 20px 0 40px; }
         .trigger-card {
             position: relative;
@@ -323,7 +321,7 @@
             flex-direction: column;
             gap: 8px;
             background: #0B141A;
-            background-image: url("data:image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
+            background-image: url("image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
         }
         .phone-bubble {
             max-width: 80%;
@@ -399,7 +397,6 @@
 </head>
 <body class="antialiased">
 
-    <!-- Navbar -->
     <nav class="fixed w-full z-50 glass-card border-b-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -426,7 +423,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px] -z-10"></div>
@@ -516,7 +512,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
     <section class="py-12 border-y border-gray-800 bg-black/30">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
@@ -538,7 +533,6 @@
         </div>
     </section>
 
-    <!-- ==================== WHATSAPP SIMULATION TRIGGER ==================== -->
     <section class="trigger-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-center">
@@ -577,7 +571,6 @@
         </div>
     </section>
 
-    <!-- ==================== WHATSAPP MODAL ==================== -->
     <div class="wa-modal-overlay" id="waModal">
         <div class="wa-modal" style="position:relative;">
             <div class="sim-progress">
@@ -616,14 +609,12 @@
         </div>
     </div>
 
-    <!-- Catalog / Marketplace -->
     <section id="catalogo" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Escolha seu <span class="text-brand-primary">Pack de Mensagens</span></h2>
                 <p class="text-gray-400">Conteúdo testado e validado para aumentar suas vendas.</p>
                 
-                <!-- Filters -->
                 <div class="flex flex-wrap justify-center gap-3 mt-8">
                     <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2 rounded-full border border-brand-primary bg-brand-primary/20 text-white text-sm font-medium hover:bg-brand-primary transition">Todos</button>
                     <button onclick="filterProducts('beleza')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Beleza & Estética</button>
@@ -632,7 +623,6 @@
                 </div>
             </div>
 
-            <!-- Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
                 <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="beleza">
                     <div class="relative h-48 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center overflow-hidden">
@@ -691,7 +681,6 @@
         </div>
     </section>
 
-    <!-- Bonus System Section -->
     <section id="bonus" class="py-20 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
         <div class="max-w-5xl mx-auto px-4">
             <div class="glass-card rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border-brand-primary/30 relative overflow-hidden">
@@ -751,13 +740,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
         <p>&copy; 2024 AtivaVendas. Todos os direitos reservados.</p>
         <p class="mt-2">Desenvolvido para impulsionar seus negócios.</p>
     </footer>
 
-    <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('checkout')"></div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#141218] border border-gray-700 rounded-2xl p-8 shadow-2xl">
@@ -796,16 +783,13 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brand-success text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]">
         <span id="toast-message">Sucesso!</span>
     </div>
 
     <script>
-        // ==================== STATE MANAGEMENT ====================
         let currentProduct = { name: '', price: 0 };
 
-        // ==================== WHATSAPP CONVERSATION SCRIPT ====================
         const conversationScript = [
             { type: 'received', text: 'Olá! 👋 Tudo bem com você?', delay: 800, typing: 1200 },
             { type: 'sent', text: 'Oi! Tudo sim 😊 Estou procurando um jeito de vender mais pelo WhatsApp', delay: 2200 },
@@ -818,8 +802,19 @@
             { type: 'received', text: 'Sim! Temos packs para:\n\n💇 Beleza e Estética\n🍔 Delivery e Restaurantes\n💼 Prestadores de Serviço\n🛒 E-commerce\n\nE muitos mais! 😎', delay: 1500, typing: 2800 },
             { type: 'sent', text: 'Quanto custa?', delay: 2000 },
             { type: 'received', text: 'Por um investimento super acessível você recebe tudo num PDF prático! 💸\n\nAcesso imediato após a compra ⚡', delay: 1500, typing: 2200 },
-            { type: 'sent', text: 'Quero! Como faço para comprar? 🚀', delay: 2000 },
-            { type: 'received', text: 'Ótima escolha! 🎉\n\nClique no botão "Quero esse pack" aqui embaixo e pronto!\n\nEm minutos você já estará vendendo mais! 💪', delay: 1500, typing: 2500 },
+            { type: 'sent', text: 'Hmm... é mais por curiosidade apenas, vou pensar se compro ou não.. 😅', delay: 3500 },
+            { type: 'received', text: 'Tudo bem! Entendo perfeitamente 🤝\n\nFicamos à sua espera, sem pressão nenhuma! 😊', delay: 1500, typing: 2000 },
+            { type: 'received', text: 'Mas posso te contar uma coisa que a maioria das pessoas não sabe... 🤫', delay: 1200, typing: 1800 },
+            { type: 'received', text: 'Como estamos no FINAL DO MÊS, liberamos uma CONDIÇÃO ESPECIAL de 10% OFF para quem garantir até o último dia! 🎁🔥', delay: 1500, typing: 2800 },
+            { type: 'received', text: 'É a nossa forma de ajudar quem quer começar a vender mais agora! 💪', delay: 800, typing: 1500 },
+            { type: 'received', text: 'Então se você já estava pensando em usar as mensagens... por que não garantir AGORA com desconto? 😊', delay: 1200, typing: 2200 },
+            { type: 'received', text: 'Além dos 10% de desconto, você ainda ganha:\n\n✅ Bônus de indicações\n✅ Acesso imediato\n✅ Garantia de 7 dias\n\nOu seja, risco ZERO! 🛡️', delay: 1000, typing: 3200 },
+            { type: 'sent', text: 'Hmm, bom ponto... 10% é um bom desconto hein! E ainda tem garantia? 😄', delay: 3000 },
+            { type: 'received', text: 'ISSO! E olha só... 🎯\n\nSe você comprar HOJE, além dos 10% você ainda libera o BÔNUS de indicações que dá mais 10% de crédito na próxima compra! 💰💰', delay: 1500, typing: 2800 },
+            { type: 'received', text: 'No total você pode economizar até 20%! 🚀', delay: 800, typing: 1200 },
+            { type: 'received', text: 'Mas atenção: essa condição especial vale SÓ até o último dia do mês! Depois volta ao preço normal... ⏰', delay: 1200, typing: 2000 },
+            { type: 'received', text: 'Clica no botão "Quero esse pack" aqui embaixo e aproveita ANTES que acabe! 🔥', delay: 1000, typing: 1800 },
+            { type: 'received', text: '🔥🔥', delay: 500, typing: 400 },
         ];
 
         let currentMsgIndex = 0;
@@ -959,7 +954,6 @@
             }
         });
 
-        // ==================== FILTER LOGIC ====================
         function filterProducts(category) {
             const cards = document.querySelectorAll('.product-card');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -976,7 +970,6 @@
             });
         }
 
-        // ==================== MODAL LOGIC ====================
         function openModal(type) {
             if (type === 'login') showToast('Área de login em breve!');
         }
@@ -994,7 +987,6 @@
             document.body.style.overflow = '';
         }
 
-        // ==================== CHECKOUT & EMAIL NOTIFICATION ====================
         function handleCheckout(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -1015,7 +1007,6 @@
             }, 2000);
         }
 
-        // ==================== REFERRAL SYSTEM ====================
         function shareReferral(platform) {
             const referralId = Math.random().toString(36).substring(7);
             const link = `https://ativavendas.com.br/ref/${referralId}`;
@@ -1033,7 +1024,6 @@
             showToast('Link copiado!');
         }
 
-        // ==================== UTILITIES ====================
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-message').textContent = message;
@@ -1041,7 +1031,6 @@
             setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3000);
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('referral-link').value = `https://ativavendas.com.br/ref/${Math.random().toString(36).substring(7)}`;
         });
