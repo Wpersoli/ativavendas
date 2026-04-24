@@ -25,9 +25,9 @@
                         brand: {
                             dark: '#0B090A',
                             card: '#141218',
-                            primary: '#8B5CF6', // Violet
-                            accent: '#D946EF',  // Fuchsia
-                            success: '#10B981', // Emerald
+                            primary: '#8B5CF6',
+                            accent: '#D946EF',
+                            success: '#10B981',
                             whatsapp: '#25D366'
                         }
                     },
@@ -62,11 +62,339 @@
             box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
             border-color: #D946EF;
         }
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0B090A; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
+
+        /* WhatsApp Modal Styles */
+        .wa-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,.88);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .35s ease;
+        }
+        .wa-modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .wa-modal {
+            width: min(440px, 94vw);
+            max-height: 92vh;
+            background: #0B141A;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 80px rgba(37,211,102,.18), 0 30px 80px rgba(0,0,0,.6);
+            transform: scale(.85) translateY(30px);
+            transition: transform .35s cubic-bezier(.2,.8,.2,1);
+            display: flex;
+            flex-direction: column;
+        }
+        .wa-modal-overlay.open .wa-modal {
+            transform: scale(1) translateY(0);
+        }
+        .wa-modal-header {
+            background: #075E54;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+        .wa-modal-header .avatar-lg {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .wa-modal-header .contact-info { flex: 1; min-width: 0; }
+        .wa-modal-header .contact-name { color: white; font-size: 16px; font-weight: 600; }
+        .wa-modal-header .contact-status { color: rgba(255,255,255,.75); font-size: 12px; }
+        .wa-modal-header .close-btn { cursor: pointer; transition: color .2s; }
+        .wa-modal-header .close-btn:hover { color: white; }
+        .wa-chat-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: #0B141A;
+            background-image: url("data:image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
+            scroll-behavior: smooth;
+        }
+        .wa-chat-area::-webkit-scrollbar { width: 6px; }
+        .wa-chat-area::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 3px; }
+        .date-separator {
+            align-self: center;
+            background: rgba(11,20,26,.8);
+            color: #8696A0;
+            font-size: 11px;
+            padding: 5px 14px;
+            border-radius: 8px;
+            margin: 8px 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        }
+        .encryption-note {
+            align-self: center;
+            background: rgba(255,215,64,.08);
+            color: rgba(255,215,64,.8);
+            font-size: 11px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .msg {
+            max-width: 85%;
+            padding: 7px 10px 6px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            line-height: 1.45;
+            position: relative;
+            opacity: 0;
+            transform: translateY(16px) scale(.95);
+            animation: msgAppear .4s cubic-bezier(.2,.8,.2,1) forwards;
+            word-wrap: break-word;
+        }
+        @keyframes msgAppear {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .msg.received {
+            background: #202C33;
+            color: #E9EDEF;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+        .msg.sent {
+            background: #005C4B;
+            color: #E9EDEF;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+        .msg .msg-text { display: inline; }
+        .msg .msg-meta {
+            float: right;
+            margin-left: 8px;
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .msg .msg-time { font-size: 10px; color: rgba(255,255,255,.45); }
+        .msg .msg-check { font-size: 14px; color: #53BDEB; line-height: 1; }
+        .typing-indicator {
+            align-self: flex-start;
+            background: #202C33;
+            border-radius: 12px;
+            border-top-left-radius: 0;
+            padding: 12px 16px;
+            display: none;
+            gap: 4px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .3s ease, transform .3s ease;
+        }
+        .typing-indicator.show { opacity: 1; transform: translateY(0); }
+        .typing-dot {
+            width: 7px;
+            height: 7px;
+            background: rgba(255,255,255,.4);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: .2s; }
+        .typing-dot:nth-child(3) { animation-delay: .4s; }
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: .4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+        .wa-input-area {
+            background: #111B21;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            border-top: 1px solid #222D34;
+        }
+        .wa-input-area .emoji-btn { color: #8696A0; font-size: 22px; cursor: pointer; }
+        .wa-input-area .input-field {
+            flex: 1;
+            background: #2A3942;
+            border: none;
+            border-radius: 22px;
+            padding: 10px 16px;
+            color: #E9EDEF;
+            font-size: 14px;
+            outline: none;
+        }
+        .wa-input-area .input-field::placeholder { color: #8696A0; }
+        .wa-input-area .mic-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: #8696A0;
+            font-size: 20px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+        }
+        .sim-progress { height: 3px; background: rgba(37,211,102,.15); flex-shrink: 0; }
+        .sim-progress-bar { height: 100%; background: #25D366; width: 0%; transition: width .3s ease; border-radius: 0 2px 2px 0; }
+        .replay-btn {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #25D366;
+            color: white;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37,211,102,.3);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: transform .2s, box-shadow .2s;
+            z-index: 5;
+        }
+        .replay-btn:hover { transform: scale(1.1); box-shadow: 0 4px 30px rgba(37,211,102,.45); }
+        .replay-btn.show { display: flex; }
+
+        /* Trigger Card */
+        .trigger-section { padding: 20px 0 40px; }
+        .trigger-card {
+            position: relative;
+            cursor: pointer;
+            text-align: center;
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+        .trigger-card:hover { transform: translateY(-8px) scale(1.02); }
+        .trigger-card:hover .phone-mockup {
+            box-shadow: 0 0 60px rgba(37,211,102,.35), 0 0 120px rgba(37,211,102,.15);
+        }
+        .trigger-card:hover .wa-icon-wrap { transform: scale(1.1) rotate(8deg); }
+        .trigger-card:hover .pulse-ring { animation: pulseRing 1.8s ease-out infinite; }
+        .phone-mockup {
+            width: 280px;
+            height: 480px;
+            background: #202C33;
+            border-radius: 36px;
+            border: 3px solid #2A3942;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(37,211,102,.2), 0 20px 60px rgba(0,0,0,.5);
+            transition: box-shadow .35s ease;
+            position: relative;
+        }
+        .phone-header-bar {
+            background: #075E54;
+            padding: 40px 16px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .phone-header-bar .avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.2);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .phone-header-bar .info .name { color: white; font-size: 14px; font-weight: 600; }
+        .phone-header-bar .info .status { color: rgba(255,255,255,.7); font-size: 11px; }
+        .phone-body {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #0B141A;
+            background-image: url("data:image/svg+xml,%3Csvg width='360' height='360' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wp' width='72' height='72' patternUnits='userSpaceOnUse'%3E%3Cpath d='M36 6c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z' fill='rgba(255,255,255,.025)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='360' height='360' fill='url(%23wp)'/%3E%3C/svg%3E");
+        }
+        .phone-bubble {
+            max-width: 80%;
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.4;
+            opacity: .7;
+        }
+        .phone-bubble.received {
+            background: #202C33;
+            color: #E9EDEF;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+        .phone-bubble.sent {
+            background: #005C4B;
+            color: #E9EDEF;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+        .phone-bubble .time { font-size: 9px; color: rgba(255,255,255,.45); float: right; margin-left: 8px; margin-top: 3px; }
+        .phone-input-bar {
+            padding: 10px 12px;
+            background: #111B21;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .phone-input-bar .input-fake { flex: 1; height: 34px; background: #2A3942; border-radius: 18px; border: 1px solid rgba(255,255,255,.06); }
+        .phone-input-bar .send-fake {
+            width: 34px; height: 34px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .wa-icon-wrap {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 52px; height: 52px;
+            background: #25D366;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,.4);
+            transition: transform .35s ease;
+            z-index: 2;
+        }
+        .pulse-ring {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            border: 2px solid rgba(37,211,102,.4);
+            animation: none;
+        }
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: .7; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+        .trigger-label { margin-top: 28px; font-size: 15px; color: #8696A0; font-weight: 500; }
+        .trigger-label strong { color: #25D366; }
+        .trigger-sublabel { font-size: 12px; color: #8696A0; opacity: .6; margin-top: 6px; }
+
+        @media (max-width: 500px) {
+            .phone-mockup { width: 240px; height: 400px; border-radius: 30px; }
+            .wa-modal { width: 100vw; max-height: 100vh; border-radius: 0; }
+            .msg { max-width: 90%; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -100,7 +428,6 @@
 
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 overflow-hidden">
-        <!-- Background Glows -->
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px] -z-10"></div>
 
@@ -122,8 +449,8 @@
                     <a href="#catalogo" class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-100 transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-file-pdf"></i> Baixar Meu PDF
                     </a>
-                    <button class="px-8 py-4 border border-gray-700 text-white font-semibold rounded-xl hover:border-brand-accent hover:text-brand-accent transition flex items-center justify-center gap-2">
-                        <i class="fa-regular fa-eye"></i> Ver Demonstração
+                    <button onclick="openWaModal()" class="px-8 py-4 border border-gray-700 text-white font-semibold rounded-xl hover:border-brand-accent hover:text-brand-accent transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp"></i> Ver Simulação
                     </button>
                 </div>
                 
@@ -141,7 +468,6 @@
             </div>
             
             <div class="lg:w-1/2 relative">
-                <!-- Abstract 3D Element Representation -->
                 <div class="relative w-full max-w-md mx-auto animate-float">
                     <div class="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-accent blur-3xl opacity-30 rounded-full"></div>
                     <div class="relative glass-card p-6 rounded-3xl border border-gray-700/50">
@@ -176,8 +502,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Floating Badge -->
                     <div class="absolute -bottom-6 -right-6 bg-gray-900 border border-gray-700 p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
                         <div class="bg-green-500/20 p-2 rounded-lg text-green-400">
                             <i class="fa-solid fa-arrow-trend-up"></i>
@@ -214,6 +538,84 @@
         </div>
     </section>
 
+    <!-- ==================== WHATSAPP SIMULATION TRIGGER ==================== -->
+    <section class="trigger-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center">
+                <div class="trigger-card" onclick="openWaModal()">
+                    <div class="phone-mockup">
+                        <div class="phone-header-bar">
+                            <div class="avatar">
+                                <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </div>
+                            <div class="info">
+                                <div class="name">AtivaVendas</div>
+                                <div class="status">online</div>
+                            </div>
+                        </div>
+                        <div class="phone-body">
+                            <div class="phone-bubble received">Olá! Tudo bem? 😊<span class="time">10:30</span></div>
+                            <div class="phone-bubble sent">Tudo ótimo! Preciso de ajuda<span class="time">10:31</span></div>
+                            <div class="phone-bubble received">Claro! Como posso ajudar?<span class="time">10:31</span></div>
+                            <div class="phone-bubble sent">Quero vender mais no WhatsApp<span class="time">10:32</span></div>
+                        </div>
+                        <div class="phone-input-bar">
+                            <div class="input-fake"></div>
+                            <div class="send-fake">
+                                <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="pulse-ring"></div>
+                        <div class="wa-icon-wrap">
+                            <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+                        </div>
+                    </div>
+                    <p class="trigger-label">Veja como as <strong>mensagens prontas</strong> funcionam</p>
+                    <p class="trigger-sublabel">Clique para simular uma conversa real</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHATSAPP MODAL ==================== -->
+    <div class="wa-modal-overlay" id="waModal">
+        <div class="wa-modal" style="position:relative;">
+            <div class="sim-progress">
+                <div class="sim-progress-bar" id="simProgress"></div>
+            </div>
+            <div class="wa-modal-header">
+                <span style="color:white;font-size:20px;cursor:pointer;" onclick="closeWaModal()">←</span>
+                <div class="avatar-lg">
+                    <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-name" id="contactName">AtivaVendas</div>
+                    <div class="contact-status" id="contactStatus">digitando...</div>
+                </div>
+                <div style="display:flex;gap:18px;color:rgba(255,255,255,.7);font-size:18px;">
+                    <span>📹</span>
+                    <span>📞</span>
+                    <span class="close-btn" onclick="closeWaModal()">✕</span>
+                </div>
+            </div>
+            <div class="wa-chat-area" id="chatArea">
+                <div class="encryption-note">🔒 As mensagens são criptografadas de ponta a ponta.</div>
+                <div class="date-separator">HOJE</div>
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            <div class="wa-input-area">
+                <span class="emoji-btn">😊</span>
+                <input class="input-field" type="text" placeholder="Mensagem" disabled>
+                <span class="mic-btn">🎤</span>
+            </div>
+            <button class="replay-btn" id="replayBtn" onclick="replayConversation()" title="Repetir conversa">↻</button>
+        </div>
+    </div>
+
     <!-- Catalog / Marketplace -->
     <section id="catalogo" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -232,7 +634,6 @@
 
             <!-- Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
-                <!-- Product Card 1 -->
                 <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="beleza">
                     <div class="relative h-48 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-spa text-6xl text-pink-400/50 group-hover:scale-110 transition duration-500"></i>
@@ -251,7 +652,6 @@
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
                 <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="delivery">
                     <div class="relative h-48 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-burger text-6xl text-orange-400/50 group-hover:scale-110 transition duration-500"></i>
@@ -270,7 +670,6 @@
                     </div>
                 </div>
 
-                <!-- Product Card 3 -->
                 <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="servicos">
                     <div class="relative h-48 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-briefcase text-6xl text-blue-400/50 group-hover:scale-110 transition duration-500"></i>
@@ -296,7 +695,6 @@
     <section id="bonus" class="py-20 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
         <div class="max-w-5xl mx-auto px-4">
             <div class="glass-card rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border-brand-primary/30 relative overflow-hidden">
-                <!-- Decorative -->
                 <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
                 
                 <div class="md:w-1/2 relative z-10">
@@ -374,7 +772,6 @@
                 <p class="text-2xl font-bold mt-1" id="modal-product-price">R$ 00,00</p>
             </div>
 
-            <!-- Lead Capture Form -->
             <form id="checkout-form" onsubmit="handleCheckout(event)">
                 <div class="space-y-4">
                     <div>
@@ -405,15 +802,167 @@
     </div>
 
     <script>
-        // --- State Management ---
+        // ==================== STATE MANAGEMENT ====================
         let currentProduct = { name: '', price: 0 };
-        
-        // --- Filter Logic ---
+
+        // ==================== WHATSAPP CONVERSATION SCRIPT ====================
+        const conversationScript = [
+            { type: 'received', text: 'Olá! 👋 Tudo bem com você?', delay: 800, typing: 1200 },
+            { type: 'sent', text: 'Oi! Tudo sim 😊 Estou procurando um jeito de vender mais pelo WhatsApp', delay: 2200 },
+            { type: 'received', text: 'Que bom que veio falar comigo! 🙌\n\nO AtivaVendas tem exatamente o que você precisa.', delay: 1500, typing: 2000 },
+            { type: 'received', text: 'É um kit com mensagens prontas para WhatsApp e Instagram que você só precisa copiar, adaptar e enviar! 📲', delay: 500, typing: 1800 },
+            { type: 'sent', text: 'Sério? Mas funciona mesmo? 🤔', delay: 3000 },
+            { type: 'received', text: 'Com certeza! ✅\n\nVeja só o que está incluído:', delay: 1500, typing: 1500 },
+            { type: 'received', text: '📝 Mensagens prontas para atrair e engajar\n\n💰 Ofertas que convertem de verdade\n\n📅 Calendário de campanhas\n\n🎯 Scripts de atendimento\n\n🎁 Bônus exclusivos', delay: 500, typing: 2500 },
+            { type: 'sent', text: 'E serve para qualquer tipo de negócio?', delay: 2500 },
+            { type: 'received', text: 'Sim! Temos packs para:\n\n💇 Beleza e Estética\n🍔 Delivery e Restaurantes\n💼 Prestadores de Serviço\n🛒 E-commerce\n\nE muitos mais! 😎', delay: 1500, typing: 2800 },
+            { type: 'sent', text: 'Quanto custa?', delay: 2000 },
+            { type: 'received', text: 'Por um investimento super acessível você recebe tudo num PDF prático! 💸\n\nAcesso imediato após a compra ⚡', delay: 1500, typing: 2200 },
+            { type: 'sent', text: 'Quero! Como faço para comprar? 🚀', delay: 2000 },
+            { type: 'received', text: 'Ótima escolha! 🎉\n\nClique no botão "Quero esse pack" aqui embaixo e pronto!\n\nEm minutos você já estará vendendo mais! 💪', delay: 1500, typing: 2500 },
+        ];
+
+        let currentMsgIndex = 0;
+        let isPlaying = false;
+        let timeouts = [];
+
+        function getTimestamp(offset) {
+            const now = new Date();
+            const h = now.getHours();
+            const m = (now.getMinutes() + offset) % 60;
+            return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}`;
+        }
+
+        function createMessage(msg, index) {
+            const el = document.createElement('div');
+            el.className = `msg ${msg.type}`;
+            const time = getTimestamp(index);
+            if (msg.type === 'sent') {
+                el.innerHTML = `<span class="msg-text">${msg.text.replace(/\n/g, '<br>')}</span><span class="msg-meta"><span class="msg-time">${time}</span><span class="msg-check">✓✓</span></span>`;
+            } else {
+                el.innerHTML = `<span class="msg-text">${msg.text.replace(/\n/g, '<br>')}</span><span class="msg-meta"><span class="msg-time">${time}</span></span>`;
+            }
+            return el;
+        }
+
+        function showTyping() {
+            const indicator = document.getElementById('typingIndicator');
+            const status = document.getElementById('contactStatus');
+            indicator.style.display = 'flex';
+            requestAnimationFrame(() => { indicator.classList.add('show'); status.textContent = 'digitando...'; });
+        }
+
+        function hideTyping() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.classList.remove('show');
+            setTimeout(() => { indicator.style.display = 'none'; }, 300);
+        }
+
+        function updateProgress(percent) {
+            document.getElementById('simProgress').style.width = `${percent}%`;
+        }
+
+        function playNext() {
+            if (currentMsgIndex >= conversationScript.length) { finishConversation(); return; }
+            const msg = conversationScript[currentMsgIndex];
+            if (msg.type === 'received' && msg.typing) {
+                showTyping();
+                const typingTimeout = setTimeout(() => {
+                    hideTyping();
+                    addMessage(msg, currentMsgIndex);
+                    updateProgress(((currentMsgIndex + 1) / conversationScript.length) * 100);
+                    currentMsgIndex++;
+                    const nextTimeout = setTimeout(playNext, msg.delay || 800);
+                    timeouts.push(nextTimeout);
+                }, msg.typing);
+                timeouts.push(typingTimeout);
+            } else {
+                addMessage(msg, currentMsgIndex);
+                updateProgress(((currentMsgIndex + 1) / conversationScript.length) * 100);
+                currentMsgIndex++;
+                const timeout = setTimeout(playNext, msg.delay || 800);
+                timeouts.push(timeout);
+            }
+        }
+
+        function addMessage(msg, index) {
+            const chatArea = document.getElementById('chatArea');
+            const typingIndicator = document.getElementById('typingIndicator');
+            const msgEl = createMessage(msg, index);
+            chatArea.insertBefore(msgEl, typingIndicator);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function finishConversation() {
+            isPlaying = false;
+            document.getElementById('contactStatus').textContent = 'online';
+            document.getElementById('replayBtn').classList.add('show');
+            updateProgress(100);
+        }
+
+        function startConversation() {
+            const chatArea = document.getElementById('chatArea');
+            const typingIndicator = document.getElementById('typingIndicator');
+            const status = document.getElementById('contactStatus');
+            const children = Array.from(chatArea.children);
+            children.forEach(child => {
+                if (!child.classList.contains('encryption-note') && !child.classList.contains('date-separator') && !child.classList.contains('typing-indicator')) {
+                    chatArea.removeChild(child);
+                }
+            });
+            typingIndicator.style.display = 'none';
+            typingIndicator.classList.remove('show');
+            status.textContent = 'digitando...';
+            updateProgress(0);
+            currentMsgIndex = 0;
+            isPlaying = true;
+            document.getElementById('replayBtn').classList.remove('show');
+            const timeout = setTimeout(playNext, 500);
+            timeouts.push(timeout);
+        }
+
+        function replayConversation() {
+            clearAllTimeouts();
+            startConversation();
+        }
+
+        function clearAllTimeouts() {
+            timeouts.forEach(t => clearTimeout(t));
+            timeouts = [];
+            isPlaying = false;
+        }
+
+        function openWaModal() {
+            const modal = document.getElementById('waModal');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => { startConversation(); }, 400);
+        }
+
+        function closeWaModal() {
+            clearAllTimeouts();
+            hideTyping();
+            document.getElementById('replayBtn').classList.remove('show');
+            const modal = document.getElementById('waModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('waModal').addEventListener('click', function(e) {
+            if (e.target === this) closeWaModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeWaModal();
+                closeModal('checkout');
+            }
+        });
+
+        // ==================== FILTER LOGIC ====================
         function filterProducts(category) {
             const cards = document.querySelectorAll('.product-card');
             const buttons = document.querySelectorAll('.filter-btn');
-
-            // Update buttons
             buttons.forEach(btn => {
                 btn.classList.remove('bg-brand-primary/20', 'text-white', 'border-brand-primary');
                 btn.classList.add('border-gray-700', 'text-gray-300');
@@ -422,22 +971,14 @@
                     btn.classList.remove('border-gray-700', 'text-gray-300');
                 }
             });
-
-            // Filter cards
             cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
             });
         }
 
-        // --- Modal Logic ---
+        // ==================== MODAL LOGIC ====================
         function openModal(type) {
-            if (type === 'login') {
-                showToast('Área de login em breve!');
-            }
+            if (type === 'login') showToast('Área de login em breve!');
         }
 
         function openCheckout(name, price) {
@@ -453,46 +994,18 @@
             document.body.style.overflow = '';
         }
 
-        // --- Checkout & Email Notification Logic ---
+        // ==================== CHECKOUT & EMAIL NOTIFICATION ====================
         function handleCheckout(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
-
-            // Construct message
-            const message = `
-                🚀 NOVO LEAD / COMPRA
-                Produto: ${currentProduct.name}
-                Valor: R$ ${currentProduct.price.toFixed(2)}
-                
-                Dados do Cliente:
-                Nome: ${data.name}
-                WhatsApp: ${data.whatsapp}
-                Email: ${data.email}
-            `;
-
-            // --- CRITICAL: EMAIL NOTIFICATION SETUP ---
-            // Since this is a frontend-only MVP, we simulate the email.
-            // To make it real, replace this console.log with a fetch() call to Formspree, EmailJS, or your backend API.
-            
-            console.log("--- ENVIANDO NOTIFICAÇÃO PARA O ADMIN ---");
+            const message = `🚀 NOVO LEAD\nProduto: ${currentProduct.name}\nValor: R$ ${currentProduct.price.toFixed(2)}\nNome: ${data.name}\nWhatsApp: ${data.whatsapp}\nEmail: ${data.email}`;
+            console.log("--- ENVIANDO NOTIFICAÇÃO ---");
             console.log(message);
-            
-            // Example of how it would work with Formspree:
-            /*
-            fetch('https://formspree.io/f/YOUR_FORM_ID', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...data, product: currentProduct.name, price: currentProduct.price })
-            });
-            */
-
-            // Simulate success
             const btn = e.target.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
             btn.disabled = true;
-
             setTimeout(() => {
                 closeModal('checkout');
                 showToast('Pedido enviado! Verifique seu WhatsApp.');
@@ -502,20 +1015,14 @@
             }, 2000);
         }
 
-        // --- Referral System Logic ---
+        // ==================== REFERRAL SYSTEM ====================
         function shareReferral(platform) {
-            // Generate a random referral ID for the session
             const referralId = Math.random().toString(36).substring(7);
             const link = `https://ativavendas.com.br/ref/${referralId}`;
             const text = `Olha esse material incrível para vendas! Ganhei 10% de bônus indicando. Baixe o Kit AtivaVendas aqui: ${link}`;
-            
             let url = '';
-            if (platform === 'whatsapp') {
-                url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-            } else if (platform === 'telegram') {
-                url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
-            }
-            
+            if (platform === 'whatsapp') url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+            else if (platform === 'telegram') url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
 
@@ -526,23 +1033,18 @@
             showToast('Link copiado!');
         }
 
-        // --- Utilities ---
+        // ==================== UTILITIES ====================
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-message').textContent = message;
             toast.classList.remove('translate-y-20', 'opacity-0');
-            
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
+            setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3000);
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Set random referral ID on load
             document.getElementById('referral-link').value = `https://ativavendas.com.br/ref/${Math.random().toString(36).substring(7)}`;
         });
-
     </script>
 </body>
 </html>
