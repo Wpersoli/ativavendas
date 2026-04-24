@@ -1,390 +1,549 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AtivaVendas — Kit de mensagens prontas para WhatsApp e Instagram</title>
-  <meta name="description" content="Venda mais com mensagens prontas para WhatsApp e Instagram. Um material em PDF com prompts, ofertas, campanhas e scripts para pequenos negócios.">
-  <meta name="theme-color" content="#080414">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; script-src 'self'; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
-  <link rel="preload" as="image" href="assets/hero-visual.webp" fetchpriority="high">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtivaVendas | Mensagens Prontas para WhatsApp e Instagram</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B090A',
+                            card: '#141218',
+                            primary: '#8B5CF6', // Violet
+                            accent: '#D946EF',  // Fuchsia
+                            success: '#10B981', // Emerald
+                            whatsapp: '#25D366'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0B090A; color: white; overflow-x: hidden; }
+        .gradient-text {
+            background: linear-gradient(to right, #D946EF, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(20, 18, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+            border-color: #D946EF;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B090A; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
+    </style>
 </head>
-<body>
-  <div id="bgParticles" class="bg-particles" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<body class="antialiased">
 
-  <header class="site-header" id="topo">
-    <div class="container nav-wrap">
-      <a class="brand brand-image" href="#topo" aria-label="AtivaVendas, voltar ao topo">
-        <img class="brand-logo" src="assets/logo.webp" width="457" height="144" fetchpriority="high" alt="AtivaVendas">
-      </a>
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-card border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent to-brand-primary flex items-center justify-center">
+                        <i class="fa-solid fa-comment-dots text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight">Ativa<span class="text-brand-accent">Vendas</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#catalogo" class="hover:text-brand-accent transition-colors">Catálogo</a>
+                        <a href="#como-funciona" class="hover:text-brand-accent transition-colors">Como Funciona</a>
+                        <a href="#bonus" class="hover:text-brand-accent transition-colors">Bônus</a>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="openModal('login')" class="text-sm font-medium hover:text-white text-gray-300 transition mr-4">Entrar</button>
+                    <button class="bg-gradient-to-r from-brand-accent to-brand-primary px-6 py-2 rounded-full font-semibold text-sm hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-purple-900/50">
+                        Começar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-      <button class="menu-toggle glow-click" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="siteMenu">
-        <span></span><span></span><span></span>
-      </button>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <!-- Background Glows -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px] -z-10"></div>
 
-      <nav class="site-nav" id="siteMenu" aria-label="Principal">
-        <a href="#topo" class="nav-link active">Início</a>
-        <a href="#conteudo-kit" class="nav-link">O que vem no kit</a>
-        <a href="#segmentos" class="nav-link">Para quem é</a>
-        <a href="#bonus" class="nav-link">Bônus</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-      </nav>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center">
+            <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-accent text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-success animate-pulse"></span>
+                    Novo: Pack de Mensagens para Delivery
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-black leading-tight mb-6">
+                    Venda mais com <br>
+                    <span class="gradient-text">mensagens prontas</span><br>
+                    para WhatsApp e Instagram
+                </h1>
+                <p class="text-gray-400 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
+                    Um material prático em PDF com prompts, mensagens prontas, ofertas inteligentes, ideias de conteúdo e scripts de atendimento para você copiar, adaptar e vender todos os dias.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#catalogo" class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-100 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-pdf"></i> Baixar Meu PDF
+                    </a>
+                    <button class="px-8 py-4 border border-gray-700 text-white font-semibold rounded-xl hover:border-brand-accent hover:text-brand-accent transition flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-eye"></i> Ver Demonstração
+                    </button>
+                </div>
+                
+                <div class="mt-10 flex items-center gap-8 justify-center lg:justify-start text-sm text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-brand-success"></i> Acesso Imediato
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-brand-success"></i> Pagamento Seguro
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-brand-success"></i> 10% Cashback
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 relative">
+                <!-- Abstract 3D Element Representation -->
+                <div class="relative w-full max-w-md mx-auto animate-float">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-accent blur-3xl opacity-30 rounded-full"></div>
+                    <div class="relative glass-card p-6 rounded-3xl border border-gray-700/50">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-700 overflow-hidden">
+                                    <img src="https://ui-avatars.com/api/?name=Admin&background=random" alt="Admin" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold">AtivaVendas Admin</p>
+                                    <p class="text-xs text-gray-400">Novo cliente baixou o Pack!</p>
+                                </div>
+                            </div>
+                            <span class="text-xs bg-green-900/50 text-green-400 px-2 py-1 rounded">+PDF Entregue</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="h-2 bg-gray-700 rounded w-3/4"></div>
+                            <div class="h-2 bg-gray-700 rounded w-1/2"></div>
+                        </div>
+                        <div class="mt-6 flex gap-3">
+                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-spa text-3xl text-brand-accent mb-2"></i>
+                                    <p class="text-xs text-gray-400">Pack Beleza</p>
+                                </div>
+                            </div>
+                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-burger text-3xl text-orange-500 mb-2"></i>
+                                    <p class="text-xs text-gray-400">Pack Delivery</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-6 bg-gray-900 border border-gray-700 p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+                        <div class="bg-green-500/20 p-2 rounded-lg text-green-400">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400">Vendas via Chat</p>
+                            <p class="text-lg font-bold text-white">+285%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <a class="btn btn-primary btn-header glow-click" href="#cta-final">Quero meu kit <i class="fa-solid fa-arrow-right"></i></a>
+    <!-- Stats Section -->
+    <section class="py-12 border-y border-gray-800 bg-black/30">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <p class="text-3xl font-bold text-white">+10k</p>
+                <p class="text-gray-500 text-sm mt-1">Empreendedores Ativos</p>
+            </div>
+            <div>
+                <p class="text-3xl font-bold text-white">+2M</p>
+                <p class="text-gray-500 text-sm mt-1">Mensagens Enviadas</p>
+            </div>
+            <div>
+                <p class="text-3xl font-bold text-white">98%</p>
+                <p class="text-gray-500 text-sm mt-1">Taxa de Satisfação</p>
+            </div>
+            <div>
+                <p class="text-3xl font-bold text-white">4.9</p>
+                <p class="text-gray-500 text-sm mt-1">Avaliação Média</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog / Marketplace -->
+    <section id="catalogo" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Escolha seu <span class="text-brand-primary">Pack de Mensagens</span></h2>
+                <p class="text-gray-400">Conteúdo testado e validado para aumentar suas vendas.</p>
+                
+                <!-- Filters -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8">
+                    <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2 rounded-full border border-brand-primary bg-brand-primary/20 text-white text-sm font-medium hover:bg-brand-primary transition">Todos</button>
+                    <button onclick="filterProducts('beleza')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Beleza & Estética</button>
+                    <button onclick="filterProducts('delivery')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Delivery & Comida</button>
+                    <button onclick="filterProducts('servicos')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Prestadores de Serviço</button>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="beleza">
+                    <div class="relative h-48 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center overflow-hidden">
+                        <i class="fa-solid fa-spa text-6xl text-pink-400/50 group-hover:scale-110 transition duration-500"></i>
+                        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-green-400">R$ 49,90</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold text-pink-400 bg-pink-500/10 px-2 py-0.5 rounded">Beleza</span>
+                            <span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 15 Scripts</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-brand-primary transition">Pack Salão & Estética</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Mensagens de antes e depois, promoções de dia da beleza, lembretes de horário e ofertas de pacotes.</p>
+                        <button onclick="openCheckout('Pack Salão & Estética', 49.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">
+                            Quero esse pack <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="delivery">
+                    <div class="relative h-48 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center overflow-hidden">
+                        <i class="fa-solid fa-burger text-6xl text-orange-400/50 group-hover:scale-110 transition duration-500"></i>
+                        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-green-400">R$ 59,90</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">Delivery</span>
+                            <span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 20 Scripts</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-brand-primary transition">Pack Lanchonete & Delivery</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Mensagens suculentas de hambúrgueres, combos, promoções do dia e frete grátis. Alto apetite!</p>
+                        <button onclick="openCheckout('Pack Lanchonete & Delivery', 59.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">
+                            Quero esse pack <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover" data-category="servicos">
+                    <div class="relative h-48 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center overflow-hidden">
+                        <i class="fa-solid fa-briefcase text-6xl text-blue-400/50 group-hover:scale-110 transition duration-500"></i>
+                        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-green-400">R$ 39,90</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Serviços</span>
+                            <span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 12 Scripts</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-brand-primary transition">Pack Consultoria & Serviços</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Mensagens de autoridade, prova social, agendamento de consultas e dicas rápidas de valor.</p>
+                        <button onclick="openCheckout('Pack Consultoria & Serviços', 39.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2">
+                            Quero esse pack <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonus System Section -->
+    <section id="bonus" class="py-20 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="glass-card rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border-brand-primary/30 relative overflow-hidden">
+                <!-- Decorative -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                
+                <div class="md:w-1/2 relative z-10">
+                    <div class="inline-block px-3 py-1 bg-brand-accent/20 text-brand-accent rounded-full text-xs font-bold mb-4">PROGRAMA DE INDICAÇÃO</div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Compartilhe e Ganhe <span class="text-brand-accent">Bônus</span></h2>
+                    <p class="text-gray-400 mb-6">Ajudamos você a crescer organicamente. Quando você indica um amigo e ele compra, você ganha 10% de crédito na sua próxima compra + acesso liberado a packs premium.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">1</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Compartilhe seu link único</h4>
+                                <p class="text-sm text-gray-500">Use os botões abaixo para enviar para seus amigos.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">2</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Amigo faz a primeira compra</h4>
+                                <p class="text-sm text-gray-500">Ele ganha 5% de desconto e você ganha 10% de bônus.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                        <button onclick="shareReferral('whatsapp')" class="flex-1 py-3 bg-[#25D366] hover:bg-[#20BD5A] text-black font-bold rounded-xl transition flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Indicar no WhatsApp
+                        </button>
+                        <button onclick="shareReferral('telegram')" class="flex-1 py-3 bg-[#0088CC] hover:bg-[#0077B5] text-white font-bold rounded-xl transition flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-telegram text-xl"></i> Indicar no Telegram
+                        </button>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 relative z-10 w-full">
+                    <div class="bg-black/50 p-6 rounded-2xl border border-gray-700">
+                        <p class="text-gray-400 text-sm mb-2">Seu link de indicação:</p>
+                        <div class="flex items-center gap-2 bg-gray-800 rounded-lg p-2">
+                            <input type="text" id="referral-link" value="ativavendas.com.br/ref/user123" readonly class="bg-transparent text-white text-sm w-full focus:outline-none">
+                            <button onclick="copyLink()" class="text-brand-primary hover:text-white transition p-1">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="mt-6 p-4 bg-brand-success/10 border border-brand-success/20 rounded-xl flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-brand-success">Saldo de Bônus Disponível</p>
+                                <p class="text-2xl font-bold text-white">R$ 0,00</p>
+                            </div>
+                            <i class="fa-solid fa-piggy-bank text-3xl text-brand-success/50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 AtivaVendas. Todos os direitos reservados.</p>
+        <p class="mt-2">Desenvolvido para impulsionar seus negócios.</p>
+    </footer>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('checkout')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#141218] border border-gray-700 rounded-2xl p-8 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Finalizar Compra</h3>
+                <button onclick="closeModal('checkout')" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="mb-6 bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <p class="text-sm text-gray-400">Você está comprando:</p>
+                <p class="text-lg font-bold text-brand-primary" id="modal-product-name">Nome do Pack</p>
+                <p class="text-2xl font-bold mt-1" id="modal-product-price">R$ 00,00</p>
+            </div>
+
+            <!-- Lead Capture Form -->
+            <form id="checkout-form" onsubmit="handleCheckout(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Seu Nome Completo</label>
+                        <input type="text" name="name" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Seu WhatsApp (com DDD)</label>
+                        <input type="tel" name="whatsapp" required placeholder="(11) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Seu Melhor E-mail</label>
+                        <input type="email" name="email" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full mt-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl font-bold text-white shadow-lg hover:opacity-90 transition transform hover:scale-[1.02]">
+                    Confirmar e Receber Bônus
+                </button>
+                <p class="text-xs text-center text-gray-500 mt-4">Ao confirmar, enviaremos uma notificação à equipe AtivaVendas para facilitar seu suporte.</p>
+            </form>
+        </div>
     </div>
-  </header>
 
-  <main id="conteudo">
-    <section class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Kit digital prático para pequenos negócios</p>
-          <h1>
-            Venda mais com
-            <span>mensagens prontas</span>
-            para WhatsApp e Instagram
-          </h1>
-          <p class="hero-text">
-            Um material prático em PDF com prompts, mensagens prontas, ofertas inteligentes,
-            ideias de conteúdo e scripts de atendimento para você copiar, adaptar e vender todos os dias.
-          </p>
-
-          <div class="hero-mini-benefits">
-            <span><i class="fa-solid fa-bolt"></i> Mais agilidade</span>
-            <span><i class="fa-solid fa-chart-line"></i> Mais conversões</span>
-            <span><i class="fa-solid fa-circle-dollar-to-slot"></i> Mais vendas</span>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg glow-click" href="#cta-final">
-              Quero meu kit em PDF
-              <small>Acesso imediato após a compra</small>
-            </a>
-            <a class="btn btn-secondary btn-lg glow-click" href="#preview">
-              Ver o conteúdo do kit
-              <i class="fa-regular fa-circle-play"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <img class="hero-art" src="assets/hero-visual.webp" width="760" height="690" fetchpriority="high" alt="Kit de mensagens prontas AtivaVendas em PDF." loading="eager" decoding="async">
-        </div>
-      </div>
-    </section>
-
-    <section class="stats-strip section-sm">
-      <div class="container">
-        <div class="stats-grid card card-flat">
-          <article class="stat-item">
-            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
-            <div>
-              <strong>+10.000</strong>
-              <span>empreendedores já usam nossas mensagens</span>
-            </div>
-          </article>
-          <article class="stat-item">
-            <div class="stat-icon"><i class="fa-solid fa-comments"></i></div>
-            <div>
-              <strong>+2 milhões</strong>
-              <span>de mensagens prontas entregues em PDF</span>
-            </div>
-          </article>
-          <article class="stat-item">
-            <div class="stat-icon"><i class="fa-regular fa-star"></i></div>
-            <div>
-              <strong>98%</strong>
-              <span>de satisfação</span>
-            </div>
-          </article>
-          <article class="stat-item">
-            <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
-            <div>
-              <strong>★★★★★</strong>
-              <span>Avaliação 4,9/5</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="conteudo-kit">
-      <div class="container features-grid">
-        <article class="feature-card feature-card--tall card card-neon lift glow-click" tabindex="0">
-          <div class="feature-icon"><i class="fa-regular fa-message"></i></div>
-          <h2>Mensagens prontas</h2>
-          <p>Respostas para atrair, engajar, quebrar objeções e vender no WhatsApp e Instagram com mais clareza.</p>
-          <span class="feature-cta"><i class="fa-solid fa-arrow-down"></i></span>
-        </article>
-        <article class="feature-card feature-card--top card card-neon lift glow-click" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-tag"></i></div>
-          <h2>Ofertas inteligentes</h2>
-          <p>Modelos de ofertas que geram desejo e aumentam suas conversões sem complicar sua rotina.</p>
-          <span class="feature-cta"><i class="fa-solid fa-arrow-down"></i></span>
-        </article>
-        <article class="feature-card feature-card--bottom card card-neon lift glow-click" tabindex="0">
-          <div class="feature-icon"><i class="fa-regular fa-calendar"></i></div>
-          <h2>Calendário de campanhas</h2>
-          <p>Planeje, organize e nunca mais perca oportunidades de venda em datas e promoções.</p>
-          <span class="feature-cta"><i class="fa-solid fa-arrow-down"></i></span>
-        </article>
-        <article class="feature-card feature-card--tall card card-neon lift glow-click" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-pen-to-square"></i></div>
-          <h2>Scripts de atendimento</h2>
-          <p>Atenda com confiança, responda melhor e feche mais vendas falando o que realmente importa.</p>
-          <span class="feature-cta"><i class="fa-solid fa-arrow-down"></i></span>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section-tight" id="segmentos">
-      <div class="container segments-layout card card-flat">
-        <div class="segments-intro">
-          <p class="segments-kicker">Para quem é:</p>
-          <h2><span>AtivaVendas</span></h2>
-          <p>Soluções práticas para qualquer negócio que vende online ou atende pelo WhatsApp e Instagram.</p>
-          <a href="#cta-final" class="btn btn-outline glow-click">Ver todos os segmentos <i class="fa-solid fa-users"></i></a>
-        </div>
-
-        <div class="segments-carousel-wrap">
-          <button class="carousel-arrow glow-click" id="segPrev" type="button" aria-label="Anterior">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-
-          <div class="segments-carousel" id="segmentsCarousel">
-            <button class="segment-card segment-card--1 card lift glow-click" type="button" data-segment="beleza">
-              <div class="segment-media">
-                <img src="assets/segment1.webp" width="820" height="1092" alt="Segmento beleza e estética" loading="lazy" decoding="async">
-              </div>
-              <div class="segment-copy">
-                <h3>Beleza e estética</h3>
-                <p>Salões, clínicas e profissionais da beleza.</p>
-              </div>
-            </button>
-            <button class="segment-card segment-card--2 card lift glow-click" type="button" data-segment="delivery">
-              <div class="segment-media">
-                <img src="assets/segment2.webp" width="820" height="1092" alt="Segmento delivery e restaurantes" loading="lazy" decoding="async">
-              </div>
-              <div class="segment-copy">
-                <h3>Delivery e restaurantes</h3>
-                <p>Delivery, lanchonetes, restaurantes e cafés.</p>
-              </div>
-            </button>
-            <button class="segment-card segment-card--3 card lift glow-click" type="button" data-segment="servicos">
-              <div class="segment-media">
-                <img src="assets/segment3.webp" width="820" height="1092" alt="Segmento prestadores de serviço" loading="lazy" decoding="async">
-              </div>
-              <div class="segment-copy">
-                <h3>Prestadores de serviço</h3>
-                <p>Agende, confirme e fidelize clientes.</p>
-              </div>
-            </button>
-            <button class="segment-card segment-card--4 card lift glow-click" type="button" data-segment="ecommerce">
-              <div class="segment-media">
-                <img src="assets/segment4.webp" width="820" height="1092" alt="Segmento e-commerce" loading="lazy" decoding="async">
-              </div>
-              <div class="segment-copy">
-                <h3>E-commerce</h3>
-                <p>Mais conversões e recompra com mensagens que vendem.</p>
-              </div>
-            </button>
-          </div>
-
-          <button class="carousel-arrow glow-click" id="segNext" type="button" aria-label="Próximo">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section double-grid" id="conteudo-listas">
-      <div class="container double-grid-wrap">
-        <article class="list-panel card card-flat">
-          <h2>O que você recebe</h2>
-          <div class="list-stack">
-            <a href="#cta-final" class="list-item glow-click">
-              <span class="list-icon"><i class="fa-regular fa-file-pdf"></i></span>
-              <span><strong>PDF completo com tudo pronto</strong><small>Mensagens, ofertas, scripts, calendários e checklists.</small></span>
-              <span class="list-arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
-            <a href="#cta-final" class="list-item glow-click">
-              <span class="list-icon"><i class="fa-brands fa-whatsapp"></i></span>
-              <span><strong>Mensagens para WhatsApp e Instagram</strong><small>Textos prontos para atrair, engajar e vender.</small></span>
-              <span class="list-arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
-            <a href="#cta-final" class="list-item glow-click">
-              <span class="list-icon"><i class="fa-solid fa-tag"></i></span>
-              <span><strong>Ofertas e promoções que convertem</strong><small>Modelos prontos para criar ofertas irresistíveis.</small></span>
-              <span class="list-arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
-            <a href="#cta-final" class="list-item glow-click">
-              <span class="list-icon"><i class="fa-regular fa-calendar"></i></span>
-              <span><strong>Calendário de conteúdo e campanhas</strong><small>Planeje seus posts, stories e promoções.</small></span>
-              <span class="list-arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
-            <a href="#bonus" class="list-item glow-click">
-              <span class="list-icon"><i class="fa-solid fa-gift"></i></span>
-              <span><strong>Bônus exclusivos</strong><small>Templates, checklists e ideias extras para aplicar hoje.</small></span>
-              <span class="list-arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
-          </div>
-        </article>
-
-        <article class="list-panel card card-flat reasons-panel">
-          <h2>Por que esse kit faz sentido agora</h2>
-          <div class="reason-stack">
-            <article class="reason-item">
-              <span class="reason-icon"><i class="fa-regular fa-clock"></i></span>
-              <div><strong>Economize tempo e venda mais</strong><p>Tenha tudo pronto para usar e foque no que importa: atender e fechar vendas.</p></div>
-            </article>
-            <article class="reason-item">
-              <span class="reason-icon"><i class="fa-solid fa-bullseye"></i></span>
-              <div><strong>Conteúdo que gera resultado</strong><p>Mensagens criadas para conversar melhor, quebrar objeções e acelerar decisões.</p></div>
-            </article>
-            <article class="reason-item">
-              <span class="reason-icon green"><i class="fa-solid fa-circle-check"></i></span>
-              <div><strong>Atualizado e prático</strong><p>Materiais prontos para aplicar hoje, com linguagem direta e persuasiva.</p></div>
-            </article>
-            <article class="reason-item">
-              <span class="reason-icon money"><i class="fa-solid fa-dollar-sign"></i></span>
-              <div><strong>Investimento baixo, retorno alto</strong><p>Um único material que pode transformar seus resultados e seu faturamento.</p></div>
-            </article>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section preview-section" id="preview">
-      <div class="container preview-grid">
-        <article class="preview-side card card-flat">
-          <img class="preview-character" src="assets/assistant.webp" width="670" height="990" alt="Mascote feminina da AtivaVendas segurando um kit em PDF" loading="lazy" decoding="async">
-          <div class="preview-side-copy">
-
-          </div>
-        </article>
-
-        <article class="preview-showcase card card-neon">
-          <div class="preview-main-media">
-            <p class="eyebrow">Veja um pouco do que tem dentro do kit</p>
-            <h2>Conteúdo pronto para aplicar, sem complicação</h2>
-            <p>Material 100% em PDF com conteúdo pronto para você copiar, adaptar e transformar em resultado rápido.</p>
-            <ul>
-              <li>Páginas ilustradas e organizadas para aplicação imediata</li>
-              <li>Modelos para conversas, ofertas e campanhas rápidas</li>
-              <li>Mais clareza para vender com menos improviso</li>
-            </ul>
-            <img src="assets/preview-row.webp" width="1080" height="656" alt="Prévia das páginas do kit em PDF com mensagens, ofertas e calendário de campanhas." loading="lazy" decoding="async">
-          </div>
-          <div class="preview-pages">+90 <span>páginas</span><small>de conteúdo para você vender mais</small></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section bonus-chat-grid" id="bonus">
-      <div class="container bonus-chat-wrap">
-        <article class="share-card card card-flat">
-          <div class="share-icon"><i class="fa-solid fa-gift"></i></div>
-          <div class="share-copy">
-            <h2>Compartilhe e desbloqueie um bônus</h2>
-            <p>Ao compartilhar esta página, você libera um bônus com materiais extras que vão acelerar seus resultados.</p>
-          </div>
-          <div class="share-actions">
-            <button class="share-btn share-whatsapp glow-click" type="button"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-            <button class="share-btn share-telegram glow-click" type="button"><i class="fa-brands fa-telegram"></i> Telegram</button>
-            <button class="share-btn share-copy glow-click" type="button"><i class="fa-solid fa-link"></i> Copiar link</button>
-          </div>
-        </article>
-
-        <article class="bonus-card card card-neon" id="bonusCard" tabindex="0" role="button" aria-pressed="false">
-          <div class="bonus-gift-wrap">
-            <div class="bonus-gift"><i class="fa-solid fa-gift"></i></div>
-          </div>
-          <div class="bonus-copy">
-            <p class="bonus-label">Bônus liberado:</p>
-            <h2>10 mensagens extras</h2>
-            <p>+ 5 CTAs irresistíveis<br>+ 5 ideias de posts e stories prontos</p>
-          </div>
-          <div class="bonus-reveal">Clique para revelar</div>
-        </article>
-
-        <article class="chat-card card card-flat" id="faq">
-          <div class="chat-top">
-            <div>
-              <p class="eyebrow">Dúvidas rápidas</p>
-              <h2>Chat automático</h2>
-              <p>Sem suporte humano. Apenas respostas rápidas e objetivas.</p>
-            </div>
-            <img src="assets/char2.webp" alt="Mascote da AtivaVendas no chat automático" loading="lazy" decoding="async" width="800" height="990">
-          </div>
-
-          <div class="chat-questions" id="chatQuestions">
-            <button class="chat-question active glow-click" type="button" data-answer="O AtivaVendas é um kit em PDF com prompts, mensagens prontas, ofertas e campanhas para WhatsApp e Instagram.">O que é o AtivaVendas?</button>
-            <button class="chat-question glow-click" type="button" data-answer="Você recebe o kit em PDF com acesso imediato, pronto para copiar, adaptar e aplicar no seu negócio.">Como recebo meu kit?</button>
-            <button class="chat-question glow-click" type="button" data-answer="Sim. Você pode usar as ideias, textos e ofertas em diferentes nichos, adaptando ao seu negócio.">Posso usar para qualquer nicho?</button>
-            <button class="chat-question glow-click" type="button" data-answer="Não. O material foi pensado para ser direto e simples, mesmo para quem não tem experiência com vendas.">Preciso ter experiência em vendas?</button>
-          </div>
-
-          <div class="chat-answer" id="chatAnswer">
-            O AtivaVendas é um kit em PDF com prompts, mensagens prontas, ofertas e campanhas para WhatsApp e Instagram.
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-sm" id="cta-final">
-      <div class="container final-cta card card-neon">
-        <div class="final-copy">
-          <div class="final-icon"><i class="fa-solid fa-rocket"></i></div>
-          <div>
-            <h2>Pronto para acelerar suas vendas?</h2>
-            <p>Adquira agora seu kit em PDF e tenha mensagens, ofertas e scripts prontos para vender no WhatsApp e Instagram.</p>
-          </div>
-        </div>
-        <a class="btn btn-primary btn-final glow-click" href="#topo">Quero meu kit em PDF agora <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    </section>
-  </main>
-
-  <button class="floating-chat glow-click" id="floatingChat" type="button" aria-label="Abrir chat automático">
-    <i class="fa-solid fa-comments"></i>
-  </button>
-
-  <div class="chat-popover" id="chatPopover" aria-hidden="true">
-    <div class="chat-popover-head">
-      <strong>Chat automático</strong>
-      <button type="button" class="chat-close glow-click" id="chatClose" aria-label="Fechar">×</button>
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brand-success text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]">
+        <span id="toast-message">Sucesso!</span>
     </div>
-    <div class="chat-popover-body">
-      <p>Posso te ajudar com dúvidas rápidas sobre o kit.</p>
-      <a href="#faq" class="btn btn-secondary glow-click">Ver perguntas rápidas</a>
-    </div>
-  </div>
 
-  <div class="modal" id="segmentModal" aria-hidden="true">
-    <div class="modal-backdrop" data-close="modal"></div>
-    <div class="modal-panel card card-flat" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close glow-click" type="button" data-close="modal" aria-label="Fechar modal">×</button>
-      <div class="modal-media"><img id="modalImage" src="assets/segment1.webp" alt="Segmento" loading="lazy" decoding="async" width="820" height="1092"></div>
-      <div class="modal-copy">
-        <p class="eyebrow" id="modalKicker">Segmento</p>
-        <h2 id="modalTitle">Beleza e estética</h2>
-        <p id="modalDesc">Salões, clínicas e profissionais da beleza.</p>
-        <div class="modal-list" id="modalList"></div>
-        <a href="#cta-final" class="btn btn-primary glow-click">Usar esse modelo <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    </div>
-  </div>
+    <script>
+        // --- State Management ---
+        let currentProduct = { name: '', price: 0 };
+        
+        // --- Filter Logic ---
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
 
-  <div class="toast" id="toast" aria-live="polite"></div>
-  <script src="script.js"></script>
+            // Update buttons
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-primary/20', 'text-white', 'border-brand-primary');
+                btn.classList.add('border-gray-700', 'text-gray-300');
+                if (btn.textContent.toLowerCase().includes(category === 'all' ? 'todos' : category)) {
+                    btn.classList.add('bg-brand-primary/20', 'text-white', 'border-brand-primary');
+                    btn.classList.remove('border-gray-700', 'text-gray-300');
+                }
+            });
+
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- Modal Logic ---
+        function openModal(type) {
+            if (type === 'login') {
+                showToast('Área de login em breve!');
+            }
+        }
+
+        function openCheckout(name, price) {
+            currentProduct = { name, price };
+            document.getElementById('modal-product-name').textContent = name;
+            document.getElementById('modal-product-price').textContent = `R$ ${price.toFixed(2).replace('.', ',')}`;
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            document.getElementById('checkout-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // --- Checkout & Email Notification Logic ---
+        function handleCheckout(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // Construct message
+            const message = `
+                🚀 NOVO LEAD / COMPRA
+                Produto: ${currentProduct.name}
+                Valor: R$ ${currentProduct.price.toFixed(2)}
+                
+                Dados do Cliente:
+                Nome: ${data.name}
+                WhatsApp: ${data.whatsapp}
+                Email: ${data.email}
+            `;
+
+            // --- CRITICAL: EMAIL NOTIFICATION SETUP ---
+            // Since this is a frontend-only MVP, we simulate the email.
+            // To make it real, replace this console.log with a fetch() call to Formspree, EmailJS, or your backend API.
+            
+            console.log("--- ENVIANDO NOTIFICAÇÃO PARA O ADMIN ---");
+            console.log(message);
+            
+            // Example of how it would work with Formspree:
+            /*
+            fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...data, product: currentProduct.name, price: currentProduct.price })
+            });
+            */
+
+            // Simulate success
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                closeModal('checkout');
+                showToast('Pedido enviado! Verifique seu WhatsApp.');
+                btn.textContent = originalText;
+                btn.disabled = false;
+                e.target.reset();
+            }, 2000);
+        }
+
+        // --- Referral System Logic ---
+        function shareReferral(platform) {
+            // Generate a random referral ID for the session
+            const referralId = Math.random().toString(36).substring(7);
+            const link = `https://ativavendas.com.br/ref/${referralId}`;
+            const text = `Olha esse material incrível para vendas! Ganhei 10% de bônus indicando. Baixe o Kit AtivaVendas aqui: ${link}`;
+            
+            let url = '';
+            if (platform === 'whatsapp') {
+                url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+            } else if (platform === 'telegram') {
+                url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
+            }
+            
+            window.open(url, '_blank');
+        }
+
+        function copyLink() {
+            const copyText = document.getElementById("referral-link");
+            copyText.select();
+            navigator.clipboard.writeText(copyText.value);
+            showToast('Link copiado!');
+        }
+
+        // --- Utilities ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set random referral ID on load
+            document.getElementById('referral-link').value = `https://ativavendas.com.br/ref/${Math.random().toString(36).substring(7)}`;
+        });
+
+    </script>
 </body>
 </html>
+
