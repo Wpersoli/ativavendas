@@ -1,0 +1,15 @@
+Validações executadas:
+- script.js validado com node --check
+- index.html, style.css, script.js e assets principais carregando por servidor local
+- hero sem animação ativa
+- partículas reduzidas
+- imagens não usadas removidas para reduzir peso
+- logo otimizada
+
+Ajustes finais aplicados:
+- tipografia menor e mais proporcional
+- layout mais assimétrico e com mais respiro
+- hero estática e mais leve
+- métricas, cards, preview, bônus, chat e CTA refinados
+- content-visibility abaixo da dobra para melhorar fluidez
+- CSP mantida e política de referrer adicionada
