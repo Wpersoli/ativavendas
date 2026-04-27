@@ -32,7 +32,7 @@
     </script>
     <style>
         body { background-color: #0B090A; color: white; overflow-x: hidden; }
-        .gradient-text { background: linear-gradient(to right, #D946EF, #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text { background: linear-gradient(to right, #D946EF, #8B5CF6); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .glass-card { background: rgba(20, 18, 24, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(139, 92, 246, 0.15); }
         .glow-hover:hover { box-shadow: 0 0 25px rgba(139, 92, 246, 0.4); border-color: #D946EF; }
         ::-webkit-scrollbar { width: 8px; }
@@ -317,6 +317,7 @@
             font-size: 32px;
             font-weight: 900;
             background: linear-gradient(135deg, #a855f7, #ec4899);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 4px;
@@ -1317,7 +1318,8 @@ section .max-w-7xl {
         .avh-hero{padding:118px 0 58px!important;overflow:visible!important}
         .avh-wrap{width:min(calc(100% - 144px),1088px)!important;margin:0 auto!important}
         .avh-grid{grid-template-columns:minmax(360px,.96fr) minmax(420px,.88fr)!important;gap:clamp(58px,6vw,96px)!important;align-items:center!important}
-        .avh-copy h1{max-width:560px!important;font-size:clamp(40px,4.45vw,64px)!important;line-height:.94!important;letter-spacing:-.055em!important;margin-bottom:24px!important}
+        .avh-copy h1{max-width:568px!important;font-size:clamp(40px,4.45vw,64px)!important;line-height:.97!important;letter-spacing:-.045em!important;margin-bottom:24px!important;overflow:visible!important;padding-right:.04em!important;padding-bottom:.06em!important;text-rendering:optimizeLegibility!important}
+        .avh-copy h1 strong{display:inline-block!important;overflow:visible!important;padding-right:.03em!important;padding-bottom:.03em!important}
         .avh-copy p{max-width:535px!important;font-size:16px!important;line-height:1.66!important}
         .avh-actions{margin-top:28px!important;gap:18px!important}
         .avh-btn{min-height:54px!important;padding:0 20px!important;border-radius:14px!important}
@@ -1343,13 +1345,13 @@ section .max-w-7xl {
         .avh-bubble span{font-size:7.7px!important;padding:5px 8px!important}
         .avh-input{left:16px!important;right:16px!important;bottom:16px!important;font-size:10px!important}
         .avh-input i{width:28px!important;height:28px!important}
-        .avh-growth{top:58px!important;right:8px!important;width:148px!important;min-height:143px!important;padding:14px!important}
+        .avh-growth{top:58px!important;right:-18px!important;width:148px!important;min-height:143px!important;padding:14px!important}
         .avh-growth strong{font-size:31px!important}
         .avh-bars{height:48px!important;gap:4px!important}.avh-bars i{width:11px!important}
-        .avh-testimonial{top:224px!important;right:8px!important;width:176px!important;min-height:111px!important;padding:13px 12px 13px 53px!important}
+        .avh-testimonial{top:224px!important;right:-18px!important;width:176px!important;min-height:111px!important;padding:13px 12px 13px 53px!important}
         .avh-client{left:12px!important;top:14px!important;width:32px!important;height:32px!important}
         .avh-testimonial p{font-size:9.2px!important}.avh-testimonial small,.avh-testimonial b{font-size:8.8px!important}
-        .avh-updated{top:360px!important;right:8px!important;width:176px!important;min-height:92px!important;padding:13px 12px!important;gap:10px!important}
+        .avh-updated{top:360px!important;right:-18px!important;width:176px!important;min-height:92px!important;padding:13px 12px!important;gap:10px!important}
         .avh-updated>i{width:36px!important;height:36px!important}.avh-card h3{font-size:9.4px!important}.avh-updated p,.avh-growth p{font-size:9.8px!important}
         .glow-line,.particle,.floating-card,.stat-card,.phone-mockup{animation-play-state:paused!important}
         .particles{display:none!important}.glass-card{backdrop-filter:blur(8px)!important}button,a{-webkit-tap-highlight-color:transparent}
@@ -1358,6 +1360,71 @@ section .max-w-7xl {
         @media(max-width:1120px){.avh-hero{padding-top:108px!important}.avh-wrap{width:min(calc(100% - 52px),920px)!important}.avh-grid{grid-template-columns:1fr!important;gap:36px!important}.avh-copy{text-align:center!important}.avh-copy h1,.avh-copy p{margin-left:auto!important;margin-right:auto!important}.avh-actions,.avh-trust{justify-content:center!important}.avh-visual{margin:0 auto!important;transform:none!important}}
         @media(max-width:720px){.avh-wrap{width:min(calc(100% - 28px),620px)!important}.avh-copy{text-align:left!important}.avh-copy h1{font-size:clamp(36px,11.6vw,52px)!important}.avh-copy p{font-size:15px!important}.avh-actions,.avh-trust{justify-content:flex-start!important}.avh-visual{height:660px!important;transform:scale(.94)!important;transform-origin:center top!important}.avh-phone{width:min(74vw,238px)!important;height:468px!important;top:40%!important}.avh-pack-beleza{left:0!important;top:0!important}.avh-pack-delivery{left:auto!important;right:0!important;top:4px!important}.avh-pack-varejo{left:0!important;top:505px!important}.avh-growth{right:0!important;top:500px!important}.avh-testimonial{top:615px!important}}
         @media(hover:none),(prefers-reduced-motion:reduce){.avh-visual{--mx:0!important;--my:0!important}.avh-pack,.avh-card,.avh-phone{transition:none!important}}
+
+
+        /* ===== CORREÇÃO V8 - REMOVE ELEMENTO ESTRANHO NO CELULAR DO HERO ===== */
+        .avh-phone{overflow:hidden!important}
+        .avh-chat{padding:10px 12px 64px!important;gap:10px!important}
+        .avh-bubble{width:88%!important;padding:26px 10px 9px!important;font-size:9.8px!important;line-height:1.31!important}
+        .avh-bubble span{top:-7px!important;padding:5px 8px!important;font-size:7.4px!important}
+        .avh-bubble small{margin-top:5px!important;font-size:8.3px!important}
+        .avh-input{
+            left:16px!important;
+            right:16px!important;
+            bottom:13px!important;
+            height:34px!important;
+            padding:6px 7px 6px 11px!important;
+            z-index:6!important;
+            background:rgba(255,255,255,.055)!important;
+            border-color:rgba(255,255,255,.045)!important;
+            box-shadow:0 -8px 18px rgba(0,0,0,.16)!important;
+        }
+        .avh-input i{width:26px!important;height:26px!important;font-size:11px!important}
+        .avh-input span{font-size:9.4px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+        @media(max-width:720px){
+            .avh-chat{padding-bottom:66px!important}
+            .avh-input{bottom:14px!important}
+        }
+
+
+        /* ===== CORREÇÃO V9 - TEXTO DA ÚLTIMA MENSAGEM MENOR PARA CABER PERFEITAMENTE ===== */
+        .avh-bubble{
+            width:86%!important;
+            font-size:9.1px!important;
+            line-height:1.22!important;
+            padding:25px 10px 8px!important;
+        }
+        .avh-bubble span{
+            font-size:7.1px!important;
+            padding:5px 8px!important;
+        }
+        .avh-bubble small{
+            margin-top:4px!important;
+            font-size:8px!important;
+        }
+        .avh-chat .avh-bubble:last-of-type{
+            width:84%!important;
+            font-size:8.3px!important;
+            line-height:1.16!important;
+            padding:23px 9px 8px!important;
+            margin-bottom:2px!important;
+        }
+        .avh-chat .avh-bubble:last-of-type span{
+            font-size:6.8px!important;
+        }
+        .avh-input{
+            height:31px!important;
+            bottom:11px!important;
+            padding:5px 6px 5px 10px!important;
+        }
+        .avh-input span{
+            font-size:8.7px!important;
+        }
+        .avh-input i{
+            width:24px!important;
+            height:24px!important;
+            font-size:10px!important;
+        }
 
     </style>
 </head>
@@ -1491,15 +1558,14 @@ section .max-w-7xl {
                         </div>
 
                         <div class="avh-bubble">
-                            <span>Chamada para ação</span>
+                            <span>Chamada</span>
                             Quer garantir o seu?<br>
-                            É só me chamar aqui que eu te ajudo! 💜
+                            É só me chamar aqui! 💜
                             <small>10:31 ✓✓</small>
                         </div>
                     </div>
 
                     <div class="avh-input">
-                        <span>Digite uma mensagem...</span>
                         <i class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
