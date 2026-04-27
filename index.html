@@ -135,7 +135,6 @@
         .tag-blue { background:rgba(59,130,246,.12); color:#60a5fa; border:1px solid rgba(59,130,246,.2); }
         @media(max-width:560px) { .chat-area{height:400px} .talk-tab{padding:8px 14px;font-size:12px} .btn-replay{padding:12px 24px;font-size:14px} }
 
-        /* ===== MODAL ===== */
         .wa-modal-overlay {
             position:fixed; inset:0; z-index:1000;
             background:rgba(0,0,0,.88); backdrop-filter:blur(8px);
@@ -172,6 +171,273 @@
         }
         .wa-modal-replay:hover { transform:scale(1.1); }
         .wa-modal-replay.show { display:flex; }
+
+        /* ===== ORIGINAL HERO DASHBOARD STYLES ===== */
+        .hero-dashboard {
+            position: relative;
+            width: 100%;
+            max-width: 620px;
+            background: linear-gradient(165deg, rgba(16, 12, 32, 0.88), rgba(10, 8, 22, 0.94));
+            border-radius: 24px;
+            padding: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.03),
+                0 0 60px rgba(139, 92, 246, 0.08),
+                0 0 120px rgba(0, 255, 100, 0.04),
+                inset 0 1px 0 rgba(255,255,255,0.04);
+        }
+        .hero-dashboard::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 25px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(0,255,100,0.3), rgba(139,92,246,0.2), rgba(0,255,100,0.3));
+            background-size: 300% 300%;
+            animation: borderGlow 6s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .hero-dashboard::after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0,255,100,0.08), transparent 65%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Admin Notification */
+        .admin-notification {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+        .admin-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: #fff;
+            box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+        }
+        .admin-text .admin-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .admin-text .admin-sub {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 2px;
+        }
+        .pdf-badge {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #c084fc;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+        }
+        .pdf-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: #c084fc;
+        }
+
+        /* Skeleton Bars */
+        .skeleton-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 2;
+        }
+        .skeleton-bar {
+            height: 10px;
+            border-radius: 6px;
+            background: rgba(139, 92, 246, 0.15);
+            overflow: hidden;
+        }
+        .skeleton-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.5));
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
+            width: 0%;
+            animation: loadBar 2s ease forwards 0.5s;
+        }
+        .skeleton-bar:nth-child(2) .skeleton-bar-fill { 
+            width: 65%;
+            animation-delay: 0.8s;
+        }
+        @keyframes loadBar { to { width: 100%; } }
+
+        /* Pack Cards */
+        .pack-cards {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 2;
+        }
+        .pack-card {
+            flex: 1;
+            background: rgba(0,0,0,0.3);
+            border: 1px dashed rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: packIn 0.6s ease forwards;
+        }
+        .pack-card:nth-child(1) { animation-delay: 1s; }
+        .pack-card:nth-child(2) { animation-delay: 1.2s; }
+        @keyframes packIn { to { opacity: 1; transform: translateY(0); } }
+        .pack-card:hover {
+            border-color: rgba(139, 92, 246, 0.25);
+            background: rgba(139, 92, 246, 0.04);
+            transform: translateY(-2px);
+        }
+        .pack-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .pack-icon.purple { 
+            background: rgba(168, 85, 247, 0.15); 
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.2); 
+        }
+        .pack-icon.orange { 
+            background: rgba(251, 146, 60, 0.15); 
+            box-shadow: 0 0 12px rgba(251, 146, 60, 0.2); 
+        }
+        .pack-icon svg { width: 20px; height: 20px; }
+        .pack-icon.purple svg { fill: #a855f7; filter: drop-shadow(0 0 4px rgba(168,85,247,0.5)); }
+        .pack-icon.orange svg { fill: #fb923c; filter: drop-shadow(0 0 4px rgba(251,146,60,0.5)); }
+        .pack-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); }
+        .pack-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 12px; }
+
+        /* Chart Area */
+        .chart-area {
+            position: relative;
+            height: 140px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 14px;
+            border: 1px solid rgba(139, 92, 246, 0.06);
+            overflow: hidden;
+            z-index: 2;
+        }
+        .chart-grid { position: absolute; inset: 12px; pointer-events: none; }
+        .chart-grid line { stroke: rgba(255,255,255,0.04); stroke-width: 1; stroke-dasharray: 3 3; }
+        .chart-labels {
+            position: absolute; left: 8px; top: 12px; bottom: 12px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            pointer-events: none;
+        }
+        .chart-label { font-size: 10px; color: rgba(255,255,255,0.25); font-weight: 500; }
+        .chart-svg { width: 100%; height: 100%; display: block; }
+
+        /* Floating +500% Badge */
+        .float-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            z-index: 10;
+            background: linear-gradient(145deg, rgba(16, 12, 32, 0.92), rgba(10, 8, 22, 0.96));
+            border: 1px solid rgba(0,255,100,0.25);
+            border-radius: 16px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.03),
+                0 0 30px rgba(0,255,100,0.12),
+                0 0 60px rgba(0,255,100,0.06),
+                0 8px 32px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            animation: floatBadgeIn 0.6s ease forwards 2.5s;
+        }
+        @keyframes floatBadgeIn {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .float-badge-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(0,255,100,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(0,255,100,0.15);
+        }
+        .float-badge-icon svg { width: 20px; height: 20px; stroke: #00ff64; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(0,255,100,0.5)); }
+        .float-badge-text { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500; }
+        .float-badge-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00ff64;
+            filter: drop-shadow(0 0 8px rgba(0,255,100,0.4));
+            text-shadow: 0 0 12px rgba(0,255,100,0.3);
+            line-height: 1;
+        }
+
+        /* Sparkle Particles */
+        .sparkle { position: absolute; pointer-events: none; z-index: 5; }
+        .sparkle-dot {
+            width: 3px; height: 3px; background: #00ff64; border-radius: 50%;
+            box-shadow: 0 0 6px rgba(0,255,100,0.6);
+        }
+
+        @media (max-width: 600px) {
+            .hero-dashboard { padding: 18px 14px; border-radius: 20px; }
+            .chart-area { height: 110px; }
+            .pack-cards { flex-direction: column; }
+            .float-badge { padding: 10px 14px; }
+            .float-badge-value { font-size: 24px; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -203,7 +469,7 @@
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero Section with Original Dashboard -->
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px] -z-10"></div>
@@ -235,28 +501,138 @@
                     <div class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-success"></i> 10% Cashback</div>
                 </div>
             </div>
+            
+            <!-- ORIGINAL HERO DASHBOARD -->
             <div class="lg:w-1/2 relative">
-                <div class="relative w-full max-w-md mx-auto animate-float">
-                    <div class="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-accent blur-3xl opacity-30 rounded-full"></div>
-                    <div class="relative glass-card p-6 rounded-3xl border border-gray-700/50">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-gray-700 overflow-hidden">
-                                    <img src="https://ui-avatars.com/api/?name=Admin&background=random" alt="Admin" class="w-full h-full object-cover">
+                <div class="relative w-full max-w-lg mx-auto animate-float">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500/15 to-green-500/15 blur-3xl rounded-full"></div>
+                    <div class="hero-dashboard">
+                        
+                        <!-- Admin Notification -->
+                        <div class="admin-notification">
+                            <div class="admin-left">
+                                <div class="admin-avatar">AD</div>
+                                <div class="admin-text">
+                                    <div class="admin-name">AtivaVendas Admin</div>
+                                    <div class="admin-sub">Novo cliente baixou o Pack!</div>
                                 </div>
-                                <div><p class="text-sm font-bold">AtivaVendas Admin</p><p class="text-xs text-gray-400">Novo cliente baixou o Pack!</p></div>
                             </div>
-                            <span class="text-xs bg-green-900/50 text-green-400 px-2 py-1 rounded">+PDF Entregue</span>
+                            <div class="pdf-badge">
+                                <svg viewBox="0 0 24 24"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>
+                                +PDF Entregue
+                            </div>
                         </div>
-                        <div class="space-y-3"><div class="h-2 bg-gray-700 rounded w-3/4"></div><div class="h-2 bg-gray-700 rounded w-1/2"></div></div>
-                        <div class="mt-6 flex gap-3">
-                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600"><div class="text-center"><i class="fa-solid fa-spa text-3xl text-brand-accent mb-2"></i><p class="text-xs text-gray-400">Pack Beleza</p></div></div>
-                            <div class="flex-1 h-32 rounded-xl bg-gray-800/50 flex items-center justify-center border border-dashed border-gray-600"><div class="text-center"><i class="fa-solid fa-burger text-3xl text-orange-500 mb-2"></i><p class="text-xs text-gray-400">Pack Delivery</p></div></div>
+
+                        <!-- Skeleton Bars -->
+                        <div class="skeleton-bars">
+                            <div class="skeleton-bar"><div class="skeleton-bar-fill"></div></div>
+                            <div class="skeleton-bar"><div class="skeleton-bar-fill"></div></div>
                         </div>
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 bg-gray-900 border border-gray-700 p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce" style="animation-duration:3s;">
-                        <div class="bg-green-500/20 p-2 rounded-lg text-green-400"><i class="fa-solid fa-arrow-trend-up"></i></div>
-                        <div><p class="text-xs text-gray-400">Vendas via Chat</p><p class="text-lg font-bold text-white">+285%</p></div>
+
+                        <!-- Pack Cards -->
+                        <div class="pack-cards">
+                            <div class="pack-card">
+                                <div class="pack-icon purple">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                                </div>
+                                <span class="pack-name">Pack Beleza</span>
+                                <span class="pack-arrow">›</span>
+                            </div>
+                            <div class="pack-card">
+                                <div class="pack-icon orange">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                                </div>
+                                <span class="pack-name">Pack Delivery</span>
+                                <span class="pack-arrow">›</span>
+                            </div>
+                        </div>
+
+                        <!-- Chart Area -->
+                        <div class="chart-area">
+                            <div class="chart-grid">
+                                <line x1="0" y1="0%" x2="100%" y2="0%"/>
+                                <line x1="0" y1="25%" x2="100%" y2="25%"/>
+                                <line x1="0" y1="50%" x2="100%" y2="50%"/>
+                                <line x1="0" y1="75%" x2="100%" y2="75%"/>
+                                <line x1="0" y1="100%" x2="100%" y2="100%"/>
+                            </div>
+                            <div class="chart-labels">
+                                <span class="chart-label">500</span>
+                                <span class="chart-label">400</span>
+                                <span class="chart-label">300</span>
+                                <span class="chart-label">200</span>
+                                <span class="chart-label">100</span>
+                            </div>
+                            <svg class="chart-svg" id="chartSvg" viewBox="0 0 600 140" preserveAspectRatio="xMidYMid meet">
+                                <defs>
+                                    <linearGradient id="candlePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#a855f7"/>
+                                        <stop offset="100%" stop-color="#7c3aed"/>
+                                    </linearGradient>
+                                    <linearGradient id="candlePink" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#d946ef"/>
+                                        <stop offset="100%" stop-color="#a855f7"/>
+                                    </linearGradient>
+                                    <linearGradient id="candleGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#00ff64"/>
+                                        <stop offset="50%" stop-color="#00e65a"/>
+                                        <stop offset="100%" stop-color="#00cc50"/>
+                                    </linearGradient>
+                                    <filter id="candleGlow" x="-100%" y="-100%" width="300%" height="300%">
+                                        <feGaussianBlur stdDeviation="3" result="blur1"/>
+                                        <feGaussianBlur stdDeviation="6" result="blur2"/>
+                                        <feGaussianBlur stdDeviation="10" result="blur3"/>
+                                        <feMerge>
+                                            <feMergeNode in="blur3"/>
+                                            <feMergeNode in="blur2"/>
+                                            <feMergeNode in="blur1"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feGaussianBlur stdDeviation="4" result="blur"/>
+                                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                    </filter>
+                                    <linearGradient id="trailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.4"/>
+                                        <stop offset="50%" stop-color="#00ff64" stop-opacity="0.6"/>
+                                        <stop offset="100%" stop-color="#00ff64" stop-opacity="0.8"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Glow trail line -->
+                                <path id="trailLine" d="" fill="none" stroke="url(#trailGrad)" stroke-width="2" stroke-linecap="round" opacity="0.6" filter="url(#subtleGlow)"/>
+
+                                <!-- Glow trail area -->
+                                <path id="trailArea" d="" fill="url(#trailAreaGrad)" opacity="0.15"/>
+                                <defs>
+                                    <linearGradient id="trailAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#00ff64" stop-opacity="0.3"/>
+                                        <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Candles group -->
+                                <g id="candlesGroup"></g>
+
+                                <!-- Sparkle particles on candles -->
+                                <g id="sparklesGroup"></g>
+                            </svg>
+
+                            <!-- Particles container -->
+                            <div id="particlesContainer"></div>
+                        </div>
+
+                        <!-- Floating +500% Badge -->
+                        <div class="float-badge">
+                            <div class="float-badge-icon">
+                                <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                            </div>
+                            <div>
+                                <div class="float-badge-text">Vendas via Chat</div>
+                                <div class="float-badge-value">+500%</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -367,7 +743,7 @@
         </div>
     </section>
 
-    <!-- ===== WHATSAPP MODAL (Full Screen Simulation) ===== -->
+    <!-- ===== WHATSAPP MODAL ===== -->
     <div class="wa-modal-overlay" id="waModal">
         <div class="wa-modal" style="position:relative;">
             <div class="wa-modal-progress"><div class="wa-modal-progress-bar" id="waSimProgress"></div></div>
@@ -384,7 +760,7 @@
                     <span>📹</span><span>📞</span><span class="close-btn" onclick="closeWaModal()">✕</span>
                 </div>
             </div>
-            <div class="wa-chat-area" id="waChatArea" style="background:#0b141a;background-image:url('image/svg+xml,%3Csvg width=\'400\' height=\'400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cpattern id=\'p\' width=\'70\' height=\'70\' patternUnits=\'userSpaceOnUse\'%3E%3Cpath d=\'M35 5c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm36 0c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4zm-18 18c2.5 0 4 1.5 4 4s-1.5 4-4 4-4-1.5-4-4 1.5-4 4-4z\' fill=\'rgba(255,255,255,.025)\'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=\'400\' height=\'400\' fill=\'url(%23p)\'/%3E%3C/svg%3E');scroll-behavior:smooth;">
+            <div class="wa-chat-area" id="waChatArea" style="background:#0b141a;scroll-behavior:smooth;">
                 <div class="enc-note">🔒 As mensagens são criptografadas de ponta a ponta.</div>
                 <div class="date-sep">HOJE</div>
                 <div class="typing" id="waTyping"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
@@ -515,7 +891,7 @@
     <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brand-success text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]"><span id="toast-message">Sucesso!</span></div>
 
     <script>
-    // ==================== CONVERSATION SCRIPTS ====================
+    // ===== CONVERSATION SCRIPTS =====
     const SCRIPTS = {
         1: [
             {t:'recv',x:'Oi! Boa tarde 😊',d:800,ty:1200},
@@ -539,7 +915,7 @@
             {t:'sent',x:'Pix ou cartão? Mando o link de pagamento! 💳',d:1000,ty:1500},
             {t:'recv',x:'Pix! Manda aí!',d:2000},
             {t:'sent',x:'Pronto! Link enviado ✅\n\nTeu pedido chega em ~35min. Bom apetite! 🍟❤️',d:1800,ty:2000},
-            {t:'sent',x:'🔥🔥',d:500,ty:400}
+            {t:'sent',x:'🔥',d:500,ty:400}
         ],
         3: [
             {t:'recv',x:'Boa tarde! Faz tanto tempo que não venho... como estão as coisas aí? 😊',d:800,ty:1500},
@@ -560,8 +936,6 @@
             {t:'recv',x:'❤️❤️',d:500,ty:400}
         ]
     };
-
-    // Full modal conversation
     const FULL_SCRIPT = [
         {t:'recv',x:'Oi! Boa tarde 😊',d:800,ty:1200},
         {t:'sent',x:'Boa tarde! Tudo bem? Como posso te ajudar? 💜',d:2200},
@@ -582,7 +956,6 @@
         const n = new Date(), h = n.getHours(), m = (n.getMinutes() + offset) % 60;
         return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
     }
-
     function mkMsg(m, i, sentClass, recvClass) {
         const el = document.createElement('div');
         el.className = `msg ${m.t === 'sent' ? sentClass : recvClass}`;
@@ -591,22 +964,18 @@
         else el.innerHTML = `<span class="mtext">${m.x.replace(/\n/g, '<br>')}</span><span class="mmeta"><span class="mtime">${tm}</span></span>`;
         return el;
     }
-
     function showTyp(id, typId, statusId) {
         const ind = document.getElementById(typId);
         const st = document.getElementById(statusId);
         ind.style.display = 'flex';
         requestAnimationFrame(() => { ind.classList.add('show'); st.textContent = 'digitando...'; });
     }
-
     function hideTyp(id, typId) {
         const ind = document.getElementById(typId);
         ind.classList.remove('show');
         setTimeout(() => { ind.style.display = 'none'; }, 300);
     }
-
     function updProg(id, p) { document.getElementById('prog'+id).style.width = p+'%'; }
-
     function playNext(id) {
         const s = state[id];
         const script = SCRIPTS[id];
@@ -631,21 +1000,18 @@
             s.tos.push(t);
         }
     }
-
     function addMsg(id, m, i) {
         const area = document.getElementById('chat'+id);
         const ind = document.getElementById('typ'+id);
         area.insertBefore(mkMsg(m, i, 'sent', 'recv'), ind);
         area.scrollTop = area.scrollHeight;
     }
-
     function finish(id) {
         state[id].playing = false;
         document.getElementById('status'+id).textContent = 'online agora';
         document.getElementById('replay'+id).classList.add('show');
         updProg(id, 100);
     }
-
     function start(id) {
         const area = document.getElementById('chat'+id);
         const ind = document.getElementById('typ'+id);
@@ -659,15 +1025,11 @@
         document.getElementById('replay'+id).classList.remove('show');
         setTimeout(() => playNext(id), 500);
     }
-
     function replay(id) {
         state[id].tos.forEach(t => clearTimeout(t)); state[id].tos = []; state[id].playing = false;
         start(id);
     }
-
     function clearAll(id) { state[id].tos.forEach(t => clearTimeout(t)); state[id].tos = []; state[id].playing = false; }
-
-    // ===== TAB SWITCH =====
     function switchTalk(id) {
         document.querySelectorAll('.talk-tab').forEach(t => t.classList.toggle('active', +t.dataset.tab === id));
         document.querySelectorAll('.talk-panel').forEach(p => p.classList.remove('active'));
@@ -675,8 +1037,6 @@
         clearAll(id);
         setTimeout(() => start(id), 100);
     }
-
-    // ===== FULL MODAL CONVERSATION =====
     function waShowTyp() {
         const ind = document.getElementById('waTyping');
         const st = document.getElementById('waContactStatus');
@@ -754,8 +1114,6 @@
     }
     document.getElementById('waModal').addEventListener('click', function(e) { if (e.target === this) closeWaModal(); });
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeWaModal(); closeModal('checkout'); } });
-
-    // ===== FILTER =====
     function filterProducts(category) {
         const cards = document.querySelectorAll('.product-card');
         const buttons = document.querySelectorAll('.filter-btn');
@@ -771,8 +1129,6 @@
             card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
         });
     }
-
-    // ===== MODAL =====
     function openModal(type) { if (type === 'login') showToast('Área de login em breve!'); }
     function openCheckout(name, price) {
         currentProduct = {name, price};
@@ -782,7 +1138,6 @@
         document.body.style.overflow = 'hidden';
     }
     function closeModal(type) { document.getElementById('checkout-modal').classList.add('hidden'); document.body.style.overflow = ''; }
-
     function handleCheckout(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -799,8 +1154,6 @@
             btn.textContent = originalText; btn.disabled = false; e.target.reset();
         }, 2000);
     }
-
-    // ===== REFERRAL =====
     function shareReferral(platform) {
         const referralId = Math.random().toString(36).substring(7);
         const link = `https://ativavendas.com.br/ref/${referralId}`;
@@ -822,6 +1175,173 @@
         toast.classList.remove('translate-y-20','opacity-0');
         setTimeout(() => { toast.classList.add('translate-y-20','opacity-0'); }, 3000);
     }
+
+    // ===== HERO CHART ANIMATIONS =====
+    const totalCandles = 28;
+    const chartWidth = 600;
+    const chartHeight = 140;
+    const candleWidth = 10;
+    const candleGap = (chartWidth - 60 - (totalCandles * candleWidth)) / (totalCandles - 1);
+    const startX = 30;
+    const startY = chartHeight - 15;
+    const endY = 25;
+
+    const candleData = [];
+    for (let i = 0; i < totalCandles; i++) {
+        const progress = i / (totalCandles - 1);
+        const x = startX + i * (candleWidth + candleGap);
+        const y = startY - (startY - endY) * Math.pow(progress, 1.8);
+        const height = 6 + Math.random() * 10;
+        const wickTop = y - height - 2 - Math.random() * 4;
+        const wickBottom = y + 2 + Math.random() * 3;
+        const isGreen = i > 10;
+        candleData.push({ x, y, height, wickTop, wickBottom, isGreen, progress, index: i });
+    }
+
+    const candlesGroup = document.getElementById('candlesGroup');
+    const trailLine = document.getElementById('trailLine');
+    const trailArea = document.getElementById('trailArea');
+    const sparklesGroup = document.getElementById('sparklesGroup');
+
+    // Build trail path
+    const trailPoints = candleData.map(c => ({ x: c.x + candleWidth / 2, y: c.y }));
+    let trailPath = `M ${trailPoints[0].x} ${trailPoints[0].y}`;
+    for (let i = 1; i < trailPoints.length; i++) {
+        const prev = trailPoints[i - 1];
+        const curr = trailPoints[i];
+        const cpx = (prev.x + curr.x) / 2;
+        const cpy = (prev.y + curr.y) / 2;
+        trailPath += ` Q ${prev.x} ${prev.y} ${cpx} ${cpy}`;
+    }
+    trailLine.setAttribute('d', trailPath);
+
+    let areaPath = trailPath + ` L ${trailPoints[trailPoints.length-1].x} ${chartHeight} L ${trailPoints[0].x} ${chartHeight} Z`;
+    trailArea.setAttribute('d', areaPath);
+
+    // Create candles with 5s repeating animation
+    candleData.forEach((candle, i) => {
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.style.transformOrigin = `${candle.x + candleWidth/2}px ${candle.y + candle.height/2}px`;
+        const delay = i * 0.06;
+        group.style.animation = `candleLoop 5s ease-in-out ${delay}s infinite`;
+        group.style.opacity = '0';
+
+        const gradient = candle.isGreen ? 'url(#candleGreen)' : (i < 5 ? 'url(#candlePurple)' : 'url(#candlePink)');
+
+        // Top wick
+        const wickTop = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        wickTop.setAttribute('x1', candle.x + candleWidth / 2);
+        wickTop.setAttribute('y1', candle.wickTop);
+        wickTop.setAttribute('x2', candle.x + candleWidth / 2);
+        wickTop.setAttribute('y2', candle.y - candle.height / 2);
+        wickTop.setAttribute('stroke', candle.isGreen ? '#00ff64' : '#a855f7');
+        wickTop.setAttribute('stroke-width', '1.5');
+        wickTop.setAttribute('stroke-linecap', 'round');
+        wickTop.setAttribute('opacity', '0.6');
+        group.appendChild(wickTop);
+
+        // Bottom wick
+        const wickBottom = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        wickBottom.setAttribute('x1', candle.x + candleWidth / 2);
+        wickBottom.setAttribute('y1', candle.y + candle.height / 2);
+        wickBottom.setAttribute('x2', candle.x + candleWidth / 2);
+        wickBottom.setAttribute('y2', candle.wickBottom);
+        wickBottom.setAttribute('stroke', candle.isGreen ? '#00ff64' : '#a855f7');
+        wickBottom.setAttribute('stroke-width', '1.5');
+        wickBottom.setAttribute('stroke-linecap', 'round');
+        wickBottom.setAttribute('opacity', '0.4');
+        group.appendChild(wickBottom);
+
+        // Candle body glow
+        const bodyGlow = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        bodyGlow.setAttribute('x', candle.x - 2);
+        bodyGlow.setAttribute('y', candle.y - candle.height / 2 - 2);
+        bodyGlow.setAttribute('width', candleWidth + 4);
+        bodyGlow.setAttribute('height', candle.height + 4);
+        bodyGlow.setAttribute('rx', '2');
+        bodyGlow.setAttribute('fill', candle.isGreen ? '#00ff64' : '#a855f7');
+        bodyGlow.setAttribute('opacity', '0.15');
+        bodyGlow.setAttribute('filter', 'url(#candleGlow)');
+        group.appendChild(bodyGlow);
+
+        // Main body
+        const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        body.setAttribute('x', candle.x);
+        body.setAttribute('y', candle.y - candle.height / 2);
+        body.setAttribute('width', candleWidth);
+        body.setAttribute('height', candle.height);
+        body.setAttribute('rx', '2');
+        body.setAttribute('fill', gradient);
+        if (candle.isGreen) body.setAttribute('filter', 'url(#candleGlow)');
+        group.appendChild(body);
+
+        // Highlight
+        const highlight = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        highlight.setAttribute('x', candle.x + 2);
+        highlight.setAttribute('y', candle.y - candle.height / 2 + 2);
+        highlight.setAttribute('width', candleWidth / 3);
+        highlight.setAttribute('height', candle.height - 4);
+        highlight.setAttribute('rx', '1');
+        highlight.setAttribute('fill', 'rgba(255,255,255,0.2)');
+        group.appendChild(highlight);
+
+        candlesGroup.appendChild(group);
+
+        // Add sparkle for green candles
+        if (candle.isGreen && i > 16) {
+            const sparkle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            sparkle.setAttribute('cx', candle.x + candleWidth / 2 + (Math.random() - 0.5) * 8);
+            sparkle.setAttribute('cy', candle.wickTop);
+            sparkle.setAttribute('r', '1.5');
+            sparkle.setAttribute('fill', '#00ff64');
+            sparkle.setAttribute('opacity', '0');
+            sparkle.setAttribute('filter', 'url(#subtleGlow)');
+            sparkle.style.animation = `sparklePop 1.5s ease ${delay}s infinite`;
+            sparklesGroup.appendChild(sparkle);
+        }
+    });
+
+    // Add looping keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes candleLoop {
+            0% { opacity: 0; transform: scale(0); }
+            8% { opacity: 1; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1); }
+            62% { opacity: 0.2; transform: scale(0.8); }
+            70% { opacity: 0; transform: scale(0); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+        @keyframes sparklePop {
+            0%, 40% { opacity: 0; transform: scale(0); }
+            50%, 60% { opacity: 1; transform: scale(1.5); }
+            70%, 100% { opacity: 0; transform: scale(0); }
+        }
+        @keyframes particleFloat {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
+            20% { opacity: 1; transform: translateY(-10px) scale(1); }
+            80% { opacity: 0.4; transform: translateY(-35px) scale(0.7); }
+            100% { opacity: 0; transform: translateY(-50px) scale(0); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Particles
+    const particlesContainer = document.getElementById('particlesContainer');
+    function addParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'sparkle';
+        particle.innerHTML = '<div class="sparkle-dot"></div>';
+        const x = 180 + Math.random() * 300;
+        const y = 30 + Math.random() * 80;
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.animation = `particleFloat ${3 + Math.random() * 2}s ease ${Math.random() * 2}s forwards`;
+        particlesContainer.appendChild(particle);
+        setTimeout(() => particle.remove(), 6000);
+    }
+    for (let i = 0; i < 8; i++) setTimeout(addParticle, 2000 + i * 300);
+    setInterval(addParticle, 1200);
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', () => {
