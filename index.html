@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     <title>AtivaVendas | Mensagens Prontas para WhatsApp e Instagram</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1308,6 +1312,53 @@ section .max-w-7xl {
     }
 }
 
+
+        /* ===== AJUSTES V6 - TOPO MENOR, MAIS SOBRAS LATERAIS, SEM CORTE E MAIS FLUIDO ===== */
+        .avh-hero{padding:118px 0 58px!important;overflow:visible!important}
+        .avh-wrap{width:min(calc(100% - 144px),1088px)!important;margin:0 auto!important}
+        .avh-grid{grid-template-columns:minmax(360px,.96fr) minmax(420px,.88fr)!important;gap:clamp(58px,6vw,96px)!important;align-items:center!important}
+        .avh-copy h1{max-width:560px!important;font-size:clamp(40px,4.45vw,64px)!important;line-height:.94!important;letter-spacing:-.055em!important;margin-bottom:24px!important}
+        .avh-copy p{max-width:535px!important;font-size:16px!important;line-height:1.66!important}
+        .avh-actions{margin-top:28px!important;gap:18px!important}
+        .avh-btn{min-height:54px!important;padding:0 20px!important;border-radius:14px!important}
+        .avh-trust{margin-top:28px!important;gap:24px!important}
+        .avh-visual{width:min(100%,512px)!important;height:506px!important;margin-left:0!important;overflow:visible!important;contain:none!important;transform:translateX(-8px)}
+        .avh-soft-glow{inset:7% -4% 0 -6%!important;filter:blur(14px)!important;opacity:.78!important}
+        .avh-pack,.avh-card{border-color:rgba(217,70,239,.10)!important;box-shadow:0 14px 34px rgba(0,0,0,.22),0 0 14px rgba(139,92,246,.06),inset 0 1px 0 rgba(255,255,255,.055)!important;backdrop-filter:blur(8px)!important}
+        .avh-pack{width:116px!important;min-height:132px!important;padding:11px 10px!important;border-radius:18px!important}
+        .avh-pack i{font-size:21px!important;margin:8px 0 6px!important}
+        .avh-pack h3{font-size:14px!important}
+        .avh-pack p{font-size:9.4px!important;line-height:1.30!important}
+        .avh-pack b{margin-top:7px!important;font-size:9px!important}
+        .avh-pack-beleza{left:10px!important;top:28px!important}
+        .avh-pack-delivery{left:8px!important;top:175px!important}
+        .avh-pack-varejo{left:10px!important;top:322px!important}
+        .avh-phone{width:226px!important;height:452px!important;border-radius:32px!important;box-shadow:0 24px 58px rgba(0,0,0,.36),0 0 22px rgba(139,92,246,.13),inset 0 1px 0 rgba(255,255,255,.12)!important}
+        .avh-phone::before{inset:9px!important;border-radius:24px!important}
+        .avh-phone-header{height:57px!important;padding:14px 10px 7px!important}
+        .avh-avatar{width:23px!important;height:23px!important}
+        .avh-contact strong{font-size:12.5px!important}.avh-contact small{font-size:9px!important}
+        .avh-chat{padding:10px 12px!important;gap:12px!important}
+        .avh-bubble{padding:28px 11px 10px!important;border-radius:14px!important;font-size:10.2px!important;line-height:1.34!important}
+        .avh-bubble span{font-size:7.7px!important;padding:5px 8px!important}
+        .avh-input{left:16px!important;right:16px!important;bottom:16px!important;font-size:10px!important}
+        .avh-input i{width:28px!important;height:28px!important}
+        .avh-growth{top:58px!important;right:8px!important;width:148px!important;min-height:143px!important;padding:14px!important}
+        .avh-growth strong{font-size:31px!important}
+        .avh-bars{height:48px!important;gap:4px!important}.avh-bars i{width:11px!important}
+        .avh-testimonial{top:224px!important;right:8px!important;width:176px!important;min-height:111px!important;padding:13px 12px 13px 53px!important}
+        .avh-client{left:12px!important;top:14px!important;width:32px!important;height:32px!important}
+        .avh-testimonial p{font-size:9.2px!important}.avh-testimonial small,.avh-testimonial b{font-size:8.8px!important}
+        .avh-updated{top:360px!important;right:8px!important;width:176px!important;min-height:92px!important;padding:13px 12px!important;gap:10px!important}
+        .avh-updated>i{width:36px!important;height:36px!important}.avh-card h3{font-size:9.4px!important}.avh-updated p,.avh-growth p{font-size:9.8px!important}
+        .glow-line,.particle,.floating-card,.stat-card,.phone-mockup{animation-play-state:paused!important}
+        .particles{display:none!important}.glass-card{backdrop-filter:blur(8px)!important}button,a{-webkit-tap-highlight-color:transparent}
+        .page-hidden *{animation-play-state:paused!important}
+        @media(max-width:1280px){.avh-wrap{width:min(calc(100% - 96px),1050px)!important}.avh-grid{gap:54px!important}.avh-visual{transform:translateX(-2px) scale(.96);transform-origin:left center}}
+        @media(max-width:1120px){.avh-hero{padding-top:108px!important}.avh-wrap{width:min(calc(100% - 52px),920px)!important}.avh-grid{grid-template-columns:1fr!important;gap:36px!important}.avh-copy{text-align:center!important}.avh-copy h1,.avh-copy p{margin-left:auto!important;margin-right:auto!important}.avh-actions,.avh-trust{justify-content:center!important}.avh-visual{margin:0 auto!important;transform:none!important}}
+        @media(max-width:720px){.avh-wrap{width:min(calc(100% - 28px),620px)!important}.avh-copy{text-align:left!important}.avh-copy h1{font-size:clamp(36px,11.6vw,52px)!important}.avh-copy p{font-size:15px!important}.avh-actions,.avh-trust{justify-content:flex-start!important}.avh-visual{height:660px!important;transform:scale(.94)!important;transform-origin:center top!important}.avh-phone{width:min(74vw,238px)!important;height:468px!important;top:40%!important}.avh-pack-beleza{left:0!important;top:0!important}.avh-pack-delivery{left:auto!important;right:0!important;top:4px!important}.avh-pack-varejo{left:0!important;top:505px!important}.avh-growth{right:0!important;top:500px!important}.avh-testimonial{top:615px!important}}
+        @media(hover:none),(prefers-reduced-motion:reduce){.avh-visual{--mx:0!important;--my:0!important}.avh-pack,.avh-card,.avh-phone{transition:none!important}}
+
     </style>
 </head>
 <body class="antialiased">
@@ -1729,9 +1780,9 @@ section .max-w-7xl {
             <div class="mb-6 bg-gray-800/50 p-4 rounded-xl border border-gray-700"><p class="text-sm text-gray-400">Você está comprando:</p><p class="text-lg font-bold text-brand-primary" id="modal-product-name">Nome do Pack</p><p class="text-2xl font-bold mt-1" id="modal-product-price">R$ 00,00</p></div>
             <form id="checkout-form" onsubmit="handleCheckout(event)">
                 <div class="space-y-4">
-                    <div><label class="block text-xs text-gray-400 mb-1">Seu Nome Completo</label><input type="text" name="name" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
-                    <div><label class="block text-xs text-gray-400 mb-1">Seu WhatsApp (com DDD)</label><input type="tel" name="whatsapp" required placeholder="(11) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
-                    <div><label class="block text-xs text-gray-400 mb-1">Seu Melhor E-mail</label><input type="email" name="email" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
+                    <div><label class="block text-xs text-gray-400 mb-1">Seu Nome Completo</label><input type="text" name="name" required autocomplete="name" minlength="2" maxlength="80" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
+                    <div><label class="block text-xs text-gray-400 mb-1">Seu WhatsApp (com DDD)</label><input type="tel" name="whatsapp" required autocomplete="tel" inputmode="tel" pattern="[0-9()\s+\-]{10,20}" placeholder="(11) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
+                    <div><label class="block text-xs text-gray-400 mb-1">Seu Melhor E-mail</label><input type="email" name="email" required autocomplete="email" maxlength="120" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition"></div>
                 </div>
                 <button type="submit" class="w-full mt-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl font-bold text-white shadow-lg hover:opacity-90 transition transform hover:scale-[1.02]">Confirmar e Receber Bônus</button>
                 <p class="text-xs text-center text-gray-500 mt-4">Ao confirmar, enviaremos uma notificação à equipe AtivaVendas para facilitar seu suporte.</p>
@@ -2056,6 +2107,12 @@ section .max-w-7xl {
         }, { passive: true });
         heroVisual.addEventListener('mouseleave', () => { tx = 0; ty = 0; queueHero(); }, { passive: true });
     }
+
+
+    // ===== OTIMIZAÇÃO V6 =====
+    document.addEventListener('visibilitychange', () => {
+        document.documentElement.classList.toggle('page-hidden', document.hidden);
+    });
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', () => {
