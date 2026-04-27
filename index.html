@@ -36,6 +36,439 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
 
+        /* ===== PROMO ANIMATION STYLES ===== */
+        .promo-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .floating-card {
+            position: absolute;
+            border-radius: 20px;
+            padding: 20px;
+            background: rgba(20, 14, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(168, 85, 247, 0.1);
+            animation: cardFloat 6s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .card-beleza {
+            top: 5%;
+            left: 5%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            animation-delay: 0s;
+        }
+
+        .card-delivery {
+            top: 35%;
+            left: 2%;
+            background: linear-gradient(135deg, rgba(219, 39, 119, 0.2), rgba(236, 72, 153, 0.1));
+            animation-delay: 1s;
+        }
+
+        .card-varejo {
+            top: 65%;
+            left: 8%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.1));
+            animation-delay: 2s;
+        }
+
+        .phone-mockup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 560px;
+            background: #0f0a1a;
+            border-radius: 40px;
+            border: 3px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 60px rgba(168, 85, 247, 0.2), 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            z-index: 3;
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(-1deg); }
+            50% { transform: translate(-50%, -50%) translateY(-15px) rotate(1deg); }
+        }
+
+        .phone-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 48px 16px 12px;
+            background: rgba(15, 10, 26, 0.95);
+        }
+
+        .phone-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7, #6d28d9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .phone-name {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .phone-status {
+            color: #22c55e;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .phone-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .phone-chat {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: calc(100% - 100px);
+            overflow: hidden;
+        }
+
+        .chat-msg {
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 11px;
+            line-height: 1.5;
+            animation: msgAppear 0.6s ease-out forwards;
+            opacity: 0;
+            max-width: 85%;
+        }
+
+        .chat-msg.msg-1 {
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: #e2e8f0;
+            animation-delay: 1s;
+            margin-right: auto;
+        }
+
+        .chat-msg.msg-2 {
+            background: rgba(219, 39, 119, 0.15);
+            border: 1px solid rgba(219, 39, 119, 0.2);
+            color: #fce7f3;
+            animation-delay: 1.8s;
+            margin-right: auto;
+        }
+
+        .chat-msg.msg-3 {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: #ede9fe;
+            animation-delay: 2.6s;
+            margin-right: auto;
+        }
+
+        @keyframes msgAppear {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg-label {
+            display: inline-block;
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .msg-label.purple {
+            background: rgba(168, 85, 247, 0.3);
+            color: #c084fc;
+        }
+
+        .msg-label.pink {
+            background: rgba(219, 39, 119, 0.3);
+            color: #f472b6;
+        }
+
+        .msg-label.indigo {
+            background: rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+        }
+
+        .msg-time {
+            display: block;
+            text-align: right;
+            font-size: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 4px;
+        }
+
+        .phone-input {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: rgba(15, 10, 26, 0.98);
+            border-top: 1px solid rgba(168, 85, 247, 0.1);
+        }
+
+        .input-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 8px 14px;
+        }
+
+        .input-text {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            flex: 1;
+        }
+
+        .input-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card {
+            position: absolute;
+            right: 5%;
+            padding: 18px;
+            background: rgba(20, 14, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            z-index: 2;
+            animation: statFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes statFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .stat-sales {
+            top: 8%;
+            animation-delay: 0.5s;
+        }
+
+        .stat-testimonial {
+            top: 38%;
+            animation-delay: 1s;
+        }
+
+        .stat-updated {
+            top: 68%;
+            animation-delay: 1.5s;
+        }
+
+        .stat-header {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .stat-sub {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 40px;
+            margin-top: 10px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(180deg, #a855f7, #6d28d9);
+            border-radius: 2px 2px 0 0;
+            animation: barGrow 2s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes barGrow {
+            from { height: 0; opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .chart-bar:nth-child(1) { height: 20%; animation-delay: 3s; }
+        .chart-bar:nth-child(2) { height: 35%; animation-delay: 3.1s; }
+        .chart-bar:nth-child(3) { height: 45%; animation-delay: 3.2s; }
+        .chart-bar:nth-child(4) { height: 55%; animation-delay: 3.3s; }
+        .chart-bar:nth-child(5) { height: 65%; animation-delay: 3.4s; }
+        .chart-bar:nth-child(6) { height: 75%; animation-delay: 3.5s; }
+        .chart-bar:nth-child(7) { height: 85%; animation-delay: 3.6s; }
+        .chart-bar:nth-child(8) { height: 100%; animation-delay: 3.7s; }
+
+        .testimonial {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .testimonial-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 10px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .testimonial-name {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 9px;
+            margin-top: 6px;
+            font-style: normal;
+        }
+
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+        .updated-content {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .updated-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(219, 39, 119, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .updated-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .updated-title {
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .glow-lines {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.4), transparent);
+            animation: lineGlow 4s ease-in-out infinite;
+        }
+
+        .glow-line:nth-child(1) { top: 20%; left: 10%; width: 30%; animation-delay: 0s; }
+        .glow-line:nth-child(2) { top: 40%; left: 5%; width: 25%; animation-delay: 1s; }
+        .glow-line:nth-child(3) { top: 60%; left: 60%; width: 35%; animation-delay: 2s; }
+        .glow-line:nth-child(4) { top: 80%; left: 15%; width: 20%; animation-delay: 0.5s; }
+
+        @keyframes lineGlow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+
+        .particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(168, 85, 247, 0.6);
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-20px) scale(1); opacity: 0; }
+        }
+
         /* ===== WHATSAPP CONVERSATION STYLES ===== */
         .talk-tabs { display:flex; justify-content:center; gap:10px; margin-bottom:28px; flex-wrap:wrap; padding:0 20px; }
         .talk-tab {
@@ -59,15 +492,15 @@
         }
         .sim-progress { height:3px; background:rgba(37,211,102,.10); }
         .sim-progress-bar { height:100%; background:linear-gradient(90deg,#25d366,#a855f7); width:0%; transition:width .4s ease; border-radius:0 3px 3px 0; }
-        .phone-header { background:#075E54; padding:16px 20px; display:flex; align-items:center; gap:14px; }
-        .phone-header .avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; color:#fff; flex-shrink:0; }
+        .phone-header-chat { background:#075E54; padding:16px 20px; display:flex; align-items:center; gap:14px; }
+        .phone-header-chat .avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; color:#fff; flex-shrink:0; }
         .avatar-conv1 { background:linear-gradient(135deg,#a855f7,#ec4899); }
         .avatar-conv2 { background:linear-gradient(135deg,#f97316,#ef4444); }
         .avatar-conv3 { background:linear-gradient(135deg,#06b6d4,#3b82f6); }
-        .phone-header .info { flex:1; min-width:0; }
-        .phone-header .info .name { color:#fff; font-size:15px; font-weight:600; }
-        .phone-header .info .status { color:rgba(255,255,255,.7); font-size:12px; }
-        .phone-header .actions { display:flex; gap:16px; color:rgba(255,255,255,.7); font-size:16px; }
+        .phone-header-chat .info { flex:1; min-width:0; }
+        .phone-header-chat .info .name { color:#fff; font-size:15px; font-weight:600; }
+        .phone-header-chat .info .status { color:rgba(255,255,255,.7); font-size:12px; }
+        .phone-header-chat .actions { display:flex; gap:16px; color:rgba(255,255,255,.7); font-size:16px; }
         .chat-area {
             height:480px; overflow-y:auto; padding:16px 14px;
             display:flex; flex-direction:column; gap:6px;
@@ -172,271 +605,18 @@
         .wa-modal-replay:hover { transform:scale(1.1); }
         .wa-modal-replay.show { display:flex; }
 
-        /* ===== ORIGINAL HERO DASHBOARD STYLES ===== */
-        .hero-dashboard {
-            position: relative;
-            width: 100%;
-            max-width: 620px;
-            background: linear-gradient(165deg, rgba(16, 12, 32, 0.88), rgba(10, 8, 22, 0.94));
-            border-radius: 24px;
-            padding: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.15);
-            box-shadow:
-                0 0 0 1px rgba(255,255,255,0.03),
-                0 0 60px rgba(139, 92, 246, 0.08),
-                0 0 120px rgba(0, 255, 100, 0.04),
-                inset 0 1px 0 rgba(255,255,255,0.04);
-        }
-        .hero-dashboard::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 25px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(0,255,100,0.3), rgba(139,92,246,0.2), rgba(0,255,100,0.3));
-            background-size: 300% 300%;
-            animation: borderGlow 6s ease infinite;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            z-index: 1;
-        }
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .hero-dashboard::after {
-            content: '';
-            position: absolute;
-            top: -60px;
-            right: -60px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(0,255,100,0.08), transparent 65%);
-            filter: blur(30px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        /* Admin Notification */
-        .admin-notification {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 2;
-        }
-        .admin-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .admin-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #3b82f6, #6366f1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
-            color: #fff;
-            box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
-        }
-        .admin-text .admin-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .admin-text .admin-sub {
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-            margin-top: 2px;
-        }
-        .pdf-badge {
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 12px;
-            padding: 8px 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #c084fc;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
-        }
-        .pdf-badge svg {
-            width: 16px;
-            height: 16px;
-            fill: #c084fc;
+        @media (max-width: 1200px) {
+            .promo-container {
+                transform: scale(0.85);
+                transform-origin: center center;
+            }
         }
 
-        /* Skeleton Bars */
-        .skeleton-bars {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 18px;
-            position: relative;
-            z-index: 2;
-        }
-        .skeleton-bar {
-            height: 10px;
-            border-radius: 6px;
-            background: rgba(139, 92, 246, 0.15);
-            overflow: hidden;
-        }
-        .skeleton-bar-fill {
-            height: 100%;
-            border-radius: 6px;
-            background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.5));
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
-            width: 0%;
-            animation: loadBar 2s ease forwards 0.5s;
-        }
-        .skeleton-bar:nth-child(2) .skeleton-bar-fill { 
-            width: 65%;
-            animation-delay: 0.8s;
-        }
-        @keyframes loadBar { to { width: 100%; } }
-
-        /* Pack Cards */
-        .pack-cards {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 18px;
-            position: relative;
-            z-index: 2;
-        }
-        .pack-card {
-            flex: 1;
-            background: rgba(0,0,0,0.3);
-            border: 1px dashed rgba(255,255,255,0.08);
-            border-radius: 14px;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: packIn 0.6s ease forwards;
-        }
-        .pack-card:nth-child(1) { animation-delay: 1s; }
-        .pack-card:nth-child(2) { animation-delay: 1.2s; }
-        @keyframes packIn { to { opacity: 1; transform: translateY(0); } }
-        .pack-card:hover {
-            border-color: rgba(139, 92, 246, 0.25);
-            background: rgba(139, 92, 246, 0.04);
-            transform: translateY(-2px);
-        }
-        .pack-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .pack-icon.purple { 
-            background: rgba(168, 85, 247, 0.15); 
-            box-shadow: 0 0 12px rgba(168, 85, 247, 0.2); 
-        }
-        .pack-icon.orange { 
-            background: rgba(251, 146, 60, 0.15); 
-            box-shadow: 0 0 12px rgba(251, 146, 60, 0.2); 
-        }
-        .pack-icon svg { width: 20px; height: 20px; }
-        .pack-icon.purple svg { fill: #a855f7; filter: drop-shadow(0 0 4px rgba(168,85,247,0.5)); }
-        .pack-icon.orange svg { fill: #fb923c; filter: drop-shadow(0 0 4px rgba(251,146,60,0.5)); }
-        .pack-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); }
-        .pack-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 12px; }
-
-        /* Chart Area */
-        .chart-area {
-            position: relative;
-            height: 140px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 14px;
-            border: 1px solid rgba(139, 92, 246, 0.06);
-            overflow: hidden;
-            z-index: 2;
-        }
-        .chart-grid { position: absolute; inset: 12px; pointer-events: none; }
-        .chart-grid line { stroke: rgba(255,255,255,0.04); stroke-width: 1; stroke-dasharray: 3 3; }
-        .chart-labels {
-            position: absolute; left: 8px; top: 12px; bottom: 12px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            pointer-events: none;
-        }
-        .chart-label { font-size: 10px; color: rgba(255,255,255,0.25); font-weight: 500; }
-        .chart-svg { width: 100%; height: 100%; display: block; }
-
-        /* Floating +500% Badge */
-        .float-badge {
-            position: absolute;
-            bottom: 8px;
-            right: 12px;
-            z-index: 10;
-            background: linear-gradient(145deg, rgba(16, 12, 32, 0.92), rgba(10, 8, 22, 0.96));
-            border: 1px solid rgba(0,255,100,0.25);
-            border-radius: 16px;
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow:
-                0 0 0 1px rgba(255,255,255,0.03),
-                0 0 30px rgba(0,255,100,0.12),
-                0 0 60px rgba(0,255,100,0.06),
-                0 8px 32px rgba(0,0,0,0.4);
-            opacity: 0;
-            transform: translateY(20px) scale(0.9);
-            animation: floatBadgeIn 0.6s ease forwards 2.5s;
-        }
-        @keyframes floatBadgeIn {
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .float-badge-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: rgba(0,255,100,0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 12px rgba(0,255,100,0.15);
-        }
-        .float-badge-icon svg { width: 20px; height: 20px; stroke: #00ff64; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(0,255,100,0.5)); }
-        .float-badge-text { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500; }
-        .float-badge-value {
-            font-size: 28px;
-            font-weight: 900;
-            color: #00ff64;
-            filter: drop-shadow(0 0 8px rgba(0,255,100,0.4));
-            text-shadow: 0 0 12px rgba(0,255,100,0.3);
-            line-height: 1;
-        }
-
-        /* Sparkle Particles */
-        .sparkle { position: absolute; pointer-events: none; z-index: 5; }
-        .sparkle-dot {
-            width: 3px; height: 3px; background: #00ff64; border-radius: 50%;
-            box-shadow: 0 0 6px rgba(0,255,100,0.6);
-        }
-
-        @media (max-width: 600px) {
-            .hero-dashboard { padding: 18px 14px; border-radius: 20px; }
-            .chart-area { height: 110px; }
-            .pack-cards { flex-direction: column; }
-            .float-badge { padding: 10px 14px; }
-            .float-badge-value { font-size: 24px; }
+        @media (max-width: 768px) {
+            .promo-container {
+                transform: scale(0.6);
+                height: 500px;
+            }
         }
     </style>
 </head>
@@ -469,7 +649,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Original Dashboard -->
+    <!-- Hero Section with Promo Animation -->
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px] -z-10"></div>
@@ -502,135 +682,122 @@
                 </div>
             </div>
             
-            <!-- ORIGINAL HERO DASHBOARD -->
+            <!-- PROMO ANIMATION -->
             <div class="lg:w-1/2 relative">
-                <div class="relative w-full max-w-lg mx-auto animate-float">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500/15 to-green-500/15 blur-3xl rounded-full"></div>
-                    <div class="hero-dashboard">
-                        
-                        <!-- Admin Notification -->
-                        <div class="admin-notification">
-                            <div class="admin-left">
-                                <div class="admin-avatar">AD</div>
-                                <div class="admin-text">
-                                    <div class="admin-name">AtivaVendas Admin</div>
-                                    <div class="admin-sub">Novo cliente baixou o Pack!</div>
-                                </div>
-                            </div>
-                            <div class="pdf-badge">
-                                <svg viewBox="0 0 24 24"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>
-                                +PDF Entregue
-                            </div>
+                <div class="promo-container">
+                    <!-- Particles -->
+                    <div class="particles" id="particles"></div>
+
+                    <!-- Glow Lines -->
+                    <div class="glow-lines">
+                        <div class="glow-line"></div>
+                        <div class="glow-line"></div>
+                        <div class="glow-line"></div>
+                        <div class="glow-line"></div>
+                    </div>
+
+                    <!-- Floating Cards -->
+                    <div class="floating-card card-beleza">
+                        <div class="text-xs font-bold text-purple-300 mb-2">PACK</div>
+                        <div class="text-3xl mb-2">🌿</div>
+                        <div class="font-bold text-lg mb-1">Beleza</div>
+                        <div class="text-xs text-gray-300">Mensagens prontas para encantar e vender mais todos os dias.</div>
+                        <div class="mt-3 text-xs text-gray-400 flex items-center gap-1">
+                            <span class="border border-gray-600 rounded px-1 py-0.5">PDF</span>
                         </div>
+                    </div>
 
-                        <!-- Skeleton Bars -->
-                        <div class="skeleton-bars">
-                            <div class="skeleton-bar"><div class="skeleton-bar-fill"></div></div>
-                            <div class="skeleton-bar"><div class="skeleton-bar-fill"></div></div>
+                    <div class="floating-card card-delivery">
+                        <div class="text-xs font-bold text-pink-300 mb-2">PACK</div>
+                        <div class="text-3xl mb-2">🍔</div>
+                        <div class="font-bold text-lg mb-1">Delivery</div>
+                        <div class="text-xs text-gray-300">Mensagens prontas para vender mais no WhatsApp.</div>
+                        <div class="mt-3 text-xs text-gray-400 flex items-center gap-1">
+                            <span class="border border-gray-600 rounded px-1 py-0.5">PDF</span>
                         </div>
+                    </div>
 
-                        <!-- Pack Cards -->
-                        <div class="pack-cards">
-                            <div class="pack-card">
-                                <div class="pack-icon purple">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-                                </div>
-                                <span class="pack-name">Pack Beleza</span>
-                                <span class="pack-arrow">›</span>
-                            </div>
-                            <div class="pack-card">
-                                <div class="pack-icon orange">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                                </div>
-                                <span class="pack-name">Pack Delivery</span>
-                                <span class="pack-arrow">›</span>
-                            </div>
+                    <div class="floating-card card-varejo">
+                        <div class="text-xs font-bold text-blue-300 mb-2">PACK</div>
+                        <div class="text-3xl mb-2">🛍️</div>
+                        <div class="font-bold text-lg mb-1">Varejo</div>
+                        <div class="text-xs text-gray-300">Mensagens prontas para atrair, atender e fechar mais vendas.</div>
+                        <div class="mt-3 text-xs text-gray-400 flex items-center gap-1">
+                            <span class="border border-gray-600 rounded px-1 py-0.5">PDF</span>
                         </div>
+                    </div>
 
-                        <!-- Chart Area -->
-                        <div class="chart-area">
-                            <div class="chart-grid">
-                                <line x1="0" y1="0%" x2="100%" y2="0%"/>
-                                <line x1="0" y1="25%" x2="100%" y2="25%"/>
-                                <line x1="0" y1="50%" x2="100%" y2="50%"/>
-                                <line x1="0" y1="75%" x2="100%" y2="75%"/>
-                                <line x1="0" y1="100%" x2="100%" y2="100%"/>
-                            </div>
-                            <div class="chart-labels">
-                                <span class="chart-label">500</span>
-                                <span class="chart-label">400</span>
-                                <span class="chart-label">300</span>
-                                <span class="chart-label">200</span>
-                                <span class="chart-label">100</span>
-                            </div>
-                            <svg class="chart-svg" id="chartSvg" viewBox="0 0 600 140" preserveAspectRatio="xMidYMid meet">
-                                <defs>
-                                    <linearGradient id="candlePurple" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stop-color="#a855f7"/>
-                                        <stop offset="100%" stop-color="#7c3aed"/>
-                                    </linearGradient>
-                                    <linearGradient id="candlePink" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stop-color="#d946ef"/>
-                                        <stop offset="100%" stop-color="#a855f7"/>
-                                    </linearGradient>
-                                    <linearGradient id="candleGreen" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stop-color="#00ff64"/>
-                                        <stop offset="50%" stop-color="#00e65a"/>
-                                        <stop offset="100%" stop-color="#00cc50"/>
-                                    </linearGradient>
-                                    <filter id="candleGlow" x="-100%" y="-100%" width="300%" height="300%">
-                                        <feGaussianBlur stdDeviation="3" result="blur1"/>
-                                        <feGaussianBlur stdDeviation="6" result="blur2"/>
-                                        <feGaussianBlur stdDeviation="10" result="blur3"/>
-                                        <feMerge>
-                                            <feMergeNode in="blur3"/>
-                                            <feMergeNode in="blur2"/>
-                                            <feMergeNode in="blur1"/>
-                                            <feMergeNode in="SourceGraphic"/>
-                                        </feMerge>
-                                    </filter>
-                                    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feGaussianBlur stdDeviation="4" result="blur"/>
-                                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                    </filter>
-                                    <linearGradient id="trailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                                        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.4"/>
-                                        <stop offset="50%" stop-color="#00ff64" stop-opacity="0.6"/>
-                                        <stop offset="100%" stop-color="#00ff64" stop-opacity="0.8"/>
-                                    </linearGradient>
-                                </defs>
-
-                                <!-- Glow trail line -->
-                                <path id="trailLine" d="" fill="none" stroke="url(#trailGrad)" stroke-width="2" stroke-linecap="round" opacity="0.6" filter="url(#subtleGlow)"/>
-
-                                <!-- Glow trail area -->
-                                <path id="trailArea" d="" fill="url(#trailAreaGrad)" opacity="0.15"/>
-                                <defs>
-                                    <linearGradient id="trailAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stop-color="#00ff64" stop-opacity="0.3"/>
-                                        <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
-                                    </linearGradient>
-                                </defs>
-
-                                <!-- Candles group -->
-                                <g id="candlesGroup"></g>
-
-                                <!-- Sparkle particles on candles -->
-                                <g id="sparklesGroup"></g>
-                            </svg>
-
-                            <!-- Particles container -->
-                            <div id="particlesContainer"></div>
-                        </div>
-
-                        <!-- Floating +500% Badge -->
-                        <div class="float-badge">
-                            <div class="float-badge-icon">
-                                <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                            </div>
+                    <!-- Phone Mockup -->
+                    <div class="phone-mockup">
+                        <div class="phone-header">
+                            <div class="phone-avatar">👤</div>
                             <div>
-                                <div class="float-badge-text">Vendas via Chat</div>
-                                <div class="float-badge-value">+500%</div>
+                                <div class="phone-name">AtivaVendas</div>
+                                <div class="phone-status">online</div>
+                            </div>
+                        </div>
+                        <div class="phone-chat">
+                            <div class="chat-msg msg-1">
+                                <div class="msg-label purple">MENSAGEM PRONTA</div>
+                                Olá, tudo bem? 😊<br>
+                                Separei uma oferta especial pra você que ama qualidade e bom atendimento!
+                                <span class="msg-time">10:30 ✓✓</span>
+                            </div>
+                            <div class="chat-msg msg-2">
+                                <div class="msg-label pink">OFERTA IMPERDÍVEL</div>
+                                Hoje é dia de promoção! 🔥<br>
+                                Desconto exclusivo só para quem responde agora.
+                                <span class="msg-time">10:31 ✓✓</span>
+                            </div>
+                            <div class="chat-msg msg-3">
+                                <div class="msg-label indigo">CHAMADA PARA AÇÃO</div>
+                                Quer garantir o seu?<br>
+                                É só me chamar aqui que eu te ajudo! 💜
+                                <span class="msg-time">10:31 ✓✓</span>
+                            </div>
+                        </div>
+                        <div class="phone-input">
+                            <div class="input-bar">
+                                <span class="input-text">Digite uma mensagem...</span>
+                                <div class="input-icon">🎤</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                    <div class="stat-card stat-sales">
+                        <div class="stat-header">VENDAS VIA CHAT</div>
+                        <div class="stat-value">+285%</div>
+                        <div class="stat-sub">em 30 dias</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-testimonial">
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">👩</div>
+                            <div>
+                                <div class="testimonial-text">"Aumentei minhas vendas em 3x usando as mensagens prontas. É prático, rápido e funciona de verdade!"</div>
+                                <div class="testimonial-name">Juliana S. • Loja de Roupas</div>
+                                <div class="testimonial-stars">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-updated">
+                        <div class="updated-content">
+                            <div class="updated-icon">🛡️</div>
+                            <div>
+                                <div class="updated-title">CONTEÚDO ATUALIZADO E TESTADO</div>
+                                <div class="updated-text">Novas mensagens e ofertas toda semana.</div>
                             </div>
                         </div>
                     </div>
@@ -673,7 +840,7 @@
             <div class="talk-panel active" id="talk1">
                 <div class="chat-wrapper">
                     <div class="sim-progress"><div class="sim-progress-bar" id="prog1"></div></div>
-                    <div class="phone-header">
+                    <div class="phone-header-chat">
                         <div class="avatar avatar-conv1">A</div>
                         <div class="info"><div class="name" id="name1">Seu Salão de Beleza</div><div class="status" id="status1">online agora</div></div>
                         <div class="actions"><span>📞</span><span>📹</span><span>⋮</span></div>
@@ -697,7 +864,7 @@
             <div class="talk-panel" id="talk2">
                 <div class="chat-wrapper">
                     <div class="sim-progress"><div class="sim-progress-bar" id="prog2"></div></div>
-                    <div class="phone-header">
+                    <div class="phone-header-chat">
                         <div class="avatar avatar-conv2">A</div>
                         <div class="info"><div class="name" id="name2">Lanchonete Sabor & Cia</div><div class="status" id="status2">online agora</div></div>
                         <div class="actions"><span>📞</span><span>📹</span><span>⋮</span></div>
@@ -721,7 +888,7 @@
             <div class="talk-panel" id="talk3">
                 <div class="chat-wrapper">
                     <div class="sim-progress"><div class="sim-progress-bar" id="prog3"></div></div>
-                    <div class="phone-header">
+                    <div class="phone-header-chat">
                         <div class="avatar avatar-conv3">A</div>
                         <div class="info"><div class="name" id="name3">Clínica Estética Bella</div><div class="status" id="status3">online agora</div></div>
                         <div class="actions"><span>📞</span><span>📹</span><span>⋮</span></div>
@@ -1176,172 +1343,19 @@
         setTimeout(() => { toast.classList.add('translate-y-20','opacity-0'); }, 3000);
     }
 
-    // ===== HERO CHART ANIMATIONS =====
-    const totalCandles = 28;
-    const chartWidth = 600;
-    const chartHeight = 140;
-    const candleWidth = 10;
-    const candleGap = (chartWidth - 60 - (totalCandles * candleWidth)) / (totalCandles - 1);
-    const startX = 30;
-    const startY = chartHeight - 15;
-    const endY = 25;
-
-    const candleData = [];
-    for (let i = 0; i < totalCandles; i++) {
-        const progress = i / (totalCandles - 1);
-        const x = startX + i * (candleWidth + candleGap);
-        const y = startY - (startY - endY) * Math.pow(progress, 1.8);
-        const height = 6 + Math.random() * 10;
-        const wickTop = y - height - 2 - Math.random() * 4;
-        const wickBottom = y + 2 + Math.random() * 3;
-        const isGreen = i > 10;
-        candleData.push({ x, y, height, wickTop, wickBottom, isGreen, progress, index: i });
-    }
-
-    const candlesGroup = document.getElementById('candlesGroup');
-    const trailLine = document.getElementById('trailLine');
-    const trailArea = document.getElementById('trailArea');
-    const sparklesGroup = document.getElementById('sparklesGroup');
-
-    // Build trail path
-    const trailPoints = candleData.map(c => ({ x: c.x + candleWidth / 2, y: c.y }));
-    let trailPath = `M ${trailPoints[0].x} ${trailPoints[0].y}`;
-    for (let i = 1; i < trailPoints.length; i++) {
-        const prev = trailPoints[i - 1];
-        const curr = trailPoints[i];
-        const cpx = (prev.x + curr.x) / 2;
-        const cpy = (prev.y + curr.y) / 2;
-        trailPath += ` Q ${prev.x} ${prev.y} ${cpx} ${cpy}`;
-    }
-    trailLine.setAttribute('d', trailPath);
-
-    let areaPath = trailPath + ` L ${trailPoints[trailPoints.length-1].x} ${chartHeight} L ${trailPoints[0].x} ${chartHeight} Z`;
-    trailArea.setAttribute('d', areaPath);
-
-    // Create candles with 5s repeating animation
-    candleData.forEach((candle, i) => {
-        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        group.style.transformOrigin = `${candle.x + candleWidth/2}px ${candle.y + candle.height/2}px`;
-        const delay = i * 0.06;
-        group.style.animation = `candleLoop 5s ease-in-out ${delay}s infinite`;
-        group.style.opacity = '0';
-
-        const gradient = candle.isGreen ? 'url(#candleGreen)' : (i < 5 ? 'url(#candlePurple)' : 'url(#candlePink)');
-
-        // Top wick
-        const wickTop = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        wickTop.setAttribute('x1', candle.x + candleWidth / 2);
-        wickTop.setAttribute('y1', candle.wickTop);
-        wickTop.setAttribute('x2', candle.x + candleWidth / 2);
-        wickTop.setAttribute('y2', candle.y - candle.height / 2);
-        wickTop.setAttribute('stroke', candle.isGreen ? '#00ff64' : '#a855f7');
-        wickTop.setAttribute('stroke-width', '1.5');
-        wickTop.setAttribute('stroke-linecap', 'round');
-        wickTop.setAttribute('opacity', '0.6');
-        group.appendChild(wickTop);
-
-        // Bottom wick
-        const wickBottom = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        wickBottom.setAttribute('x1', candle.x + candleWidth / 2);
-        wickBottom.setAttribute('y1', candle.y + candle.height / 2);
-        wickBottom.setAttribute('x2', candle.x + candleWidth / 2);
-        wickBottom.setAttribute('y2', candle.wickBottom);
-        wickBottom.setAttribute('stroke', candle.isGreen ? '#00ff64' : '#a855f7');
-        wickBottom.setAttribute('stroke-width', '1.5');
-        wickBottom.setAttribute('stroke-linecap', 'round');
-        wickBottom.setAttribute('opacity', '0.4');
-        group.appendChild(wickBottom);
-
-        // Candle body glow
-        const bodyGlow = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        bodyGlow.setAttribute('x', candle.x - 2);
-        bodyGlow.setAttribute('y', candle.y - candle.height / 2 - 2);
-        bodyGlow.setAttribute('width', candleWidth + 4);
-        bodyGlow.setAttribute('height', candle.height + 4);
-        bodyGlow.setAttribute('rx', '2');
-        bodyGlow.setAttribute('fill', candle.isGreen ? '#00ff64' : '#a855f7');
-        bodyGlow.setAttribute('opacity', '0.15');
-        bodyGlow.setAttribute('filter', 'url(#candleGlow)');
-        group.appendChild(bodyGlow);
-
-        // Main body
-        const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        body.setAttribute('x', candle.x);
-        body.setAttribute('y', candle.y - candle.height / 2);
-        body.setAttribute('width', candleWidth);
-        body.setAttribute('height', candle.height);
-        body.setAttribute('rx', '2');
-        body.setAttribute('fill', gradient);
-        if (candle.isGreen) body.setAttribute('filter', 'url(#candleGlow)');
-        group.appendChild(body);
-
-        // Highlight
-        const highlight = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        highlight.setAttribute('x', candle.x + 2);
-        highlight.setAttribute('y', candle.y - candle.height / 2 + 2);
-        highlight.setAttribute('width', candleWidth / 3);
-        highlight.setAttribute('height', candle.height - 4);
-        highlight.setAttribute('rx', '1');
-        highlight.setAttribute('fill', 'rgba(255,255,255,0.2)');
-        group.appendChild(highlight);
-
-        candlesGroup.appendChild(group);
-
-        // Add sparkle for green candles
-        if (candle.isGreen && i > 16) {
-            const sparkle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            sparkle.setAttribute('cx', candle.x + candleWidth / 2 + (Math.random() - 0.5) * 8);
-            sparkle.setAttribute('cy', candle.wickTop);
-            sparkle.setAttribute('r', '1.5');
-            sparkle.setAttribute('fill', '#00ff64');
-            sparkle.setAttribute('opacity', '0');
-            sparkle.setAttribute('filter', 'url(#subtleGlow)');
-            sparkle.style.animation = `sparklePop 1.5s ease ${delay}s infinite`;
-            sparklesGroup.appendChild(sparkle);
-        }
-    });
-
-    // Add looping keyframes
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes candleLoop {
-            0% { opacity: 0; transform: scale(0); }
-            8% { opacity: 1; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1); }
-            62% { opacity: 0.2; transform: scale(0.8); }
-            70% { opacity: 0; transform: scale(0); }
-            100% { opacity: 0; transform: scale(0); }
-        }
-        @keyframes sparklePop {
-            0%, 40% { opacity: 0; transform: scale(0); }
-            50%, 60% { opacity: 1; transform: scale(1.5); }
-            70%, 100% { opacity: 0; transform: scale(0); }
-        }
-        @keyframes particleFloat {
-            0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
-            20% { opacity: 1; transform: translateY(-10px) scale(1); }
-            80% { opacity: 0.4; transform: translateY(-35px) scale(0.7); }
-            100% { opacity: 0; transform: translateY(-50px) scale(0); }
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Particles
-    const particlesContainer = document.getElementById('particlesContainer');
-    function addParticle() {
+    // ===== PROMO ANIMATION SCRIPT =====
+    // Create particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
         const particle = document.createElement('div');
-        particle.className = 'sparkle';
-        particle.innerHTML = '<div class="sparkle-dot"></div>';
-        const x = 180 + Math.random() * 300;
-        const y = 30 + Math.random() * 80;
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        particle.style.animation = `particleFloat ${3 + Math.random() * 2}s ease ${Math.random() * 2}s forwards`;
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (5 + Math.random() * 10) + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particle.style.width = (1 + Math.random() * 3) + 'px';
+        particle.style.height = particle.style.width;
         particlesContainer.appendChild(particle);
-        setTimeout(() => particle.remove(), 6000);
     }
-    for (let i = 0; i < 8; i++) setTimeout(addParticle, 2000 + i * 300);
-    setInterval(addParticle, 1200);
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', () => {
@@ -1351,4 +1365,3 @@
     </script>
 </body>
 </html>
-
