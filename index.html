@@ -1,753 +1,246 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://mpago.la; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0B090A">
-    <title>AtivaVendas | Mensagens Prontas para WhatsApp e Instagram</title>
+<!-- ===== WHATSAPP CONVERSATIONS - NOVO DESIGN ===== -->
+<section id="conversas" class="py-24 relative overflow-hidden">
+    <!-- Background effects -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent pointer-events-none"></div>
+    <div class="absolute top-1/2 left-0 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl -translate-x-1/2 pointer-events-none"></div>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-12">
+            
+            <!-- Left: Text & Tabs -->
+            <div class="lg:sticky lg:top-32">
+                <p class="text-brand-accent font-bold text-sm uppercase tracking-widest mb-3">
+                    <span class="inline-block w-2 h-2 bg-brand-accent rounded-full mr-2 animate-pulse"></span>
+                    Conversas Animadas
+                </p>
+                <h2 class="text-4xl md:text-5xl font-black text-white leading-tight mb-6">
+                    Veja como as<br>
+                    <span class="gradient-text">mensagens funcionam</span><br>
+                    na prática.
+                </h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-md">
+                    3 cenários diferentes com técnicas de persuasão prontas para copiar, colar e vender.
+                </p>
+                
+                <!-- Tabs Redesigned -->
+                <div class="flex flex-wrap gap-3">
+                    <button class="talk-tab active" data-talk="1" onclick="switchTalk(1)">
+                        <span class="tab-icon">📅</span>
+                        <span class="tab-text">Escassez de Horário</span>
+                    </button>
+                    <button class="talk-tab" data-talk="2" onclick="switchTalk(2)">
+                        <span class="tab-icon">🔥</span>
+                        <span class="tab-text">Oferta Relâmpago</span>
+                    </button>
+                    <button class="talk-tab" data-talk="3" onclick="switchTalk(3)">
+                        <span class="tab-icon">💌</span>
+                        <span class="tab-text">Cliente Sumido</span>
+                    </button>
+                </div>
+                
+                <!-- Technique Tags (Dynamic) -->
+                <div id="technique-tags" class="mt-8 flex flex-wrap gap-2">
+                    <span class="px-4 py-2 bg-brand-primary/20 border border-brand-primary/30 rounded-full text-brand-primary text-sm font-semibold">
+                        Escassez
+                    </span>
+                    <span class="px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-yellow-400 text-sm font-semibold">
+                        Urgência
+                    </span>
+                    <span class="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-sm font-semibold">
+                        Facilidade
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Right: Phone Mockup -->
+            <div class="lg:pl-8">
+                <div class="relative">
+                    <!-- Glow effect behind phone -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/20 to-brand-accent/10 rounded-3xl blur-2xl transform scale-95"></div>
+                    
+                    <!-- Phone Container -->
+                    <div class="relative bg-[#0b141a] rounded-3xl border border-gray-800 shadow-2xl overflow-hidden">
+                        
+                        <!-- Progress Bar -->
+                        <div class="h-1 bg-gray-800">
+                            <div class="sim-progress-bar" id="prog1" style="width: 0%; height: 100%; background: linear-gradient(90deg, #25d366, #8B5CF6); transition: width 0.4s ease;"></div>
+                        </div>
+                        
+                        <!-- WhatsApp Header -->
+                        <div class="bg-[#1f2c34] px-4 py-3 flex items-center gap-3 border-b border-gray-800">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white font-bold text-sm">
+                                A
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-white font-semibold text-sm truncate" id="chat-header-name">Seu Salão de Beleza</div>
+                                <div class="text-gray-400 text-xs flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block"></span>
+                                    <span id="chat-header-status">online</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 text-gray-400">
+                                <button class="hover:text-white transition"><i class="fa-solid fa-video text-sm"></i></button>
+                                <button class="hover:text-white transition"><i class="fa-solid fa-phone text-sm"></i></button>
+                                <button class="hover:text-white transition"><i class="fa-solid fa-ellipsis-vertical text-sm"></i></button>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Area -->
+                        <div class="chat-area-new" id="chat1" style="height: 420px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #0b141a; background-image: url('image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+                            <div class="enc-note" style="align-self: center; background: rgba(255,215,64,.06); color: rgba(255,215,64,.7); font-size: 10px; padding: 6px 10px; border-radius: 6px; text-align: center; line-height: 1.4; margin-bottom: 8px;">
+                                🔒 Mensagens criptografadas de ponta a ponta
+                            </div>
+                            <div class="date-sep" style="align-self: center; background: rgba(11,20,26,.85); color: #8696a0; font-size: 11px; padding: 5px 14px; border-radius: 8px; margin: 6px 0;">
+                                HOJE
+                            </div>
+                            <div class="typing-new" id="typ1" style="display: none; align-self: flex-start; background: #1f2c34; border-radius: 12px; border-top-left-radius: 4px; padding: 12px 16px; gap: 4px; align-items: center;">
+                                <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite;"></div>
+                                <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.2s;"></div>
+                                <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.4s;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Input (Disabled) -->
+                        <div class="bg-[#1f2c34] px-4 py-3 flex items-center gap-3 border-t border-gray-800">
+                            <span class="text-gray-400 text-xl cursor-pointer hover:text-white transition">😊</span>
+                            <input type="text" placeholder="Mensagem" disabled class="flex-1 bg-[#2a3942] border-none rounded-full px-4 py-2.5 text-white text-sm focus:outline-none placeholder-gray-500">
+                            <div class="w-10 h-10 rounded-full bg-[#00a884] flex items-center justify-center cursor-pointer hover:opacity-90 transition">
+                                <i class="fa-solid fa-microphone text-white text-sm"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Bottom Section -->
+                        <div class="bg-[#141218] p-6 border-t border-gray-800">
+                            <div id="chat-explanation" class="text-center mb-4">
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Essa resposta usa <strong class="text-white">escassez</strong> + <span class="text-yellow-400 font-semibold">urgência</span> + <strong class="text-white">facilidade</strong> — técnicas que estão no kit.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-center gap-3">
+                                <button onclick="replay(1)" class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-primary to-brand-accent rounded-full text-white font-semibold text-sm hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-purple-900/30">
+                                    <i class="fa-solid fa-rotate"></i>
+                                    Assistir conversa novamente
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conversation Panels (Hidden by default, controlled by JS) -->
+        <div class="talk-panel active" id="talk1" data-techniques='[{"name":"Escassez","color":"purple"},{"name":"Urgência","color":"yellow"},{"name":"Facilidade","color":"green"}]' data-explanation='Essa resposta usa <strong class="text-white">escassez</strong> + <span class="text-yellow-400 font-semibold">urgência</span> + <strong class="text-white">facilidade</strong> — técnicas que estão no kit.'>
+        </div>
+        <div class="talk-panel" id="talk2" data-techniques='[{"name":"Urgência Temporal","color":"yellow"},{"name":"Prova Social","color":"pink"},{"name":"Ancoragem","color":"purple"}]' data-explanation='Essa resposta usa <span class="text-yellow-400 font-semibold">urgência temporal</span> + <strong class="text-white">prova social</strong> + <strong class="text-white">ancoragem de preço</strong>.'>
+        </div>
+        <div class="talk-panel" id="talk3" data-techniques='[{"name":"Empatia","color":"blue"},{"name":"Oferta Exclusiva","color":"yellow"},{"name":"Reconexão","color":"pink"}]' data-explanation='Essa resposta usa <strong class="text-white">empatia</strong> + <span class="text-yellow-400 font-semibold">oferta exclusiva</span> + <strong class="text-white">reconexão emocional</strong>.'>
+        </div>
+    </div>
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        brand: { dark: '#0B090A', card: '#141218', primary: '#8B5CF6', accent: '#D946EF', success: '#10B981', whatsapp: '#25D366' }
-                    }
-                }
+    <!-- Typing Animation CSS -->
+    <style>
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+        
+        .talk-tab {
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            color: #8696a0;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .talk-tab:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            color: #fff;
+            background: rgba(139, 92, 246, 0.1);
+        }
+        
+        .talk-tab.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(217, 70, 239, 0.15));
+            border-color: rgba(168, 85, 247, 0.5);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+        }
+        
+        .talk-tab .tab-icon {
+            font-size: 16px;
+        }
+        
+        .msg-new {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: msgFadeIn 0.4s ease forwards;
+            position: relative;
+        }
+        
+        @keyframes msgFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    </script>
-    
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-        body { background-color: #0B090A; color: white; overflow-x: hidden; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-        .gradient-text { background: linear-gradient(to right, #D946EF, #8B5CF6); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-card { background: rgba(20, 18, 24, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(139, 92, 246, 0.15); }
-        .glow-hover:hover { box-shadow: 0 0 25px rgba(139, 92, 246, 0.4); border-color: #D946EF; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0B090A; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
         
-        /* Hero Styles */
-        .avh-hero { position: relative; padding: 118px 0 70px; overflow: hidden; }
-        .avh-wrap { width: min(calc(100% - 44px), 1180px); margin: 0 auto; }
-        .avh-bg { position: absolute; border-radius: 999px; filter: blur(105px); pointer-events: none; z-index: -1; }
-        .avh-bg-1 { width: 430px; height: 430px; top: 6%; left: 18%; background: rgba(139, 92, 246, 0.15); }
-        .avh-bg-2 { width: 480px; height: 480px; right: 7%; bottom: -12%; background: rgba(217, 70, 239, 0.10); }
-        .avh-grid { display: grid; grid-template-columns: minmax(420px, 1.05fr) minmax(480px, 0.95fr); align-items: center; gap: clamp(32px, 5vw, 74px); }
-        .avh-copy { position: relative; z-index: 3; }
-        .avh-eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 9px 15px; margin-bottom: 22px; border-radius: 999px; border: 1px solid rgba(217, 70, 239, 0.26); background: rgba(217, 70, 239, 0.07); color: #f05bff; font-size: 12px; font-weight: 800; text-transform: uppercase; }
-        .avh-eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 12px #10B981; }
-        .avh-copy h1 { margin: 0 0 22px; max-width: 610px; color: #fff; font-size: clamp(46px, 5.2vw, 76px); line-height: .93; font-weight: 950; }
-        .avh-copy h1 strong { background: linear-gradient(92deg, #ff4bd1 0%, #9d5cff 78%); -webkit-background-clip: text; background-clip: text; }
-        .avh-copy p { margin: 0; max-width: 585px; color: rgba(229, 231, 235, 0.72); font-size: 17px; line-height: 1.62; }
-        .avh-copy p b { color: #ff4bd1; }
-        .avh-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 30px; }
-        .avh-btn { min-height: 58px; padding: 0 22px; border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-weight: 900; text-decoration: none; transition: all .18s ease; border: 0; cursor: pointer; }
-        .avh-btn:hover { transform: translateY(-2px); }
-        .avh-btn small { display: block; margin-top: 5px; color: rgba(255,255,255,.70); font-size: 12px; font-weight: 700; }
-        .avh-btn-main { color: #fff; background: linear-gradient(135deg, #ff2d95, #b92cff 52%, #8B5CF6); box-shadow: 0 16px 42px rgba(217,70,239,.22); }
-        .avh-btn-outline { color: #fff; background: rgba(15, 10, 22, .74); border: 1px solid rgba(168, 85, 247, .34); }
-        .avh-trust { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 30px; color: rgba(156, 163, 175, .95); font-size: 13px; font-weight: 600; }
-        .avh-trust i { color: #10B981; margin-right: 7px; }
-        .avh-visual { --mx: 0; --my: 0; position: relative; width: min(100%, 570px); height: 560px; margin-left: auto; }
-        .avh-soft-glow { position: absolute; inset: 8% 1% 4%; border-radius: 40px; background: radial-gradient(ellipse at 50% 52%, rgba(139,92,246,.22), transparent 45%); filter: blur(16px); pointer-events: none; }
-        .avh-pack, .avh-card, .avh-phone { position: absolute; transition: transform .14s linear; }
-        .avh-pack, .avh-card { overflow: hidden; border: 1px solid rgba(217, 70, 239, .14); background: rgba(22, 12, 36, .56); backdrop-filter: blur(12px); border-radius: 21px; }
-        .avh-pack { left: 0; width: 132px; min-height: 150px; padding: 13px 12px; text-align: center; }
-        .avh-pack span { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 9px; font-weight: 900; }
-        .avh-pack i { display: block; margin: 10px 0 7px; font-size: 25px; }
-        .avh-pack h3 { margin: 0 0 6px; color: #fff; font-size: 17px; font-weight: 900; text-transform: uppercase; }
-        .avh-pack p { margin: 0; color: rgba(255,255,255,.72); font-size: 10.5px; }
-        .avh-pack-beleza { top: 44px; }
-        .avh-pack-delivery { top: 208px; background: rgba(134, 20, 78, .58); }
-        .avh-pack-varejo { top: 372px; background: rgba(24, 22, 56, .58); }
+        .msg-new.recv {
+            background: #1f2c34;
+            color: #e9edef;
+            align-self: flex-start;
+            border-top-left-radius: 4px;
+        }
         
-        /* Phone Animado */
-        .avh-phone { 
-            left: 50%; top: 50%; width: 252px; height: 500px; border-radius: 35px; padding: 10px; z-index: 4; 
-            background: linear-gradient(145deg, rgba(168,85,247,.42), rgba(8,5,15,.96)); 
-            border: 1px solid rgba(220,143,255,.24); 
-            box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 24px rgba(139,92,246,.22);
-            transform: translate(-50%, -50%) translateZ(0);
-            overflow: hidden;
-            will-change: transform;
-            contain: layout paint style;
-            isolation: isolate;
+        .msg-new.sent {
+            background: #005c4b;
+            color: #e9edef;
+            align-self: flex-end;
+            border-top-right-radius: 4px;
         }
-        .avh-phone::after {
-            content: "";
-            position: absolute;
-            inset: -16px;
-            border-radius: 44px;
-            background: radial-gradient(circle, rgba(139,92,246,.26), transparent 62%);
-            filter: blur(18px);
-            opacity: .42;
-            pointer-events: none;
-            z-index: 0;
-            animation: phoneAura 3.2s ease-in-out infinite;
-        }
-        @keyframes phoneAura {
-            0%, 100% { opacity: .28; transform: scale(.98); }
-            50% { opacity: .52; transform: scale(1.02); }
-        }
-        .avh-phone::before { content: ""; position: absolute; inset: 10px; border-radius: 27px; background: linear-gradient(180deg, #11131b, #070911); }
-        .avh-phone-header, .avh-chat, .avh-input { position: relative; z-index: 2; }
-        .avh-phone-header { height: 63px; padding: 16px 11px 8px; display: flex; align-items: center; gap: 7px; }
-        .avh-avatar { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#17b86a,#1a4a34); }
-        .avh-contact strong { display: block; font-size: 14px; }
-        .avh-contact small { display: block; color: rgba(255,255,255,.60); font-size: 10px; }
-        .avh-chat { padding: 12px 13px; display: grid; gap: 14px; }
         
-        /* Animação das Bolhas */
-        .avh-bubble { 
-            position: relative; width: 90%; padding: 28px 11px 10px; border-radius: 14px; 
-            background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.05); 
-            color: #fff; font-size: 10.2px; line-height: 1.34;
-            opacity: 0;
-            animation: bubbleIn 0.6s ease forwards;
+        .msg-new .mtext {
+            display: block;
+            margin-bottom: 4px;
         }
-        @keyframes bubbleIn {
-            0% { opacity: 0; transform: translateY(30px) scale(0.9); }
-            60% { transform: translateY(-5px) scale(1.02); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .avh-bubble-label {
-            position: absolute; left: 10px; top: -7px; padding: 5px 8px; border-radius: 8px 8px 8px 2px;
-            background: linear-gradient(135deg, #8B5CF6, #D946EF); color: white; text-transform: uppercase;
-            font-size: 7.7px; font-weight: 900; letter-spacing: 0.5px;
-        }
-        .avh-bubble small { display: block; margin-top: 5px; text-align: right; color: rgba(255,255,255,.42); font-size: 8.3px; }
-        .avh-input { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; align-items: center; gap: 8px; padding: 6px 7px 6px 11px; border-radius: 999px; background: rgba(255,255,255,.055); z-index: 6; }
-        .avh-input i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #10B981; }
         
-        .avh-card { right: 0; border-radius: 21px; }
-        .avh-growth { top: 66px; width: 168px; min-height: 162px; padding: 16px; }
-        .avh-growth strong { display: block; margin: 7px 0 3px; color: #fff; font-size: 36px; font-weight: 950; }
-        .avh-testimonial { top: 256px; width: 198px; min-height: 122px; padding: 15px 14px 15px 61px; }
-        .avh-client { position: absolute; left: 14px; top: 16px; width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,#cfc7d8,#fff); }
-        .avh-updated { top: 405px; width: 198px; min-height: 108px; padding: 16px 14px; display: flex; align-items: center; gap: 12px; }
-
-        /* Conversas */
-        .talk-tab { padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(139, 92, 246, 0.2); background: rgba(255, 255, 255, 0.03); color: #8696a0; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
-        .talk-tab:hover { border-color: rgba(139, 92, 246, 0.4); color: #fff; }
-        .talk-tab.active { background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(217, 70, 239, 0.15)); border-color: rgba(168, 85, 247, 0.5); color: #fff; }
-        .msg-new { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.5; opacity: 0; transform: translateY(10px); animation: msgFadeIn 0.4s ease forwards; }
-        @keyframes msgFadeIn { to { opacity: 1; transform: translateY(0); } }
-        .msg-new.recv { background: #1f2c34; color: #e9edef; align-self: flex-start; }
-        .msg-new.sent { background: #005c4b; color: #e9edef; align-self: flex-end; }
-        .msg-new .mtext { display: block; margin-bottom: 4px; }
-        .msg-new .mmeta { display: flex; align-items: center; justify-content: flex-end; gap: 4px; font-size: 10px; color: rgba(255, 255, 255, 0.45); }
-        .msg-new .mcheck { color: #53bdeb; font-size: 12px; }
-        .chat-area-new { height: 420px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #0b141a; }
-        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.35; } 30% { transform: translateY(-6px); opacity: 1; } }
-
-        /* Modal WhatsApp */
-        .wa-modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.88); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .35s ease; }
-        .wa-modal-overlay.open { opacity:1; pointer-events:auto; }
-        .wa-modal { width: min(420px, 94vw); max-height: 85vh; background: #0b141a; border-radius: 20px; overflow: hidden; transform: scale(0.85) translateY(30px); transition: transform 0.35s; border: 1px solid rgba(139, 92, 246, 0.2); position: relative; }
-        .wa-modal-overlay.open .wa-modal { transform: scale(1) translateY(0); }
-        .wa-chat-area { scroll-behavior:smooth; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
-        .wa-modal-replay {
-            position: absolute; bottom: 20px; right: 20px; width: 48px; height: 48px; border-radius: 50%;
-            background: linear-gradient(135deg, #8B5CF6, #D946EF); color: white; font-size: 20px; border: none; cursor: pointer;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); display: none; align-items: center; justify-content: center;
+        .msg-new .mmeta {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.45);
         }
-        .wa-modal-replay.show { display: flex; }
-        .wa-modal-progress { height:3px; background:rgba(37,211,102,.15); position: absolute; top: 0; left: 0; right: 0; }
-        .wa-modal-progress-bar { height: 100%; background: #25d366; width: 0%; transition: width 0.3s ease; }
-
-        /* Modal Checkout */
-        #checkout-modal { display: none; }
-        #checkout-modal.active { display: block; }
-
-        /* Responsividade */
-        @media (max-width: 1120px) { .avh-grid { grid-template-columns: 1fr; } .avh-copy { text-align: center; } .avh-visual { margin: 18px auto 0; } }
-        @media (max-width: 720px) { .avh-hero { padding: 108px 0 46px; } .avh-copy { text-align: left; } .avh-btn { width: 100%; } .avh-visual { height: 660px; } .avh-phone { width: 238px; height: 468px; } }
-        #conversas, #catalogo { content-visibility: auto; contain-intrinsic-size: 900px; }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-            .avh-phone::after, .avh-bubble, .msg-new { animation: none !important; }
+        
+        .msg-new .mcheck {
+            color: #53bdeb;
+            font-size: 12px;
+        }
+        
+        .chat-area-new::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .chat-area-new::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .chat-area-new::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
         }
     </style>
-</head>
-<body>
-
-    <script>
-        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-            location.replace('https:' + location.href.substring(location.protocol.length));
-        }
-    </script>
-
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-card">
-        <div class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="AtivaVendas" class="h-10 w-auto">
-            </div>
-            <div class="hidden md:flex gap-8">
-                <a href="#conversas" class="hover:text-brand-accent transition">Conversas</a>
-                <a href="#catalogo" class="hover:text-brand-accent transition">Catálogo</a>
-                <a href="#bonus" class="hover:text-brand-accent transition">Bônus</a>
-            </div>
-            <div class="flex gap-4">
-                <button onclick="openModal('login')" class="text-sm text-gray-300 hover:text-white">Entrar</button>
-                <a href="#catalogo" class="bg-gradient-to-r from-brand-accent to-brand-primary px-6 py-2.5 rounded-full font-bold text-sm shadow-lg">Começar Agora</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="avh-hero">
-        <div class="avh-bg avh-bg-1"></div>
-        <div class="avh-bg avh-bg-2"></div>
-        <div class="avh-wrap">
-            <div class="avh-grid">
-                <div class="avh-copy">
-                    <div class="avh-eyebrow"><span></span>Novo: Pack Delivery 🚀</div>
-                    <h1>Venda mais com<br><strong>mensagens prontas</strong><br>para WhatsApp</h1>
-                    <p>Material prático em PDF com prompts, mensagens prontas e scripts de atendimento para você <b>copiar e vender</b>.</p>
-                    <div class="avh-actions">
-                        <a href="#catalogo" class="avh-btn avh-btn-main"><i class="fa-solid fa-file-pdf"></i><span>Baixar PDF<small>Acesso imediato</small></span></a>
-                        <button onclick="openWaModal()" class="avh-btn avh-btn-outline"><i class="fa-brands fa-whatsapp"></i><span>Ver Simulação</span></button>
-                    </div>
-                </div>
-                <div class="avh-visual">
-                    <div class="avh-soft-glow"></div>
-                    <div class="avh-pack avh-pack-beleza"><span>PACK</span><i class="fa-solid fa-spa"></i><h3>Beleza</h3><p>Mensagens prontas</p></div>
-                    <div class="avh-pack avh-pack-delivery"><span>PACK</span><i class="fa-solid fa-burger"></i><h3>Delivery</h3><p>Venda mais</p></div>
-                    <div class="avh-pack avh-pack-varejo"><span>PACK</span><i class="fa-solid fa-bag-shopping"></i><h3>Varejo</h3><p>Feche vendas</p></div>
-                    
-                    <!-- Phone com Animação -->
-                    <div class="avh-phone" style="display: block;">
-                        <div class="avh-phone-header">
-                            <i class="fa-solid fa-chevron-left text-gray-400 text-sm"></i>
-                            <div class="avh-avatar"></div>
-                            <div class="avh-contact"><strong>AtivaVendas</strong><small>online</small></div>
-                            <i class="fa-solid fa-ellipsis-vertical text-gray-400"></i>
-                        </div>
-                        <div class="avh-chat">
-                            <div class="avh-bubble" style="animation-delay: 0.5s;">
-                                <span class="avh-bubble-label">MENSAGEM PRONTA</span>
-                                Olá, tudo bem? 😊<br>Separei uma oferta especial!
-                                <small>10:30 ✓✓</small>
-                            </div>
-                            <div class="avh-bubble" style="animation-delay: 1.5s;">
-                                <span class="avh-bubble-label" style="background: linear-gradient(135deg, #ec4899, #f97316);">OFERTA</span>
-                                Hoje é dia de promoção! 🔥<br>Desconto exclusivo!
-                                <small>10:31 ✓✓</small>
-                            </div>
-                            <div class="avh-bubble" style="animation-delay: 2.5s;">
-                                <span class="avh-bubble-label" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">CHAMADA</span>
-                                Quer garantir?<br>É só me chamar! 💜
-                                <small>10:31 ✓✓</small>
-                            </div>
-                        </div>
-                        <div class="avh-input"><i class="fa-solid fa-microphone"></i></div>
-                    </div>
-                    
-                    <div class="avh-card avh-growth"><h3>Vendas via Chat</h3><strong>+285%</strong><p>em 30 dias</p></div>
-                    <div class="avh-card avh-testimonial"><div class="avh-client"></div><p>"Aumentei 3x minhas vendas!"</p><small>Juliana S.</small></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Conversas -->
-    <section id="conversas" class="py-24">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <p class="text-brand-accent font-bold text-sm uppercase mb-3">Conversas Animadas</p>
-                    <h2 class="text-4xl md:text-5xl font-black mb-6">Veja como as<br><span class="gradient-text">mensagens funcionam</span></h2>
-                    <p class="text-gray-400 mb-8">3 cenários com técnicas de persuasão prontas.</p>
-                    <div class="flex flex-wrap gap-3 mb-8">
-                        <button class="talk-tab active" onclick="switchTalk(1)"><span>📅</span> Escassez</button>
-                        <button class="talk-tab" onclick="switchTalk(2)"><span>🔥</span> Oferta</button>
-                        <button class="talk-tab" onclick="switchTalk(3)"><span>💌</span> Cliente Sumido</button>
-                    </div>
-                    <div id="technique-tags" class="flex gap-2">
-                        <span class="px-4 py-2 bg-brand-primary/20 border border-brand-primary/30 rounded-full text-sm">Escassez</span>
-                        <span class="px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-sm text-yellow-400">Urgência</span>
-                    </div>
-                </div>
-                <div class="bg-[#0b141a] rounded-3xl border border-gray-800 p-4">
-                    <div class="h-1 bg-gray-800 rounded"><div id="prog1" class="h-full bg-gradient-to-r from-green-500 to-purple-500 rounded" style="width: 0%"></div></div>
-                    <div class="chat-area-new" id="chat1">
-                        <div class="text-center text-xs text-gray-500 py-2">HOJE</div>
-                        <div id="typ1" style="display:none;" class="typing-indicator self-start bg-[#1f2c34] rounded-2xl px-4 py-3 flex gap-1">
-                            <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce"></div>
-                            <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-                            <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal WhatsApp -->
-    <div class="wa-modal-overlay" id="waModal">
-        <div class="wa-modal">
-            <div class="wa-modal-progress"><div id="waSimProgress" class="wa-modal-progress-bar"></div></div>
-            <button onclick="closeWaModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white z-20"><i class="fa-solid fa-xmark"></i></button>
-            <div class="wa-chat-area" id="waChatArea">
-                <div class="text-center text-xs text-gray-500 py-2">HOJE</div>
-                <div id="waTyping" style="display:none;" class="typing-indicator self-start bg-[#1f2c34] rounded-2xl px-4 py-3 flex gap-1">
-                    <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce"></div>
-                    <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-                </div>
-            </div>
-            <button class="wa-modal-replay" id="waReplayBtn" onclick="replayWaConversation()">↻</button>
-        </div>
-    </div>
-
-    <!-- Catálogo -->
-    <section id="catalogo" class="py-24">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black mb-4">Escolha seu <span class="gradient-text">Pack</span></h2>
-                <p class="text-gray-400 text-lg">Todos por <strong class="text-white">R$ 19,90</strong></p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8" id="product-grid">
-                <div class="glass-card rounded-2xl overflow-hidden" data-category="beleza">
-                    <div class="h-56 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center">
-                        <i class="fa-solid fa-spa text-6xl text-pink-400/40"></i>
-                        <div class="absolute top-4 right-4 bg-black/70 px-4 py-2 rounded-full text-green-400 font-bold">R$ 19,90</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pack Beleza</h3>
-                        <p class="text-gray-400 text-sm mb-4">15 mensagens prontas para salões e estética.</p>
-                        <button onclick="openCheckout('Pack Beleza', 19.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold transition">Quero este pack →</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden" data-category="delivery">
-                    <div class="h-56 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
-                        <i class="fa-solid fa-burger text-6xl text-orange-400/40"></i>
-                        <div class="absolute top-4 right-4 bg-black/70 px-4 py-2 rounded-full text-green-400 font-bold">R$ 19,90</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pack Delivery</h3>
-                        <p class="text-gray-400 text-sm mb-4">20 mensagens para lanchonetes e delivery.</p>
-                        <button onclick="openCheckout('Pack Delivery', 19.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold transition">Quero este pack →</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden" data-category="servicos">
-                    <div class="h-56 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
-                        <i class="fa-solid fa-briefcase text-6xl text-blue-400/40"></i>
-                        <div class="absolute top-4 right-4 bg-black/70 px-4 py-2 rounded-full text-green-400 font-bold">R$ 19,90</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pack Serviços</h3>
-                        <p class="text-gray-400 text-sm mb-4">12 mensagens para consultorias.</p>
-                        <button onclick="openCheckout('Pack Serviços', 19.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold transition">Quero este pack →</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal Checkout -->
-    <div id="checkout-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/85 backdrop-blur-md" onclick="closeModal('checkout')"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#141218] border border-gray-700 rounded-3xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Finalizar Compra</h3>
-                <button onclick="closeModal('checkout')" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <div class="mb-6 bg-gray-800/50 p-5 rounded-2xl">
-                <p class="text-xs text-gray-400 uppercase mb-2">Produto</p>
-                <p class="text-lg font-bold text-brand-primary" id="modal-product-name">Pack</p>
-                <p class="text-3xl font-black mt-2" id="modal-product-price">R$ 19,90</p>
-            </div>
-            <form id="checkout-form" onsubmit="handleCheckout(event)">
-                <div class="space-y-4">
-                    <input type="text" name="name" required placeholder="Nome completo" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:border-brand-primary outline-none">
-                    <input type="tel" name="whatsapp" required placeholder="WhatsApp (11) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:border-brand-primary outline-none">
-                    <input type="email" name="email" required placeholder="Email" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:border-brand-primary outline-none">
-                </div>
-                <div class="mt-6 p-4 bg-brand-accent/10 border border-brand-accent/20 rounded-xl">
-                    <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" name="bonus" value="sim" class="w-5 h-5 rounded">
-                        <div><p class="font-semibold">Desejo receber o Bônus</p><p class="text-gray-400 text-xs">Conteúdo extra exclusivo</p></div>
-                    </label>
-                </div>
-                <button type="submit" class="w-full mt-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl font-bold text-white shadow-lg">Ir para Pagamento →</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Toast -->
-    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]"></div>
-
-    <script>
-    // Configurações
-    const EMAILJS_CONFIG = {
-        publicKey: "SUA_PUBLIC_KEY_AQUI",
-        serviceId: "service_ativavendas",
-        templateId: "template_lead_notify",
-        recipient: "wagnerpersoli@hotmail.com"
-    };
-
-    const MP_CONFIG = {
-        links: {
-            "Pack Beleza": "https://mpago.la/1KXgCxg",
-            "Pack Delivery": "https://mpago.la/2noHfPB",
-            "Pack Serviços": "https://mpago.la/1KXgCxg"
-        },
-        prices: { "Pack Beleza": 19.90, "Pack Delivery": 19.90, "Pack Serviços": 19.90 }
-    };
-
-    let currentProduct = { name: '', price: 0 };
-
-    const talkState = { activeId: 1, idx: 0, playing: false, tos: [] };
-    const waState = { idx: 0, playing: false, tos: [], scriptId: 1 };
-
-    const SCRIPTS = {
-        1: [
-            { t: 'recv', x: 'Oi! Tem horário?', d: 800, ty: 1200 },
-            { t: 'sent', x: 'Tenho sim! Posso mandar os horários?', d: 2200 },
-            { t: 'recv', x: 'Pode mandar!', d: 2800 },
-            { t: 'sent', x: 'Tenho hoje às 18h! Quer reservar?', d: 2000 }
-        ],
-        2: [
-            { t: 'recv', x: 'Quanto tá o combo?', d: 800, ty: 1200 },
-            { t: 'sent', x: 'R$ 42,90 no normal', d: 2200 },
-            { t: 'recv', x: 'Caro...', d: 2500 },
-            { t: 'sent', x: 'Mas hoje tem promoção: R$ 29,90!', d: 1500 }
-        ],
-        3: [
-            { t: 'recv', x: 'Faz tempo que não venho...', d: 800, ty: 1500 },
-            { t: 'sent', x: 'Que bom que escreveu! Sentimos sua falta!', d: 2200 },
-            { t: 'recv', x: 'Quero voltar!', d: 3500 },
-            { t: 'sent', x: 'Temos 25% OFF pra você!', d: 1500 }
-        ]
-    };
-
-    function clearTimers(list) {
-        while (list.length) {
-            clearTimeout(list.pop());
-        }
-    }
-
-    function getTimestamp(offsetMinutes = 0) {
-        const n = new Date(Date.now() + (offsetMinutes * 60000));
-        return `${String(n.getHours()).padStart(2, '0')}:${String(n.getMinutes()).padStart(2, '0')}`;
-    }
-
-    function appendMultilineText(node, text) {
-        const lines = String(text).split('\n');
-        lines.forEach((line, index) => {
-            if (index > 0) node.appendChild(document.createElement('br'));
-            node.appendChild(document.createTextNode(line));
-        });
-    }
-
-    function createMessageElement(message, index) {
-        const el = document.createElement('div');
-        el.className = `msg-new ${message.t === 'sent' ? 'sent' : 'recv'}`;
-
-        const text = document.createElement('span');
-        text.className = 'mtext';
-        appendMultilineText(text, message.x);
-
-        const meta = document.createElement('span');
-        meta.className = 'mmeta';
-
-        const time = document.createElement('span');
-        time.className = 'mtime';
-        time.textContent = getTimestamp(index);
-
-        meta.appendChild(time);
-
-        if (message.t === 'sent') {
-            const check = document.createElement('span');
-            check.className = 'mcheck';
-            check.textContent = '✓✓';
-            meta.appendChild(check);
-        }
-
-        el.appendChild(text);
-        el.appendChild(meta);
-        return el;
-    }
-
-    function resetTalkArea() {
-        const area = document.getElementById('chat1');
-        const typ = document.getElementById('typ1');
-        area.querySelectorAll('.msg-new').forEach(node => node.remove());
-        typ.style.display = 'none';
-        document.getElementById('prog1').style.width = '0%';
-        area.scrollTop = area.scrollHeight;
-    }
-
-    function queueTalk(fn, delay) {
-        const timeoutId = setTimeout(fn, delay);
-        talkState.tos.push(timeoutId);
-        return timeoutId;
-    }
-
-    function playTalkStep() {
-        const script = SCRIPTS[talkState.activeId] || SCRIPTS[1];
-        const area = document.getElementById('chat1');
-        const typ = document.getElementById('typ1');
-
-        if (talkState.idx >= script.length) {
-            talkState.playing = false;
-            return;
-        }
-
-        const message = script[talkState.idx];
-
-        const appendMessage = () => {
-            typ.style.display = 'none';
-            area.insertBefore(createMessageElement(message, talkState.idx), typ);
-            area.scrollTop = area.scrollHeight;
-            document.getElementById('prog1').style.width = `${((talkState.idx + 1) / script.length) * 100}%`;
-            talkState.idx += 1;
-            queueTalk(playTalkStep, message.d || 800);
-        };
-
-        if (message.t === 'recv' && message.ty) {
-            typ.style.display = 'flex';
-            area.scrollTop = area.scrollHeight;
-            queueTalk(appendMessage, message.ty);
-        } else {
-            appendMessage();
-        }
-    }
-
-    function startTalk(id) {
-        clearTimers(talkState.tos);
-        talkState.activeId = id;
-        talkState.idx = 0;
-        talkState.playing = true;
-        resetTalkArea();
-        queueTalk(playTalkStep, 250);
-    }
-
-    function switchTalk(id) {
-        document.querySelectorAll('.talk-tab').forEach((tab, index) => {
-            tab.classList.toggle('active', index + 1 === id);
-        });
-        startTalk(id);
-    }
-
-    function resetWaArea() {
-        const area = document.getElementById('waChatArea');
-        const typ = document.getElementById('waTyping');
-        area.querySelectorAll('.msg-new').forEach(node => node.remove());
-        typ.style.display = 'none';
-        document.getElementById('waSimProgress').style.width = '0%';
-        document.getElementById('waReplayBtn').classList.remove('show');
-        area.scrollTop = 0;
-    }
-
-    function queueWa(fn, delay) {
-        const timeoutId = setTimeout(fn, delay);
-        waState.tos.push(timeoutId);
-        return timeoutId;
-    }
-
-    function waPlayNext() {
-        const script = SCRIPTS[waState.scriptId] || SCRIPTS[1];
-        const area = document.getElementById('waChatArea');
-        const typ = document.getElementById('waTyping');
-
-        if (waState.idx >= script.length) {
-            waState.playing = false;
-            document.getElementById('waReplayBtn').classList.add('show');
-            return;
-        }
-
-        const message = script[waState.idx];
-
-        const appendMessage = () => {
-            typ.style.display = 'none';
-            area.insertBefore(createMessageElement(message, waState.idx), typ);
-            area.scrollTop = area.scrollHeight;
-            document.getElementById('waSimProgress').style.width = `${((waState.idx + 1) / script.length) * 100}%`;
-            waState.idx += 1;
-            queueWa(waPlayNext, message.d || 800);
-        };
-
-        if (message.t === 'recv' && message.ty) {
-            typ.style.display = 'flex';
-            area.scrollTop = area.scrollHeight;
-            queueWa(appendMessage, message.ty);
-        } else {
-            appendMessage();
-        }
-    }
-
-    function openWaModal() {
-        const modal = document.getElementById('waModal');
-        clearTimers(waState.tos);
-        waState.idx = 0;
-        waState.playing = true;
-        waState.scriptId = talkState.activeId || 1;
-        resetWaArea();
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        queueWa(waPlayNext, 250);
-    }
-
-    function closeWaModal() {
-        clearTimers(waState.tos);
-        document.getElementById('waModal').classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    function replayWaConversation() {
-        clearTimers(waState.tos);
-        waState.idx = 0;
-        waState.playing = true;
-        resetWaArea();
-        queueWa(waPlayNext, 250);
-    }
-
-    function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    function isValidWhatsapp(value) {
-        const digits = String(value).replace(/\D/g, '');
-        return digits.length >= 10 && digits.length <= 13;
-    }
-
-    // ===== CHECKOUT =====
-    function openCheckout(name, price) {
-        if (!MP_CONFIG.links[name]) {
-            showToast('⚠️ Produto indisponível no momento.');
-            return;
-        }
-        currentProduct = { name, price };
-        document.getElementById('modal-product-name').textContent = name;
-        document.getElementById('modal-product-price').textContent = `R$ ${Number(price).toFixed(2).replace('.', ',')}`;
-        const modal = document.getElementById('checkout-modal');
-        modal.classList.remove('hidden');
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal(type) {
-        if (type !== 'checkout') return;
-        const modal = document.getElementById('checkout-modal');
-        modal.classList.add('hidden');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    async function handleCheckout(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-
-        const userData = {
-            name: String(formData.get('name') || '').trim(),
-            whatsapp: String(formData.get('whatsapp') || '').trim(),
-            email: String(formData.get('email') || '').trim(),
-            wantsBonus: formData.get('bonus') === 'sim'
-        };
-
-        if (!userData.name) {
-            showToast('⚠️ Preencha seu nome.');
-            return;
-        }
-        if (!isValidWhatsapp(userData.whatsapp)) {
-            showToast('⚠️ Informe um WhatsApp válido.');
-            return;
-        }
-        if (!isValidEmail(userData.email)) {
-            showToast('⚠️ Informe um email válido.');
-            return;
-        }
-
-        const mpLink = MP_CONFIG.links[currentProduct.name];
-        if (!mpLink) {
-            showToast('⚠️ Link de pagamento indisponível.');
-            return;
-        }
-
-        const btn = e.target.querySelector('button[type="submit"]');
-        const originalHTML = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
-
-        try {
-            sessionStorage.setItem('ativavendas_checkout', JSON.stringify({
-                product: currentProduct,
-                user: userData,
-                createdAt: Date.now()
-            }));
-        } catch (error) {
-            console.warn('Não foi possível gravar dados da sessão.', error);
-        }
-
-        showToast('🔗 Redirecionando...');
-        setTimeout(() => {
-            window.location.assign(mpLink);
-        }, 900);
-
-        setTimeout(() => {
-            btn.disabled = false;
-            btn.innerHTML = originalHTML;
-        }, 2500);
-    }
-
-    // ===== UTILS =====
-    function showToast(msg) {
-        const toast = document.getElementById('toast');
-        toast.textContent = msg;
-        toast.classList.remove('translate-y-20', 'opacity-0');
-        clearTimeout(showToast._timer);
-        showToast._timer = setTimeout(() => {
-            toast.classList.add('translate-y-20', 'opacity-0');
-        }, 3000);
-    }
-
-    function openModal(type) {
-        if (type === 'login') {
-            showToast('Em breve!');
-        }
-    }
-
-    function filterProducts(cat) {
-        document.querySelectorAll('#product-grid .glass-card').forEach(card => {
-            card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
-        });
-    }
-
-    // ===== INIT =====
-    document.addEventListener('DOMContentLoaded', () => {
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        startTalk(1);
-
-        if (window.location.hash === '#catalogo') {
-            document.getElementById('catalogo')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
-        }
-    });
-
-    document.getElementById('waModal')?.addEventListener('click', (e) => {
-        if (e.target.id === 'waModal') closeWaModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeWaModal();
-            closeModal('checkout');
-        }
-    });
-    </script>    </script>
-</body>
-</html>
+</section>
