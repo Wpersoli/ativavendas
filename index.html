@@ -13,7 +13,7 @@
     
     <title>AtivaVendas | Mensagens Prontas para WhatsApp e Instagram</title>
     
-    <!-- CDNs com Integridade (SRI) para Segurança -->
+    <!-- CDNs com Integridade (SRI) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -88,7 +88,21 @@
         .avh-pack-beleza { top: 44px; transform: translate3d(calc(var(--mx) * -6px), calc(var(--my) * -4px), 0) rotate(-4deg); }
         .avh-pack-delivery { top: 208px; background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.014)), rgba(134, 20, 78, .58); transform: translate3d(calc(var(--mx) * -4px), calc(var(--my) * -2px), 0) rotate(-1deg); }
         .avh-pack-varejo { top: 372px; background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)), rgba(24, 22, 56, .58); transform: translate3d(calc(var(--mx) * -3px), calc(var(--my) * 3px), 0) rotate(-3deg); }
-        .avh-phone { left: 50%; top: 50%; width: 252px; height: 500px; border-radius: 35px; padding: 10px; z-index: 4; translate: -50% -50%; background: linear-gradient(145deg, rgba(168,85,247,.42), rgba(8,5,15,.96) 44%, rgba(217,70,239,.18)); border: 1px solid rgba(220,143,255,.24); box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 29px rgba(139,92,246,.18), inset 0 1px 0 rgba(255,255,255,.15); transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 7px), 0) rotate(-2.5deg); overflow: hidden; }
+        
+        /* Phone Animado */
+        .avh-phone { 
+            left: 50%; top: 50%; width: 252px; height: 500px; border-radius: 35px; padding: 10px; z-index: 4; translate: -50% -50%; 
+            background: linear-gradient(145deg, rgba(168,85,247,.42), rgba(8,5,15,.96) 44%, rgba(217,70,239,.18)); 
+            border: 1px solid rgba(220,143,255,.24); 
+            box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 29px rgba(139,92,246,.18), inset 0 1px 0 rgba(255,255,255,.15); 
+            transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 7px), 0) rotate(-2.5deg); 
+            overflow: hidden;
+            animation: phoneGlow 3s ease-in-out infinite;
+        }
+        @keyframes phoneGlow {
+            0%, 100% { box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 29px rgba(139,92,246,.18), inset 0 1px 0 rgba(255,255,255,.15); }
+            50% { box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 50px rgba(139,92,246,.35), inset 0 1px 0 rgba(255,255,255,.15); }
+        }
         .avh-phone::before { content: ""; position: absolute; inset: 10px; border-radius: 27px; background: linear-gradient(180deg, #11131b, #070911 64%, #06030b); border: 1px solid rgba(255,255,255,.06); }
         .avh-phone-header, .avh-chat, .avh-input { position: relative; z-index: 2; }
         .avh-phone-header { height: 63px; padding: 16px 11px 8px; display: flex; align-items: center; gap: 7px; }
@@ -98,12 +112,24 @@
         .avh-contact small { display: block; color: rgba(255,255,255,.60); font-size: 10px; }
         .avh-phone-header em { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; background: #10B981; color: white; font-size: 10px; font-style: normal; font-weight: 900; }
         .avh-chat { padding: 12px 13px; display: grid; gap: 14px; }
-        .avh-bubble { position: relative; width: 90%; padding: 31px 12px 11px; border-radius: 15px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.05); color: #fff; font-size: 11.8px; line-height: 1.38; }
-        .avh-bubble span { position: absolute; left: 10px; top: -8px; padding: 6px 9px; border-radius: 10px 10px 10px 2px; background: linear-gradient(135deg, #8B5CF6, #D946EF); color: white; text-transform: uppercase; font-size: 8.6px; font-weight: 900; }
+        
+        /* Animação das Bolhas */
+        .avh-bubble { position: relative; width: 90%; padding: 31px 12px 11px; border-radius: 15px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.05); color: #fff; font-size: 11.8px; line-height: 1.38; opacity: 0; }
+        @keyframes bubbleIn {
+            0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+            60% { transform: translateY(-5px) scale(1.02); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .avh-bubble-label {
+            position: absolute; left: 10px; top: -10px; padding: 4px 10px; border-radius: 8px 8px 8px 2px;
+            background: linear-gradient(135deg, #8B5CF6, #D946EF); color: white; text-transform: uppercase;
+            font-size: 7.5px; font-weight: 900; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+        }
         .avh-bubble small { display: block; margin-top: 7px; text-align: right; color: rgba(255,255,255,.42); font-size: 9px; }
         .avh-input { position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.05); color: rgba(255,255,255,.44); font-size: 11.5px; }
         .avh-input span { flex: 1; }
         .avh-input i { width: 31px; height: 31px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #10B981; }
+        
         .avh-card { right: 0; border-radius: 21px; }
         .avh-card h3 { margin: 0; color: #ff9be1; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; font-weight: 900; }
         .avh-growth { top: 66px; width: 168px; min-height: 162px; padding: 16px; transform: translate3d(calc(var(--mx) * 5px), calc(var(--my) * -3px), 0) rotate(2deg); }
@@ -120,16 +146,15 @@
         .avh-testimonial b { display: block; margin-top: 4px; color: #ffd642; font-size: 10px; letter-spacing: .08em; }
         .avh-updated { top: 405px; width: 198px; min-height: 108px; padding: 16px 14px; display: flex; align-items: center; gap: 12px; transform: translate3d(calc(var(--mx) * 3px), calc(var(--my) * 3px), 0) rotate(-1deg); }
         .avh-updated > i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 13px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, rgba(168,85,247,.34), rgba(217,70,239,.15)); border: 1px solid rgba(213,131,255,.20); }
-        
+
         nav .max-w-7xl, section .max-w-7xl { max-width: 1180px !important; }
         .particles { display: none !important; }
-        
-        /* ===== RESPONSIVIDADE HERO ===== */
+
         @media (max-width: 1120px) { .avh-grid { grid-template-columns: 1fr; } .avh-copy { text-align: center; } .avh-copy h1, .avh-copy p { margin-left: auto; margin-right: auto; } .avh-actions, .avh-trust { justify-content: center; } .avh-visual { margin: 18px auto 0; } }
         @media (max-width: 720px) { .avh-hero { padding: 108px 0 46px; } .avh-wrap { width: min(calc(100% - 24px), 1180px); } .avh-copy { text-align: left; } .avh-copy h1 { font-size: clamp(40px, 13vw, 58px); } .avh-actions { justify-content: flex-start; } .avh-btn { width: 100%; } .avh-trust { display: grid; gap: 10px; justify-content: start; } .avh-visual { width: 100%; height: 730px; margin-top: 22px; } .avh-phone { width: min(78vw, 276px); height: 522px; top: 42%; } .avh-pack { width: 124px; } .avh-pack-beleza { left: 0; top: 0; } .avh-pack-delivery { left: auto; right: 0; top: 6px; } .avh-pack-varejo { left: 0; top: 548px; } .avh-growth { right: 0; top: 545px; width: 155px; } .avh-testimonial { left: 50%; right: auto; top: 660px; translate: -50% 0; width: min(92vw, 320px); } .avh-updated { display: none; } }
         @media (hover: none), (prefers-reduced-motion: reduce) { .avh-visual { --mx: 0 !important; --my: 0 !important; } .avh-pack, .avh-card, .avh-phone { transition: none !important; } }
-        
-        /* ===== AJUSTES FINAIS HERO ===== */
+
+        /* ===== AJUSTES V6-V9 ===== */
         .avh-hero{padding:118px 0 58px!important;overflow:visible!important}
         .avh-wrap{width:min(calc(100% - 144px),1088px)!important;margin:0 auto!important}
         .avh-grid{grid-template-columns:minmax(360px,.96fr) minmax(420px,.88fr)!important;gap:clamp(58px,6vw,96px)!important;align-items:center!important}
@@ -157,7 +182,7 @@
         .avh-contact strong{font-size:12.5px!important}.avh-contact small{font-size:9px!important}
         .avh-chat{padding:10px 12px!important;gap:12px!important}
         .avh-bubble{padding:28px 11px 10px!important;border-radius:14px!important;font-size:10.2px!important;line-height:1.34!important}
-        .avh-bubble span{font-size:7.7px!important;padding:5px 8px!important}
+        .avh-bubble-label{font-size:7.7px!important;padding:5px 8px!important}
         .avh-input{left:16px!important;right:16px!important;bottom:16px!important;font-size:10px!important}
         .avh-input i{width:28px!important;height:28px!important}
         .avh-growth{top:58px!important;right:-18px!important;width:148px!important;min-height:143px!important;padding:14px!important}
@@ -176,21 +201,21 @@
         @media(max-width:720px){.avh-wrap{width:min(calc(100% - 28px),620px)!important}.avh-copy{text-align:left!important}.avh-copy h1{font-size:clamp(36px,11.6vw,52px)!important}.avh-copy p{font-size:15px!important}.avh-actions,.avh-trust{justify-content:flex-start!important}.avh-visual{height:660px!important;transform:scale(.94)!important;transform-origin:center top!important}.avh-phone{width:min(74vw,238px)!important;height:468px!important;top:40%!important}.avh-pack-beleza{left:0!important;top:0!important}.avh-pack-delivery{left:auto!important;right:0!important;top:4px!important}.avh-pack-varejo{left:0!important;top:505px!important}.avh-growth{right:0!important;top:500px!important}.avh-testimonial{top:615px!important}}
         @media(hover:none),(prefers-reduced-motion:reduce){.avh-visual{--mx:0!important;--my:0!important}.avh-pack,.avh-card,.avh-phone{transition:none!important}}
 
-        /* ===== CORREÇÕES VISUAIS FINAIS ===== */
+        /* ===== CORREÇÕES FINAIS ===== */
         .avh-phone{overflow:hidden!important}
         .avh-chat{padding:10px 12px 64px!important;gap:10px!important}
         .avh-bubble{width:88%!important;padding:26px 10px 9px!important;font-size:9.8px!important;line-height:1.31!important}
-        .avh-bubble span{top:-7px!important;padding:5px 8px!important;font-size:7.4px!important}
+        .avh-bubble-label{top:-7px!important;padding:5px 8px!important;font-size:7.4px!important}
         .avh-bubble small{margin-top:5px!important;font-size:8.3px!important}
         .avh-input{left:16px!important;right:16px!important;bottom:13px!important;height:34px!important;padding:6px 7px 6px 11px!important;z-index:6!important;background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.045)!important;box-shadow:0 -8px 18px rgba(0,0,0,.16)!important}
         .avh-input i{width:26px!important;height:26px!important;font-size:11px!important}
         .avh-input span{font-size:9.4px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
         @media(max-width:720px){.avh-chat{padding-bottom:66px!important}.avh-input{bottom:14px!important}}
         .avh-bubble{width:86%!important;font-size:9.1px!important;line-height:1.22!important;padding:25px 10px 8px!important}
-        .avh-bubble span{font-size:7.1px!important;padding:5px 8px!important}
+        .avh-bubble-label{font-size:7.1px!important;padding:5px 8px!important}
         .avh-bubble small{margin-top:4px!important;font-size:8px!important}
         .avh-chat .avh-bubble:last-of-type{width:84%!important;font-size:8.3px!important;line-height:1.16!important;padding:23px 9px 8px!important;margin-bottom:2px!important}
-        .avh-chat .avh-bubble:last-of-type span{font-size:6.8px!important}
+        .avh-chat .avh-bubble:last-of-type .avh-bubble-label{font-size:6.8px!important}
         .avh-input{height:31px!important;bottom:11px!important;padding:5px 6px 5px 10px!important}
         .avh-input span{font-size:8.7px!important}
         .avh-input i{width:24px!important;height:24px!important;font-size:10px!important}
@@ -211,6 +236,26 @@
         .chat-area-new::-webkit-scrollbar-track { background: transparent; }
         .chat-area-new::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
         @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.35; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+        /* ===== MODAL WHATSAPP CLEAN ===== */
+        .wa-modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.88); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .35s ease; }
+        .wa-modal-overlay.open { opacity:1; pointer-events:auto; }
+        .wa-modal { width: min(420px, 94vw); max-height: 85vh; background: #0b141a; border-radius: 20px; overflow: hidden; box-shadow: 0 0 80px rgba(139, 92, 246, 0.2), 0 30px 80px rgba(0,0,0,.7); transform: scale(0.85) translateY(30px); transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; border: 1px solid rgba(139, 92, 246, 0.2); position: relative; }
+        .wa-modal-overlay.open .wa-modal { transform: scale(1) translateY(0); }
+        .wa-chat-area { scroll-behavior:smooth; padding: 16px; display: flex; flex-direction: column; gap: 8px; background:#0b141a; }
+        .wa-chat-area::-webkit-scrollbar { width: 4px; }
+        .wa-chat-area::-webkit-scrollbar-track { background: transparent; }
+        .wa-chat-area::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+        .wa-modal-replay {
+            position: absolute; bottom: 20px; right: 20px; width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #8B5CF6, #D946EF); color: white; font-size: 20px; border: none; cursor: pointer;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); display: none; align-items: center; justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s; z-index: 5;
+        }
+        .wa-modal-replay:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(139, 92, 246, 0.6); }
+        .wa-modal-replay.show { display: flex; }
+        .wa-modal-progress { height:3px; background:rgba(37,211,102,.15); position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+        .wa-modal-progress-bar { height: 100%; background: #25d366; width: 0%; transition: width 0.3s ease; border-radius: 0 2px 2px 0; }
     </style>
 </head>
 <body class="antialiased">
@@ -269,20 +314,41 @@
                     <div class="avh-pack avh-pack-beleza"><span>PACK</span><i class="fa-solid fa-spa"></i><h3>Beleza</h3><p>Mensagens prontas para encantar e vender mais todos os dias.</p><b>PDF</b></div>
                     <div class="avh-pack avh-pack-delivery"><span>PACK</span><i class="fa-solid fa-burger"></i><h3>Delivery</h3><p>Mensagens prontas para vender mais no WhatsApp.</p><b>PDF</b></div>
                     <div class="avh-pack avh-pack-varejo"><span>PACK</span><i class="fa-solid fa-bag-shopping"></i><h3>Varejo</h3><p>Mensagens prontas para atrair, atender e fechar mais vendas.</p><b>PDF</b></div>
+                    
+                    <!-- Phone com Animação -->
                     <div class="avh-phone">
                         <div class="avh-phone-header">
-                            <i class="fa-solid fa-chevron-left"></i>
+                            <i class="fa-solid fa-chevron-left text-gray-400 text-sm"></i>
                             <div class="avh-avatar"></div>
-                            <div class="avh-contact"><strong>AtivaVendas</strong><small>online</small></div>
-                            <em>✓</em><i class="fa-solid fa-ellipsis-vertical"></i>
+                            <div class="avh-contact">
+                                <strong>AtivaVendas</strong>
+                                <small class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>online</small>
+                            </div>
+                            <em>✓</em><i class="fa-solid fa-ellipsis-vertical text-gray-400 text-sm"></i>
                         </div>
-                        <div class="avh-chat">
-                            <div class="avh-bubble"><span>Mensagem pronta</span>Olá, tudo bem? 😊<br>Separei uma oferta especial pra você que ama qualidade e bom atendimento!<small>10:30 ✓✓</small></div>
-                            <div class="avh-bubble"><span>Oferta imperdível</span>Hoje é dia de promoção! 🔥<br>Desconto exclusivo só para quem responde agora.<small>10:31 ✓✓</small></div>
-                            <div class="avh-bubble"><span>Chamada</span>Quer garantir o seu?<br>É só me chamar aqui! 💜<small>10:31 ✓✓</small></div>
+                        <div class="avh-chat" id="hero-chat">
+                            <div class="avh-bubble" style="animation: bubbleIn 0.6s ease 0.5s both;">
+                                <span class="avh-bubble-label">MENSAGEM PRONTA</span>
+                                Olá, tudo bem? 😊<br>
+                                Separei uma oferta especial pra você que ama qualidade e bom atendimento!
+                                <small>10:30 <i class="fa-solid fa-check-double text-blue-400 text-[9px] ml-0.5"></i></small>
+                            </div>
+                            <div class="avh-bubble" style="animation: bubbleIn 0.6s ease 1.5s both;">
+                                <span class="avh-bubble-label" style="background: linear-gradient(135deg, #ec4899, #f97316);">OFERTA IMPERDÍVEL</span>
+                                Hoje é dia de promoção! 🔥<br>
+                                Desconto exclusivo só para quem responde agora.
+                                <small>10:31 <i class="fa-solid fa-check-double text-blue-400 text-[9px] ml-0.5"></i></small>
+                            </div>
+                            <div class="avh-bubble" style="animation: bubbleIn 0.6s ease 2.5s both;">
+                                <span class="avh-bubble-label" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">CHAMADA</span>
+                                Quer garantir o seu?<br>
+                                É só me chamar aqui! 💜
+                                <small>10:31 <i class="fa-solid fa-check-double text-blue-400 text-[9px] ml-0.5"></i></small>
+                            </div>
                         </div>
                         <div class="avh-input"><i class="fa-solid fa-microphone"></i></div>
                     </div>
+
                     <div class="avh-card avh-growth">
                         <h3>Vendas via Chat</h3><strong>+285%</strong><p>em 30 dias</p>
                         <div class="avh-bars"><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -396,27 +462,34 @@
         </div>
     </section>
 
-    <!-- WhatsApp Modal (Simulação) -->
+    <!-- WhatsApp Modal - CLEAN VERSION -->
     <div class="wa-modal-overlay" id="waModal" role="dialog" aria-modal="true" aria-label="Simulação de conversa WhatsApp">
-        <div class="wa-modal" style="position:relative;">
+        <div class="wa-modal">
+            <!-- Progress Bar -->
             <div class="wa-modal-progress"><div class="wa-modal-progress-bar" id="waSimProgress"></div></div>
-            <div class="wa-modal-header">
-                <span style="color:white;font-size:20px;cursor:pointer;" onclick="closeWaModal()" aria-label="Fechar">←</span>
-                <div class="avatar-lg"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg></div>
-                <div class="contact-info"><div class="contact-name" id="waContactName">AtivaVendas</div><div class="contact-status" id="waContactStatus">digitando...</div></div>
-                <div style="display:flex;gap:18px;color:rgba(255,255,255,.7);font-size:18px;"><span>📹</span><span>📞</span><span class="close-btn" onclick="closeWaModal()" aria-label="Fechar">✕</span></div>
+            
+            <!-- Chat Area - SEM HEADER, SEM NOTA DE CRIPTOGRAFIA -->
+            <div class="wa-chat-area" id="waChatArea">
+                <!-- Separador de data discreto -->
+                <div class="date-sep" style="align-self: center; background: rgba(11,20,26,.85); color: #8696a0; font-size: 11px; padding: 5px 14px; border-radius: 8px; margin: 6px 0;">
+                    HOJE
+                </div>
+                
+                <!-- Indicador de digitação -->
+                <div class="typing-new" id="waTyping" style="display: none; align-self: flex-start; background: #1f2c34; border-radius: 12px; border-top-left-radius: 4px; padding: 12px 16px; gap: 4px; align-items: center;">
+                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite;"></div>
+                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.2s;"></div>
+                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.4s;"></div>
+                </div>
             </div>
-            <div class="wa-chat-area" id="waChatArea" style="background:#0b141a;scroll-behavior:smooth;">
-                <div class="enc-note">🔒 As mensagens são criptografadas de ponta a ponta.</div>
-                <div class="date-sep">HOJE</div>
-                <div class="typing" id="waTyping"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-            </div>
-            <div class="wa-modal-input-area">
-                <span class="emoji-btn">😊</span>
-                <input class="input-field" type="text" placeholder="Mensagem" disabled>
-                <span class="mic-btn">🎤</span>
-            </div>
-            <button class="wa-modal-replay" id="waReplayBtn" onclick="replayWaConversation()">↻</button>
+            
+            <!-- Botão de Fechar Flutuante -->
+            <button onclick="closeWaModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center hover:bg-black/80 transition z-20" aria-label="Fechar">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <!-- Botão de Replay Flutuante -->
+            <button class="wa-modal-replay" id="waReplayBtn" onclick="replayWaConversation()" aria-label="Reproduzir novamente">↻</button>
         </div>
     </div>
 
@@ -722,21 +795,10 @@
         const el = document.createElement('div');
         el.className = `msg-new ${m.t === 'sent' ? 'sent' : 'recv'}`;
         const tm = getTimestamp(i);
-        // Sanitização aplicada para prevenir XSS em mensagens dinâmicas
         const safeText = m.x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>');
         if (m.t === 'sent') el.innerHTML = `<span class="mtext">${safeText}</span><span class="mmeta"><span class="mtime">${tm}</span><span class="mcheck">✓✓</span></span>`;
         else el.innerHTML = `<span class="mtext">${safeText}</span><span class="mmeta"><span class="mtime">${tm}</span></span>`;
         return el;
-    }
-    function showTyp(id, typId, statusId) {
-        const ind = document.getElementById(typId), st = document.getElementById(statusId);
-        ind.style.display = 'flex';
-        requestAnimationFrame(() => { ind.classList.add('show'); st.textContent = 'digitando...'; });
-    }
-    function hideTyp(id, typId) {
-        const ind = document.getElementById(typId);
-        ind.classList.remove('show');
-        setTimeout(() => { ind.style.display = 'none'; }, 300);
     }
     function updProg(id, p) { document.getElementById('prog'+id).style.width = p+'%'; }
 
@@ -766,165 +828,4 @@
         }
     }
     function trackActivity(type, details = {}) {
-        const key = "av_track_last", last = localStorage.getItem(key);
-        if (last && Date.now() - parseInt(last) < 60000) return;
-        localStorage.setItem(key, Date.now());
-        if (EMAILJS_CONFIG.publicKey === "SUA_PUBLIC_KEY_AQUI") {
-            console.log("👁️ Atividade:", type, details);
-            return;
-        }
-        const params = {
-            activity_type: sanitize(type),
-            visitor_info: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
-            page_url: window.location.href.split('#')[0],
-            date: new Date().toLocaleString('pt-BR'),
-            device_type: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
-            activity_details: Object.entries(details).map(([k,v]) => `${sanitize(k)}: ${sanitize(String(v))}`).join(" | ")
-        };
-        emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId.replace("lead", "atividade"), params, EMAILJS_CONFIG.recipient).catch(e => console.log("⚠️ Atividade não enviada:", e));
-    }
-
-    // ===== CHECKOUT COM MERCADO PAGO & BÔNUS =====
-    async function handleCheckout(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const userData = { 
-            name: formData.get("name")?.trim(), 
-            whatsapp: formData.get("whatsapp")?.trim(), 
-            email: formData.get("email")?.trim(),
-            wantsBonus: formData.get("bonus") === "sim"
-        };
-        const productData = { ...currentProduct };
-        
-        // Validação Segura
-        if (!userData.name || userData.name.length < 2) { showToast("⚠️ Nome inválido."); return; }
-        if (!/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/.test(userData.whatsapp)) { showToast("⚠️ WhatsApp inválido. Ex: (11) 99999-9999"); return; }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email)) { showToast("⚠️ Email inválido."); return; }
-        
-        const btn = e.target.querySelector('button[type="submit"]'), originalHTML = btn.innerHTML;
-        btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
-        try {
-            trackActivity("Checkout Iniciado", { product: productData.name, wantsBonus: userData.wantsBonus });
-            await notifyWagner(userData, productData);
-            sessionStorage.setItem("av_pending_order", JSON.stringify({ product: productData.name, price: productData.price, customer: userData, wantsBonus: userData.wantsBonus, timestamp: Date.now() }));
-            if (MP_CONFIG.prices[productData.name] !== productData.price) throw new Error("Preço inválido");
-            const mpLink = MP_CONFIG.links[productData.name];
-            if (!mpLink) throw new Error("Link de pagamento não encontrado");
-            showToast("🔗 Redirecionando para pagamento seguro...");
-            setTimeout(() => { window.location.href = mpLink; }, 1200);
-        } catch (error) {
-            console.error("❌ Erro no checkout:", error);
-            showToast("⚠️ Erro: " + error.message + ". Chame no WhatsApp!");
-            btn.disabled = false; btn.innerHTML = originalHTML;
-        }
-    }
-
-    // ===== FUNÇÕES DE CONVERSA ATUALIZADAS =====
-    function addMsgNew(id, m, i) {
-        const area = document.getElementById('chat' + id);
-        const ind = document.getElementById('typ' + id);
-        area.insertBefore(mkMsgNew(m, i, m.t), ind);
-        area.scrollTop = area.scrollHeight;
-    }
-    function playNextNew(id) {
-        const s = state[id], script = SCRIPTS[id];
-        if (s.idx >= script.length) { finishNew(id); return; }
-        const m = script[s.idx], chatArea = document.getElementById('chat' + id), typEl = document.getElementById('typ' + id), statusEl = document.getElementById('chat-header-status');
-        if (m.t === 'recv' && m.ty) {
-            typEl.style.display = 'flex'; statusEl.textContent = 'digitando...';
-            const t = setTimeout(() => { typEl.style.display = 'none'; statusEl.textContent = 'online'; addMsgNew(id, m, s.idx); updProg(id, ((s.idx + 1) / script.length) * 100); s.idx++; const n = setTimeout(() => playNextNew(id), m.d || 800); s.tos.push(n); }, m.ty);
-            s.tos.push(t);
-        } else {
-            addMsgNew(id, m, s.idx); updProg(id, ((s.idx + 1) / script.length) * 100); s.idx++; const t = setTimeout(() => playNextNew(id), m.d || 800); s.tos.push(t);
-        }
-    }
-    function finishNew(id) { state[id].playing = false; document.getElementById('chat-header-status').textContent = 'online'; updProg(id, 100); }
-    function startNew(id) {
-        const headers = { 1: { name: 'Seu Salão de Beleza', status: 'online' }, 2: { name: 'Lanchonete Sabor & Cia', status: 'online' }, 3: { name: 'Clínica Estética Bella', status: 'online' } };
-        document.getElementById('chat-header-name').textContent = headers[id].name;
-        document.getElementById('chat-header-status').textContent = headers[id].status;
-        const area = document.getElementById('chat' + id), ind = document.getElementById('typ' + id);
-        Array.from(area.children).forEach(c => { if (!c.classList.contains('enc-note') && !c.classList.contains('date-sep') && !c.classList.contains('typing-new')) area.removeChild(c); });
-        ind.style.display = 'none'; updProg(id, 0); state[id].idx = 0; state[id].playing = true; state[id].done = false;
-        setTimeout(() => playNextNew(id), 500);
-    }
-    function replayNew(id) { state[id].tos.forEach(t => clearTimeout(t)); state[id].tos = []; state[id].playing = false; startNew(id); }
-    function clearAllNew(id) { state[id].tos.forEach(t => clearTimeout(t)); state[id].tos = []; state[id].playing = false; }
-    function switchTalk(id) {
-        document.querySelectorAll('.talk-tab').forEach(t => t.classList.toggle('active', +t.dataset.tab === id));
-        const panel = document.getElementById('talk' + id), techniques = JSON.parse(panel.dataset.techniques), explanation = panel.dataset.explanation;
-        const tagsContainer = document.getElementById('technique-tags'), colorMap = { purple: { bg: 'bg-brand-primary/20', border: 'border-brand-primary/30', text: 'text-brand-primary' }, yellow: { bg: 'bg-yellow-500/20', border: 'border-yellow-500/30', text: 'text-yellow-400' }, green: { bg: 'bg-green-500/20', border: 'border-green-500/30', text: 'text-green-400' }, pink: { bg: 'bg-pink-500/20', border: 'border-pink-500/30', text: 'text-pink-400' }, blue: { bg: 'bg-blue-500/20', border: 'border-blue-500/30', text: 'text-blue-400' } };
-        tagsContainer.innerHTML = techniques.map(t => { const c = colorMap[t.color] || colorMap.purple; return `<span class="px-4 py-2 ${c.bg} ${c.border} ${c.text} rounded-full text-sm font-semibold transition-all">${sanitize(t.name)}</span>`; }).join('');
-        document.getElementById('chat-explanation').innerHTML = `<p class="text-gray-400 text-sm leading-relaxed">${explanation}</p>`;
-        clearAllNew(id); setTimeout(() => startNew(id), 100);
-    }
-    function waPlayNext() { /* Lógica original mantida para modal */ }
-    function waAddMsg(m, i) { /* Lógica original mantida */ }
-    function waFinish() { waState.playing = false; document.getElementById('waContactStatus').textContent = 'online agora'; document.getElementById('waReplayBtn').classList.add('show'); document.getElementById('waSimProgress').style.width = '100%'; }
-    function waStart() { /* Lógica original mantida */ }
-    function replayWaConversation() { waState.tos.forEach(t => clearTimeout(t)); waState.tos = []; waState.playing = false; waStart(); }
-    function openWaModal() { document.getElementById('waModal').classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => waStart(), 400); }
-    function closeWaModal() { waState.tos.forEach(t => clearTimeout(t)); waState.tos = []; waState.playing = false; waHideTyp(); document.getElementById('waReplayBtn').classList.remove('show'); document.getElementById('waModal').classList.remove('open'); document.body.style.overflow = ''; }
-    document.getElementById('waModal').addEventListener('click', function(e) { if (e.target === this) closeWaModal(); });
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeWaModal(); closeModal('checkout'); } });
-
-    // ===== OUTRAS FUNÇÕES =====
-    function filterProducts(category) {
-        const cards = document.querySelectorAll('.product-card'), buttons = document.querySelectorAll('.filter-btn');
-        buttons.forEach(btn => { btn.classList.remove('bg-brand-primary/20','text-white','border-brand-primary'); btn.classList.add('border-gray-700','text-gray-300'); if (btn.textContent.toLowerCase().includes(category === 'all' ? 'todos' : category)) { btn.classList.add('bg-brand-primary/20','text-white','border-brand-primary'); btn.classList.remove('border-gray-700','text-gray-300'); } });
-        cards.forEach(card => { card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none'; });
-    }
-    function openModal(type) { if (type === 'login') showToast('Área de login em breve!'); }
-    function openCheckout(name, price) { currentProduct = {name, price}; document.getElementById('modal-product-name').textContent = sanitize(name); document.getElementById('modal-product-price').textContent = `R$ ${price.toFixed(2).replace('.', ',')}`; document.getElementById('checkout-modal').classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
-    function closeModal(type) { document.getElementById('checkout-modal').classList.add('hidden'); document.body.style.overflow = ''; }
-    function shareReferral(platform) {
-        const referralId = Math.random().toString(36).substring(7);
-        const link = `https://ativavendas.com.br/ref/${referralId}`;
-        const text = `Olha esse material incrível para vendas! Ganhei 10% de bônus indicando. Baixe o Kit AtivaVendas aqui: ${link}`;
-        let url = '';
-        if (platform === 'whatsapp') url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-        else if (platform === 'telegram') url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank', 'noopener,noreferrer');
-    }
-    function copyLink() {
-        const copyText = document.getElementById("referral-link");
-        copyText.select();
-        navigator.clipboard.writeText(copyText.value);
-        showToast('Link copiado!');
-    }
-    function showToast(message) {
-        const toast = document.getElementById('toast');
-        document.getElementById('toast-message').textContent = sanitize(message);
-        toast.classList.remove('translate-y-20','opacity-0');
-        setTimeout(() => { toast.classList.add('translate-y-20','opacity-0'); }, 3000);
-    }
-
-    // ===== HERO INTERACTION =====
-    const heroVisual = document.querySelector('[data-hero-visual]');
-    if (heroVisual && window.matchMedia('(hover: hover)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        let raf = 0, tx = 0, ty = 0, cx = 0, cy = 0;
-        const renderHero = () => { cx += (tx - cx) * 0.10; cy += (ty - cy) * 0.10; heroVisual.style.setProperty('--mx', cx.toFixed(4)); heroVisual.style.setProperty('--my', cy.toFixed(4)); if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) raf = requestAnimationFrame(renderHero); else raf = 0; };
-        const queueHero = () => { if (!raf) raf = requestAnimationFrame(renderHero); };
-        heroVisual.addEventListener('mousemove', (event) => { const rect = heroVisual.getBoundingClientRect(); tx = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width - .5) * 1.25)); ty = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height - .5) * 1.25)); queueHero(); }, { passive: true });
-        heroVisual.addEventListener('mouseleave', () => { tx = 0; ty = 0; queueHero(); }, { passive: true });
-    }
-
-    // ===== INIT =====
-    document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById('referral-link').value = `https://ativavendas.com.br/ref/${Math.random().toString(36).substring(7)}`;
-        setTimeout(() => startNew(1), 600);
-        document.querySelectorAll(".avh-btn-main").forEach(btn => { btn.addEventListener("click", () => { trackActivity("CTA Hero", { action: "Baixar PDF" }); }); });
-        document.querySelectorAll('[onclick="openWaModal"]').forEach(btn => { btn.addEventListener("click", () => { trackActivity("CTA Hero", { action: "Simulação WhatsApp" }); }); });
-        document.querySelectorAll(".filter-btn").forEach(btn => { btn.addEventListener("click", (e) => { trackActivity("Filtro Produtos", { categoria: e.currentTarget.textContent.trim() }); }); });
-        document.querySelectorAll(".talk-tab").forEach(tab => { tab.addEventListener("click", (e) => { trackActivity("Cenário de Venda", { scenario: e.currentTarget.textContent.trim() }); }); });
-        document.querySelectorAll(".product-card button").forEach(btn => { btn.addEventListener("click", (e) => { const card = e.currentTarget.closest(".product-card"); const product = card?.querySelector("h3")?.textContent || "Desconhecido"; trackActivity("Interesse em Produto", { product }); }); });
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("checkout") === "success") {
-            const order = JSON.parse(sessionStorage.getItem("av_pending_order") || "null");
-            if (order) { trackActivity("Retorno Pagamento", { status: "sucesso_parcial", product: order.product }); sessionStorage.removeItem("av_pending_order"); setTimeout(() => { showToast("🎉 Pagamento iniciado! Verifique seu WhatsApp para acesso."); }, 1000); }
-        }
-    });
-    document.addEventListener('visibilitychange', () => { document.documentElement.classList.toggle('page-hidden', document.hidden); });
-    </script>
-</body>
-</html>
+        const key = "av_track_last", last = localStorage.getItem(key
