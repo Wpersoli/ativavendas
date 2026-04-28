@@ -4,22 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- 🔒 SEGURANÇA: Headers de Proteção -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://mpago.la; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="theme-color" content="#0B090A">
-    
     <title>AtivaVendas | Mensagens Prontas para WhatsApp e Instagram</title>
     
-    <!-- CDNs com Integridade (SRI) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -27,13 +22,6 @@
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         brand: { dark: '#0B090A', card: '#141218', primary: '#8B5CF6', accent: '#D946EF', success: '#10B981', whatsapp: '#25D366' }
-                    },
-                    animation: {
-                        float: 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } }
                     }
                 }
             }
@@ -41,7 +29,6 @@
     </script>
     
     <style>
-        /* ===== BASE & RESET ===== */
         *, *::before, *::after { box-sizing: border-box; }
         body { background-color: #0B090A; color: white; overflow-x: hidden; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
         .gradient-text { background: linear-gradient(to right, #D946EF, #8B5CF6); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -52,780 +39,617 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
         
-        /* ===== HERO STYLES ===== */
-        .avh-hero { position: relative; padding: 118px 0 70px; overflow: hidden; isolation: isolate; }
+        /* Hero Styles */
+        .avh-hero { position: relative; padding: 118px 0 70px; overflow: hidden; }
         .avh-wrap { width: min(calc(100% - 44px), 1180px); margin: 0 auto; }
         .avh-bg { position: absolute; border-radius: 999px; filter: blur(105px); pointer-events: none; z-index: -1; }
         .avh-bg-1 { width: 430px; height: 430px; top: 6%; left: 18%; background: rgba(139, 92, 246, 0.15); }
         .avh-bg-2 { width: 480px; height: 480px; right: 7%; bottom: -12%; background: rgba(217, 70, 239, 0.10); }
         .avh-grid { display: grid; grid-template-columns: minmax(420px, 1.05fr) minmax(480px, 0.95fr); align-items: center; gap: clamp(32px, 5vw, 74px); }
         .avh-copy { position: relative; z-index: 3; }
-        .avh-eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 9px 15px; margin-bottom: 22px; border-radius: 999px; border: 1px solid rgba(217, 70, 239, 0.26); background: rgba(217, 70, 239, 0.07); color: #f05bff; font-size: 12px; line-height: 1; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
+        .avh-eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 9px 15px; margin-bottom: 22px; border-radius: 999px; border: 1px solid rgba(217, 70, 239, 0.26); background: rgba(217, 70, 239, 0.07); color: #f05bff; font-size: 12px; font-weight: 800; text-transform: uppercase; }
         .avh-eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 12px #10B981; }
-        .avh-copy h1 { margin: 0 0 22px; max-width: 610px; color: #fff; font-size: clamp(46px, 5.2vw, 76px); line-height: .93; letter-spacing: -0.065em; font-weight: 950; }
-        .avh-copy h1 strong { color: transparent; background: linear-gradient(92deg, #ff4bd1 0%, #9d5cff 78%); -webkit-background-clip: text; background-clip: text; }
+        .avh-copy h1 { margin: 0 0 22px; max-width: 610px; color: #fff; font-size: clamp(46px, 5.2vw, 76px); line-height: .93; font-weight: 950; }
+        .avh-copy h1 strong { background: linear-gradient(92deg, #ff4bd1 0%, #9d5cff 78%); -webkit-background-clip: text; background-clip: text; }
         .avh-copy p { margin: 0; max-width: 585px; color: rgba(229, 231, 235, 0.72); font-size: 17px; line-height: 1.62; }
         .avh-copy p b { color: #ff4bd1; }
         .avh-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 30px; }
-        .avh-btn { min-height: 58px; padding: 0 22px; border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-weight: 900; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease; border: 0; cursor: pointer; }
+        .avh-btn { min-height: 58px; padding: 0 22px; border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-weight: 900; text-decoration: none; transition: all .18s ease; border: 0; cursor: pointer; }
         .avh-btn:hover { transform: translateY(-2px); }
         .avh-btn small { display: block; margin-top: 5px; color: rgba(255,255,255,.70); font-size: 12px; font-weight: 700; }
-        .avh-btn-main { color: #fff; background: linear-gradient(135deg, #ff2d95, #b92cff 52%, #8B5CF6); box-shadow: 0 16px 42px rgba(217,70,239,.22), inset 0 1px 0 rgba(255,255,255,.22); }
-        .avh-btn-outline { color: #fff; background: rgba(15, 10, 22, .74); border: 1px solid rgba(168, 85, 247, .34); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+        .avh-btn-main { color: #fff; background: linear-gradient(135deg, #ff2d95, #b92cff 52%, #8B5CF6); box-shadow: 0 16px 42px rgba(217,70,239,.22); }
+        .avh-btn-outline { color: #fff; background: rgba(15, 10, 22, .74); border: 1px solid rgba(168, 85, 247, .34); }
         .avh-trust { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 30px; color: rgba(156, 163, 175, .95); font-size: 13px; font-weight: 600; }
         .avh-trust i { color: #10B981; margin-right: 7px; }
-        .avh-visual { --mx: 0; --my: 0; position: relative; width: min(100%, 570px); height: 560px; margin-left: auto; transform-style: preserve-3d; contain: layout paint; }
-        .avh-soft-glow { position: absolute; inset: 8% 1% 4%; border-radius: 40px; background: radial-gradient(ellipse at 50% 52%, rgba(139,92,246,.22), transparent 45%), radial-gradient(ellipse at 66% 80%, rgba(217,70,239,.12), transparent 36%); filter: blur(16px); pointer-events: none; }
-        .avh-pack, .avh-card, .avh-phone { position: absolute; will-change: transform; transition: transform .14s linear, border-color .18s ease, box-shadow .18s ease; }
-        .avh-pack, .avh-card { overflow: hidden; border: 1px solid rgba(217, 70, 239, .14); background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.014)), rgba(22, 12, 36, .56); backdrop-filter: blur(12px); box-shadow: 0 17px 45px rgba(0,0,0,.26), 0 0 18px rgba(139,92,246,.09), inset 0 1px 0 rgba(255,255,255,.07); }
-        .avh-pack::after, .avh-card::after, .avh-phone::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(120deg, rgba(255,255,255,.10), transparent 24%, transparent 72%, rgba(255,255,255,.035)); }
-        .avh-pack { left: 0; width: 132px; min-height: 150px; padding: 13px 12px; border-radius: 21px; text-align: center; }
-        .avh-pack span { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.82); font-size: 9px; font-weight: 900; }
+        .avh-visual { --mx: 0; --my: 0; position: relative; width: min(100%, 570px); height: 560px; margin-left: auto; }
+        .avh-soft-glow { position: absolute; inset: 8% 1% 4%; border-radius: 40px; background: radial-gradient(ellipse at 50% 52%, rgba(139,92,246,.22), transparent 45%); filter: blur(16px); pointer-events: none; }
+        .avh-pack, .avh-card, .avh-phone { position: absolute; transition: transform .14s linear; }
+        .avh-pack, .avh-card { overflow: hidden; border: 1px solid rgba(217, 70, 239, .14); background: rgba(22, 12, 36, .56); backdrop-filter: blur(12px); border-radius: 21px; }
+        .avh-pack { left: 0; width: 132px; min-height: 150px; padding: 13px 12px; text-align: center; }
+        .avh-pack span { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 9px; font-weight: 900; }
         .avh-pack i { display: block; margin: 10px 0 7px; font-size: 25px; }
-        .avh-pack h3 { margin: 0 0 6px; color: #fff; font-size: 17px; line-height: 1; font-weight: 900; text-transform: uppercase; }
-        .avh-pack p { margin: 0; color: rgba(255,255,255,.72); font-size: 10.5px; line-height: 1.35; }
-        .avh-pack b { display: block; margin-top: 9px; color: rgba(255,255,255,.66); font-size: 10px; }
-        .avh-pack-beleza { top: 44px; transform: translate3d(calc(var(--mx) * -6px), calc(var(--my) * -4px), 0) rotate(-4deg); }
-        .avh-pack-delivery { top: 208px; background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.014)), rgba(134, 20, 78, .58); transform: translate3d(calc(var(--mx) * -4px), calc(var(--my) * -2px), 0) rotate(-1deg); }
-        .avh-pack-varejo { top: 372px; background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)), rgba(24, 22, 56, .58); transform: translate3d(calc(var(--mx) * -3px), calc(var(--my) * 3px), 0) rotate(-3deg); }
+        .avh-pack h3 { margin: 0 0 6px; color: #fff; font-size: 17px; font-weight: 900; text-transform: uppercase; }
+        .avh-pack p { margin: 0; color: rgba(255,255,255,.72); font-size: 10.5px; }
+        .avh-pack-beleza { top: 44px; }
+        .avh-pack-delivery { top: 208px; background: rgba(134, 20, 78, .58); }
+        .avh-pack-varejo { top: 372px; background: rgba(24, 22, 56, .58); }
         
         /* Phone Animado */
         .avh-phone { 
-            left: 50%; top: 50%; width: 252px; height: 500px; border-radius: 35px; padding: 10px; z-index: 4; translate: -50% -50%; 
-            background: linear-gradient(145deg, rgba(168,85,247,.42), rgba(8,5,15,.96) 44%, rgba(217,70,239,.18)); 
+            left: 50%; top: 50%; width: 252px; height: 500px; border-radius: 35px; padding: 10px; z-index: 4; 
+            background: linear-gradient(145deg, rgba(168,85,247,.42), rgba(8,5,15,.96)); 
             border: 1px solid rgba(220,143,255,.24); 
-            box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 29px rgba(139,92,246,.18), inset 0 1px 0 rgba(255,255,255,.15); 
-            transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 7px), 0) rotate(-2.5deg); 
+            box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 50px rgba(139,92,246,.35);
+            transform: translate(-50%, -50%);
             overflow: hidden;
             animation: phoneGlow 3s ease-in-out infinite;
         }
         @keyframes phoneGlow {
-            0%, 100% { box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 29px rgba(139,92,246,.18), inset 0 1px 0 rgba(255,255,255,.15); }
-            50% { box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 50px rgba(139,92,246,.35), inset 0 1px 0 rgba(255,255,255,.15); }
+            0%, 100% { box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 29px rgba(139,92,246,.18); }
+            50% { box-shadow: 0 30px 74px rgba(0,0,0,.44), 0 0 50px rgba(139,92,246,.35); }
         }
-        .avh-phone::before { content: ""; position: absolute; inset: 10px; border-radius: 27px; background: linear-gradient(180deg, #11131b, #070911 64%, #06030b); border: 1px solid rgba(255,255,255,.06); }
+        .avh-phone::before { content: ""; position: absolute; inset: 10px; border-radius: 27px; background: linear-gradient(180deg, #11131b, #070911); }
         .avh-phone-header, .avh-chat, .avh-input { position: relative; z-index: 2; }
         .avh-phone-header { height: 63px; padding: 16px 11px 8px; display: flex; align-items: center; gap: 7px; }
-        .avh-avatar { width: 26px; height: 26px; flex: 0 0 auto; border-radius: 50%; background: radial-gradient(circle at 50% 36%, #f7c6a5 0 19%, transparent 20%), radial-gradient(circle at 50% 18%, #29233a 0 22%, transparent 23%), linear-gradient(135deg,#17b86a,#1a4a34); border: 2px solid rgba(255,255,255,.10); }
-        .avh-contact { min-width: 0; flex: 1; }
-        .avh-contact strong { display: block; font-size: 14px; line-height: 1.1; }
+        .avh-avatar { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#17b86a,#1a4a34); }
+        .avh-contact strong { display: block; font-size: 14px; }
         .avh-contact small { display: block; color: rgba(255,255,255,.60); font-size: 10px; }
-        .avh-phone-header em { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; background: #10B981; color: white; font-size: 10px; font-style: normal; font-weight: 900; }
         .avh-chat { padding: 12px 13px; display: grid; gap: 14px; }
         
         /* Animação das Bolhas */
-        .avh-bubble { position: relative; width: 90%; padding: 31px 12px 11px; border-radius: 15px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.05); color: #fff; font-size: 11.8px; line-height: 1.38; opacity: 0; }
+        .avh-bubble { 
+            position: relative; width: 90%; padding: 28px 11px 10px; border-radius: 14px; 
+            background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.05); 
+            color: #fff; font-size: 10.2px; line-height: 1.34;
+            opacity: 0;
+            animation: bubbleIn 0.6s ease forwards;
+        }
         @keyframes bubbleIn {
             0% { opacity: 0; transform: translateY(30px) scale(0.9); }
             60% { transform: translateY(-5px) scale(1.02); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
         .avh-bubble-label {
-            position: absolute; left: 10px; top: -10px; padding: 4px 10px; border-radius: 8px 8px 8px 2px;
+            position: absolute; left: 10px; top: -7px; padding: 5px 8px; border-radius: 8px 8px 8px 2px;
             background: linear-gradient(135deg, #8B5CF6, #D946EF); color: white; text-transform: uppercase;
-            font-size: 7.5px; font-weight: 900; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+            font-size: 7.7px; font-weight: 900; letter-spacing: 0.5px;
         }
-        .avh-bubble small { display: block; margin-top: 7px; text-align: right; color: rgba(255,255,255,.42); font-size: 9px; }
-        .avh-input { position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.05); color: rgba(255,255,255,.44); font-size: 11.5px; }
-        .avh-input span { flex: 1; }
-        .avh-input i { width: 31px; height: 31px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #10B981; }
+        .avh-bubble small { display: block; margin-top: 5px; text-align: right; color: rgba(255,255,255,.42); font-size: 8.3px; }
+        .avh-input { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; align-items: center; gap: 8px; padding: 6px 7px 6px 11px; border-radius: 999px; background: rgba(255,255,255,.055); z-index: 6; }
+        .avh-input i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #10B981; }
         
         .avh-card { right: 0; border-radius: 21px; }
-        .avh-card h3 { margin: 0; color: #ff9be1; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; font-weight: 900; }
-        .avh-growth { top: 66px; width: 168px; min-height: 162px; padding: 16px; transform: translate3d(calc(var(--mx) * 5px), calc(var(--my) * -3px), 0) rotate(2deg); }
-        .avh-growth strong { display: block; margin: 7px 0 3px; color: #fff; font-size: 36px; line-height: 1; font-weight: 950; }
-        .avh-growth p, .avh-updated p { margin: 0; color: rgba(255,255,255,.74); font-size: 11px; }
-        .avh-bars { position: relative; height: 55px; margin-top: 9px; display: flex; align-items: flex-end; gap: 5px; }
-        .avh-bars i { width: 13px; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, #ff2d95, #8B5CF6); opacity: .74; }
-        .avh-bars i:nth-child(1) { height: 22%; } .avh-bars i:nth-child(2) { height: 34%; } .avh-bars i:nth-child(3) { height: 44%; } .avh-bars i:nth-child(4) { height: 58%; } .avh-bars i:nth-child(5) { height: 74%; } .avh-bars i:nth-child(6) { height: 92%; }
-        .avh-bars svg { position: absolute; inset: -15px -4px 0 -4px; }
-        .avh-testimonial { top: 256px; width: 198px; min-height: 122px; padding: 15px 14px 15px 61px; transform: translate3d(calc(var(--mx) * 4px), calc(var(--my) * 1px), 0) rotate(1deg); }
-        .avh-client { position: absolute; left: 14px; top: 16px; width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle at 50% 39%, #f0c6a8 0 27%, transparent 28%), radial-gradient(circle at 50% 23%, #262033 0 31%, transparent 32%), linear-gradient(135deg,#cfc7d8,#fff); }
-        .avh-testimonial p { margin: 0; color: white; font-size: 10.5px; line-height: 1.38; font-weight: 650; }
-        .avh-testimonial small { display: block; margin-top: 6px; color: #d8b4fe; font-size: 10px; }
-        .avh-testimonial b { display: block; margin-top: 4px; color: #ffd642; font-size: 10px; letter-spacing: .08em; }
-        .avh-updated { top: 405px; width: 198px; min-height: 108px; padding: 16px 14px; display: flex; align-items: center; gap: 12px; transform: translate3d(calc(var(--mx) * 3px), calc(var(--my) * 3px), 0) rotate(-1deg); }
-        .avh-updated > i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 13px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, rgba(168,85,247,.34), rgba(217,70,239,.15)); border: 1px solid rgba(213,131,255,.20); }
+        .avh-growth { top: 66px; width: 168px; min-height: 162px; padding: 16px; }
+        .avh-growth strong { display: block; margin: 7px 0 3px; color: #fff; font-size: 36px; font-weight: 950; }
+        .avh-testimonial { top: 256px; width: 198px; min-height: 122px; padding: 15px 14px 15px 61px; }
+        .avh-client { position: absolute; left: 14px; top: 16px; width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,#cfc7d8,#fff); }
+        .avh-updated { top: 405px; width: 198px; min-height: 108px; padding: 16px 14px; display: flex; align-items: center; gap: 12px; }
 
-        nav .max-w-7xl, section .max-w-7xl { max-width: 1180px !important; }
-        .particles { display: none !important; }
-
-        @media (max-width: 1120px) { .avh-grid { grid-template-columns: 1fr; } .avh-copy { text-align: center; } .avh-copy h1, .avh-copy p { margin-left: auto; margin-right: auto; } .avh-actions, .avh-trust { justify-content: center; } .avh-visual { margin: 18px auto 0; } }
-        @media (max-width: 720px) { .avh-hero { padding: 108px 0 46px; } .avh-wrap { width: min(calc(100% - 24px), 1180px); } .avh-copy { text-align: left; } .avh-copy h1 { font-size: clamp(40px, 13vw, 58px); } .avh-actions { justify-content: flex-start; } .avh-btn { width: 100%; } .avh-trust { display: grid; gap: 10px; justify-content: start; } .avh-visual { width: 100%; height: 730px; margin-top: 22px; } .avh-phone { width: min(78vw, 276px); height: 522px; top: 42%; } .avh-pack { width: 124px; } .avh-pack-beleza { left: 0; top: 0; } .avh-pack-delivery { left: auto; right: 0; top: 6px; } .avh-pack-varejo { left: 0; top: 548px; } .avh-growth { right: 0; top: 545px; width: 155px; } .avh-testimonial { left: 50%; right: auto; top: 660px; translate: -50% 0; width: min(92vw, 320px); } .avh-updated { display: none; } }
-        @media (hover: none), (prefers-reduced-motion: reduce) { .avh-visual { --mx: 0 !important; --my: 0 !important; } .avh-pack, .avh-card, .avh-phone { transition: none !important; } }
-
-        /* ===== AJUSTES V6-V9 ===== */
-        .avh-hero{padding:118px 0 58px!important;overflow:visible!important}
-        .avh-wrap{width:min(calc(100% - 144px),1088px)!important;margin:0 auto!important}
-        .avh-grid{grid-template-columns:minmax(360px,.96fr) minmax(420px,.88fr)!important;gap:clamp(58px,6vw,96px)!important;align-items:center!important}
-        .avh-copy h1{max-width:568px!important;font-size:clamp(40px,4.45vw,64px)!important;line-height:.97!important;letter-spacing:-.045em!important;margin-bottom:24px!important;overflow:visible!important;padding-right:.04em!important;padding-bottom:.06em!important;text-rendering:optimizeLegibility!important}
-        .avh-copy h1 strong{display:inline-block!important;overflow:visible!important;padding-right:.03em!important;padding-bottom:.03em!important}
-        .avh-copy p{max-width:535px!important;font-size:16px!important;line-height:1.66!important}
-        .avh-actions{margin-top:28px!important;gap:18px!important}
-        .avh-btn{min-height:54px!important;padding:0 20px!important;border-radius:14px!important}
-        .avh-trust{margin-top:28px!important;gap:24px!important}
-        .avh-visual{width:min(100%,512px)!important;height:506px!important;margin-left:0!important;overflow:visible!important;contain:none!important;transform:translateX(-8px)}
-        .avh-soft-glow{inset:7% -4% 0 -6%!important;filter:blur(14px)!important;opacity:.78!important}
-        .avh-pack,.avh-card{border-color:rgba(217,70,239,.10)!important;box-shadow:0 14px 34px rgba(0,0,0,.22),0 0 14px rgba(139,92,246,.06),inset 0 1px 0 rgba(255,255,255,.055)!important;backdrop-filter:blur(8px)!important}
-        .avh-pack{width:116px!important;min-height:132px!important;padding:11px 10px!important;border-radius:18px!important}
-        .avh-pack i{font-size:21px!important;margin:8px 0 6px!important}
-        .avh-pack h3{font-size:14px!important}
-        .avh-pack p{font-size:9.4px!important;line-height:1.30!important}
-        .avh-pack b{margin-top:7px!important;font-size:9px!important}
-        .avh-pack-beleza{left:10px!important;top:28px!important}
-        .avh-pack-delivery{left:8px!important;top:175px!important}
-        .avh-pack-varejo{left:10px!important;top:322px!important}
-        .avh-phone{width:226px!important;height:452px!important;border-radius:32px!important;box-shadow:0 24px 58px rgba(0,0,0,.36),0 0 22px rgba(139,92,246,.13),inset 0 1px 0 rgba(255,255,255,.12)!important}
-        .avh-phone::before{inset:9px!important;border-radius:24px!important}
-        .avh-phone-header{height:57px!important;padding:14px 10px 7px!important}
-        .avh-avatar{width:23px!important;height:23px!important}
-        .avh-contact strong{font-size:12.5px!important}.avh-contact small{font-size:9px!important}
-        .avh-chat{padding:10px 12px!important;gap:12px!important}
-        .avh-bubble{padding:28px 11px 10px!important;border-radius:14px!important;font-size:10.2px!important;line-height:1.34!important}
-        .avh-bubble-label{font-size:7.7px!important;padding:5px 8px!important}
-        .avh-input{left:16px!important;right:16px!important;bottom:16px!important;font-size:10px!important}
-        .avh-input i{width:28px!important;height:28px!important}
-        .avh-growth{top:58px!important;right:-18px!important;width:148px!important;min-height:143px!important;padding:14px!important}
-        .avh-growth strong{font-size:31px!important}
-        .avh-bars{height:48px!important;gap:4px!important}.avh-bars i{width:11px!important}
-        .avh-testimonial{top:224px!important;right:-18px!important;width:176px!important;min-height:111px!important;padding:13px 12px 13px 53px!important}
-        .avh-client{left:12px!important;top:14px!important;width:32px!important;height:32px!important}
-        .avh-testimonial p{font-size:9.2px!important}.avh-testimonial small,.avh-testimonial b{font-size:8.8px!important}
-        .avh-updated{top:360px!important;right:-18px!important;width:176px!important;min-height:92px!important;padding:13px 12px!important;gap:10px!important}
-        .avh-updated>i{width:36px!important;height:36px!important}.avh-card h3{font-size:9.4px!important}.avh-updated p,.avh-growth p{font-size:9.8px!important}
-        .glow-line,.particle,.floating-card,.stat-card,.phone-mockup{animation-play-state:paused!important}
-        .particles{display:none!important}.glass-card{backdrop-filter:blur(8px)!important}button,a{-webkit-tap-highlight-color:transparent}
-        .page-hidden *{animation-play-state:paused!important}
-        @media(max-width:1280px){.avh-wrap{width:min(calc(100% - 96px),1050px)!important}.avh-grid{gap:54px!important}.avh-visual{transform:translateX(-2px) scale(.96);transform-origin:left center}}
-        @media(max-width:1120px){.avh-hero{padding-top:108px!important}.avh-wrap{width:min(calc(100% - 52px),920px)!important}.avh-grid{grid-template-columns:1fr!important;gap:36px!important}.avh-copy{text-align:center!important}.avh-copy h1,.avh-copy p{margin-left:auto!important;margin-right:auto!important}.avh-actions,.avh-trust{justify-content:center!important}.avh-visual{margin:0 auto!important;transform:none!important}}
-        @media(max-width:720px){.avh-wrap{width:min(calc(100% - 28px),620px)!important}.avh-copy{text-align:left!important}.avh-copy h1{font-size:clamp(36px,11.6vw,52px)!important}.avh-copy p{font-size:15px!important}.avh-actions,.avh-trust{justify-content:flex-start!important}.avh-visual{height:660px!important;transform:scale(.94)!important;transform-origin:center top!important}.avh-phone{width:min(74vw,238px)!important;height:468px!important;top:40%!important}.avh-pack-beleza{left:0!important;top:0!important}.avh-pack-delivery{left:auto!important;right:0!important;top:4px!important}.avh-pack-varejo{left:0!important;top:505px!important}.avh-growth{right:0!important;top:500px!important}.avh-testimonial{top:615px!important}}
-        @media(hover:none),(prefers-reduced-motion:reduce){.avh-visual{--mx:0!important;--my:0!important}.avh-pack,.avh-card,.avh-phone{transition:none!important}}
-
-        /* ===== CORREÇÕES FINAIS ===== */
-        .avh-phone{overflow:hidden!important}
-        .avh-chat{padding:10px 12px 64px!important;gap:10px!important}
-        .avh-bubble{width:88%!important;padding:26px 10px 9px!important;font-size:9.8px!important;line-height:1.31!important}
-        .avh-bubble-label{top:-7px!important;padding:5px 8px!important;font-size:7.4px!important}
-        .avh-bubble small{margin-top:5px!important;font-size:8.3px!important}
-        .avh-input{left:16px!important;right:16px!important;bottom:13px!important;height:34px!important;padding:6px 7px 6px 11px!important;z-index:6!important;background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.045)!important;box-shadow:0 -8px 18px rgba(0,0,0,.16)!important}
-        .avh-input i{width:26px!important;height:26px!important;font-size:11px!important}
-        .avh-input span{font-size:9.4px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-        @media(max-width:720px){.avh-chat{padding-bottom:66px!important}.avh-input{bottom:14px!important}}
-        .avh-bubble{width:86%!important;font-size:9.1px!important;line-height:1.22!important;padding:25px 10px 8px!important}
-        .avh-bubble-label{font-size:7.1px!important;padding:5px 8px!important}
-        .avh-bubble small{margin-top:4px!important;font-size:8px!important}
-        .avh-chat .avh-bubble:last-of-type{width:84%!important;font-size:8.3px!important;line-height:1.16!important;padding:23px 9px 8px!important;margin-bottom:2px!important}
-        .avh-chat .avh-bubble:last-of-type .avh-bubble-label{font-size:6.8px!important}
-        .avh-input{height:31px!important;bottom:11px!important;padding:5px 6px 5px 10px!important}
-        .avh-input span{font-size:8.7px!important}
-        .avh-input i{width:24px!important;height:24px!important;font-size:10px!important}
-
-        /* ===== NOVA SEÇÃO DE CONVERSAS ===== */
+        /* Conversas */
         .talk-tab { padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(139, 92, 246, 0.2); background: rgba(255, 255, 255, 0.03); color: #8696a0; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
-        .talk-tab:hover { border-color: rgba(139, 92, 246, 0.4); color: #fff; background: rgba(139, 92, 246, 0.1); }
-        .talk-tab.active { background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(217, 70, 239, 0.15)); border-color: rgba(168, 85, 247, 0.5); color: #fff; box-shadow: 0 0 25px rgba(139, 92, 246, 0.2); }
-        .talk-tab .tab-icon { font-size: 16px; }
-        .msg-new { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.5; opacity: 0; transform: translateY(10px); animation: msgFadeIn 0.4s ease forwards; position: relative; }
+        .talk-tab:hover { border-color: rgba(139, 92, 246, 0.4); color: #fff; }
+        .talk-tab.active { background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(217, 70, 239, 0.15)); border-color: rgba(168, 85, 247, 0.5); color: #fff; }
+        .msg-new { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.5; opacity: 0; transform: translateY(10px); animation: msgFadeIn 0.4s ease forwards; }
         @keyframes msgFadeIn { to { opacity: 1; transform: translateY(0); } }
-        .msg-new.recv { background: #1f2c34; color: #e9edef; align-self: flex-start; border-top-left-radius: 4px; }
-        .msg-new.sent { background: #005c4b; color: #e9edef; align-self: flex-end; border-top-right-radius: 4px; }
+        .msg-new.recv { background: #1f2c34; color: #e9edef; align-self: flex-start; }
+        .msg-new.sent { background: #005c4b; color: #e9edef; align-self: flex-end; }
         .msg-new .mtext { display: block; margin-bottom: 4px; }
         .msg-new .mmeta { display: flex; align-items: center; justify-content: flex-end; gap: 4px; font-size: 10px; color: rgba(255, 255, 255, 0.45); }
         .msg-new .mcheck { color: #53bdeb; font-size: 12px; }
-        .chat-area-new::-webkit-scrollbar { width: 4px; }
-        .chat-area-new::-webkit-scrollbar-track { background: transparent; }
-        .chat-area-new::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+        .chat-area-new { height: 420px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #0b141a; }
         @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.35; } 30% { transform: translateY(-6px); opacity: 1; } }
 
-        /* ===== MODAL WHATSAPP CLEAN ===== */
+        /* Modal WhatsApp */
         .wa-modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.88); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .35s ease; }
         .wa-modal-overlay.open { opacity:1; pointer-events:auto; }
-        .wa-modal { width: min(420px, 94vw); max-height: 85vh; background: #0b141a; border-radius: 20px; overflow: hidden; box-shadow: 0 0 80px rgba(139, 92, 246, 0.2), 0 30px 80px rgba(0,0,0,.7); transform: scale(0.85) translateY(30px); transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; border: 1px solid rgba(139, 92, 246, 0.2); position: relative; }
+        .wa-modal { width: min(420px, 94vw); max-height: 85vh; background: #0b141a; border-radius: 20px; overflow: hidden; transform: scale(0.85) translateY(30px); transition: transform 0.35s; border: 1px solid rgba(139, 92, 246, 0.2); position: relative; }
         .wa-modal-overlay.open .wa-modal { transform: scale(1) translateY(0); }
-        .wa-chat-area { scroll-behavior:smooth; padding: 16px; display: flex; flex-direction: column; gap: 8px; background:#0b141a; }
-        .wa-chat-area::-webkit-scrollbar { width: 4px; }
-        .wa-chat-area::-webkit-scrollbar-track { background: transparent; }
-        .wa-chat-area::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+        .wa-chat-area { scroll-behavior:smooth; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
         .wa-modal-replay {
             position: absolute; bottom: 20px; right: 20px; width: 48px; height: 48px; border-radius: 50%;
             background: linear-gradient(135deg, #8B5CF6, #D946EF); color: white; font-size: 20px; border: none; cursor: pointer;
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); display: none; align-items: center; justify-content: center;
-            transition: transform 0.2s, box-shadow 0.2s; z-index: 5;
         }
-        .wa-modal-replay:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(139, 92, 246, 0.6); }
         .wa-modal-replay.show { display: flex; }
-        .wa-modal-progress { height:3px; background:rgba(37,211,102,.15); position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
-        .wa-modal-progress-bar { height: 100%; background: #25d366; width: 0%; transition: width 0.3s ease; border-radius: 0 2px 2px 0; }
+        .wa-modal-progress { height:3px; background:rgba(37,211,102,.15); position: absolute; top: 0; left: 0; right: 0; }
+        .wa-modal-progress-bar { height: 100%; background: #25d366; width: 0%; transition: width 0.3s ease; }
+
+        /* Modal Checkout */
+        #checkout-modal { display: none; }
+        #checkout-modal.active { display: block; }
+
+        /* Responsividade */
+        @media (max-width: 1120px) { .avh-grid { grid-template-columns: 1fr; } .avh-copy { text-align: center; } .avh-visual { margin: 18px auto 0; } }
+        @media (max-width: 720px) { .avh-hero { padding: 108px 0 46px; } .avh-copy { text-align: left; } .avh-btn { width: 100%; } .avh-visual { height: 660px; } .avh-phone { width: 238px; height: 468px; } }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- 🔒 SEGURANÇA: Verificação de HTTPS -->
     <script>
-        if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
             location.replace('https:' + location.href.substring(location.protocol.length));
         }
     </script>
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-card border-b-0 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="AtivaVendas Logo" class="h-10 w-auto object-contain" loading="eager">
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#conversas" class="hover:text-brand-accent transition-colors text-sm font-medium">Conversas</a>
-                        <a href="#catalogo" class="hover:text-brand-accent transition-colors text-sm font-medium">Catálogo</a>
-                        <a href="#bonus" class="hover:text-brand-accent transition-colors text-sm font-medium">Bônus</a>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button onclick="openModal('login')" class="text-sm font-medium hover:text-white text-gray-300 transition">Entrar</button>
-                    <a href="#catalogo" class="bg-gradient-to-r from-brand-accent to-brand-primary px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-purple-900/50 text-white">Começar Agora</a>
-                </div>
+    <nav class="fixed w-full z-50 glass-card">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="AtivaVendas" class="h-10 w-auto">
+            </div>
+            <div class="hidden md:flex gap-8">
+                <a href="#conversas" class="hover:text-brand-accent transition">Conversas</a>
+                <a href="#catalogo" class="hover:text-brand-accent transition">Catálogo</a>
+                <a href="#bonus" class="hover:text-brand-accent transition">Bônus</a>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="openModal('login')" class="text-sm text-gray-300 hover:text-white">Entrar</button>
+                <a href="#catalogo" class="bg-gradient-to-r from-brand-accent to-brand-primary px-6 py-2.5 rounded-full font-bold text-sm shadow-lg">Começar Agora</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="avh-hero">
         <div class="avh-bg avh-bg-1"></div>
         <div class="avh-bg avh-bg-2"></div>
         <div class="avh-wrap">
             <div class="avh-grid">
                 <div class="avh-copy">
-                    <div class="avh-eyebrow"><span></span>Novo: Pack de Mensagens para Delivery 🚀</div>
-                    <h1>Venda mais com<br><strong>mensagens<br>prontas</strong><br>para WhatsApp<br>e Instagram</h1>
-                    <p>Um material prático em PDF com prompts, mensagens prontas, ofertas inteligentes, ideias de conteúdo e scripts de atendimento para você <b>copiar, adaptar e vender</b> todos os dias.</p>
+                    <div class="avh-eyebrow"><span></span>Novo: Pack Delivery 🚀</div>
+                    <h1>Venda mais com<br><strong>mensagens prontas</strong><br>para WhatsApp</h1>
+                    <p>Material prático em PDF com prompts, mensagens prontas e scripts de atendimento para você <b>copiar e vender</b>.</p>
                     <div class="avh-actions">
-                        <a href="#catalogo" class="avh-btn avh-btn-main"><i class="fa-solid fa-file-pdf"></i><span>Baixar Meu PDF<small>Acesso imediato</small></span></a>
-                        <button onclick="openWaModal()" class="avh-btn avh-btn-outline"><i class="fa-brands fa-whatsapp"></i><span>Ver Simulação<small>Conversa animada</small></span></button>
-                    </div>
-                    <div class="avh-trust">
-                        <div><i class="fa-solid fa-check"></i> Acesso Imediato</div>
-                        <div><i class="fa-solid fa-check"></i> Pagamento Seguro</div>
-                        <div><i class="fa-solid fa-check"></i> 10% Cashback</div>
+                        <a href="#catalogo" class="avh-btn avh-btn-main"><i class="fa-solid fa-file-pdf"></i><span>Baixar PDF<small>Acesso imediato</small></span></a>
+                        <button onclick="openWaModal()" class="avh-btn avh-btn-outline"><i class="fa-brands fa-whatsapp"></i><span>Ver Simulação</span></button>
                     </div>
                 </div>
-                <div class="avh-visual" data-hero-visual>
+                <div class="avh-visual">
                     <div class="avh-soft-glow"></div>
-                    <div class="avh-pack avh-pack-beleza"><span>PACK</span><i class="fa-solid fa-spa"></i><h3>Beleza</h3><p>Mensagens prontas para encantar e vender mais todos os dias.</p><b>PDF</b></div>
-                    <div class="avh-pack avh-pack-delivery"><span>PACK</span><i class="fa-solid fa-burger"></i><h3>Delivery</h3><p>Mensagens prontas para vender mais no WhatsApp.</p><b>PDF</b></div>
-                    <div class="avh-pack avh-pack-varejo"><span>PACK</span><i class="fa-solid fa-bag-shopping"></i><h3>Varejo</h3><p>Mensagens prontas para atrair, atender e fechar mais vendas.</p><b>PDF</b></div>
+                    <div class="avh-pack avh-pack-beleza"><span>PACK</span><i class="fa-solid fa-spa"></i><h3>Beleza</h3><p>Mensagens prontas</p></div>
+                    <div class="avh-pack avh-pack-delivery"><span>PACK</span><i class="fa-solid fa-burger"></i><h3>Delivery</h3><p>Venda mais</p></div>
+                    <div class="avh-pack avh-pack-varejo"><span>PACK</span><i class="fa-solid fa-bag-shopping"></i><h3>Varejo</h3><p>Feche vendas</p></div>
                     
                     <!-- Phone com Animação -->
-                    <div class="avh-phone">
+                    <div class="avh-phone" style="display: block;">
                         <div class="avh-phone-header">
                             <i class="fa-solid fa-chevron-left text-gray-400 text-sm"></i>
                             <div class="avh-avatar"></div>
-                            <div class="avh-contact">
-                                <strong>AtivaVendas</strong>
-                                <small class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>online</small>
-                            </div>
-                            <em>✓</em><i class="fa-solid fa-ellipsis-vertical text-gray-400 text-sm"></i>
+                            <div class="avh-contact"><strong>AtivaVendas</strong><small>online</small></div>
+                            <i class="fa-solid fa-ellipsis-vertical text-gray-400"></i>
                         </div>
-                        <div class="avh-chat" id="hero-chat">
-                            <div class="avh-bubble" style="animation: bubbleIn 0.6s ease 0.5s both;">
+                        <div class="avh-chat">
+                            <div class="avh-bubble" style="animation-delay: 0.5s;">
                                 <span class="avh-bubble-label">MENSAGEM PRONTA</span>
-                                Olá, tudo bem? 😊<br>
-                                Separei uma oferta especial pra você que ama qualidade e bom atendimento!
-                                <small>10:30 <i class="fa-solid fa-check-double text-blue-400 text-[9px] ml-0.5"></i></small>
+                                Olá, tudo bem? 😊<br>Separei uma oferta especial!
+                                <small>10:30 ✓✓</small>
                             </div>
-                            <div class="avh-bubble" style="animation: bubbleIn 0.6s ease 1.5s both;">
-                                <span class="avh-bubble-label" style="background: linear-gradient(135deg, #ec4899, #f97316);">OFERTA IMPERDÍVEL</span>
-                                Hoje é dia de promoção! 🔥<br>
-                                Desconto exclusivo só para quem responde agora.
-                                <small>10:31 <i class="fa-solid fa-check-double text-blue-400 text-[9px] ml-0.5"></i></small>
+                            <div class="avh-bubble" style="animation-delay: 1.5s;">
+                                <span class="avh-bubble-label" style="background: linear-gradient(135deg, #ec4899, #f97316);">OFERTA</span>
+                                Hoje é dia de promoção! 🔥<br>Desconto exclusivo!
+                                <small>10:31 ✓✓</small>
                             </div>
-                            <div class="avh-bubble" style="animation: bubbleIn 0.6s ease 2.5s both;">
+                            <div class="avh-bubble" style="animation-delay: 2.5s;">
                                 <span class="avh-bubble-label" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">CHAMADA</span>
-                                Quer garantir o seu?<br>
-                                É só me chamar aqui! 💜
-                                <small>10:31 <i class="fa-solid fa-check-double text-blue-400 text-[9px] ml-0.5"></i></small>
+                                Quer garantir?<br>É só me chamar! 💜
+                                <small>10:31 ✓✓</small>
                             </div>
                         </div>
                         <div class="avh-input"><i class="fa-solid fa-microphone"></i></div>
                     </div>
-
-                    <div class="avh-card avh-growth">
-                        <h3>Vendas via Chat</h3><strong>+285%</strong><p>em 30 dias</p>
-                        <div class="avh-bars"><i></i><i></i><i></i><i></i><i></i><i></i>
-                            <svg viewBox="0 0 180 90" aria-hidden="true"><path d="M7 76C35 67 54 50 76 50c17 0 21-21 39-20 22 1 34-18 56-25" fill="none" stroke="url(#avhLine)" stroke-width="7" stroke-linecap="round"/><path d="M158 4h18v18" fill="none" stroke="#ff2d95" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="avhLine" x1="0" x2="180"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#ff2d95"/></linearGradient></defs></svg>
-                        </div>
-                    </div>
-                    <div class="avh-card avh-testimonial">
-                        <div class="avh-client"></div>
-                        <p>"Aumentei minhas vendas em 3x usando as mensagens prontas. É prático, rápido e funciona!"</p>
-                        <small>Juliana S. • Loja de Roupas</small><b>★★★★★</b>
-                    </div>
-                    <div class="avh-card avh-updated">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <div><h3>Conteúdo atualizado e testado</h3><p>Novas mensagens e ofertas toda semana.</p></div>
-                    </div>
+                    
+                    <div class="avh-card avh-growth"><h3>Vendas via Chat</h3><strong>+285%</strong><p>em 30 dias</p></div>
+                    <div class="avh-card avh-testimonial"><div class="avh-client"></div><p>"Aumentei 3x minhas vendas!"</p><small>Juliana S.</small></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats -->
-    <section class="py-12 border-y border-gray-800 bg-black/30">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div><p class="text-3xl font-bold text-white">+10k</p><p class="text-gray-500 text-sm mt-1">Empreendedores Ativos</p></div>
-            <div><p class="text-3xl font-bold text-white">+2M</p><p class="text-gray-500 text-sm mt-1">Mensagens Enviadas</p></div>
-            <div><p class="text-3xl font-bold text-white">98%</p><p class="text-gray-500 text-sm mt-1">Taxa de Satisfação</p></div>
-            <div><p class="text-3xl font-bold text-white">4.9</p><p class="text-gray-500 text-sm mt-1">Avaliação Média</p></div>
-        </div>
-    </section>
-
-    <!-- ===== WHATSAPP CONVERSATIONS - NOVO DESIGN ===== -->
-    <section id="conversas" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent pointer-events-none"></div>
-        <div class="absolute top-1/2 left-0 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl -translate-x-1/2 pointer-events-none"></div>
-        
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-12">
-                <div class="lg:sticky lg:top-32">
-                    <p class="text-brand-accent font-bold text-sm uppercase tracking-widest mb-3">
-                        <span class="inline-block w-2 h-2 bg-brand-accent rounded-full mr-2 animate-pulse"></span>
-                        Conversas Animadas
-                    </p>
-                    <h2 class="text-4xl md:text-5xl font-black text-white leading-tight mb-6">
-                        Veja como as<br>
-                        <span class="gradient-text">mensagens funcionam</span><br>
-                        na prática.
-                    </h2>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-md">
-                        3 cenários diferentes com técnicas de persuasão prontas para copiar, colar e vender.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <button class="talk-tab active" data-talk="1" onclick="switchTalk(1)"><span class="tab-icon">📅</span><span class="tab-text">Escassez de Horário</span></button>
-                        <button class="talk-tab" data-talk="2" onclick="switchTalk(2)"><span class="tab-icon">🔥</span><span class="tab-text">Oferta Relâmpago</span></button>
-                        <button class="talk-tab" data-talk="3" onclick="switchTalk(3)"><span class="tab-icon">💌</span><span class="tab-text">Cliente Sumido</span></button>
+    <!-- Conversas -->
+    <section id="conversas" class="py-24">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <p class="text-brand-accent font-bold text-sm uppercase mb-3">Conversas Animadas</p>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6">Veja como as<br><span class="gradient-text">mensagens funcionam</span></h2>
+                    <p class="text-gray-400 mb-8">3 cenários com técnicas de persuasão prontas.</p>
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <button class="talk-tab active" onclick="switchTalk(1)"><span>📅</span> Escassez</button>
+                        <button class="talk-tab" onclick="switchTalk(2)"><span>🔥</span> Oferta</button>
+                        <button class="talk-tab" onclick="switchTalk(3)"><span>💌</span> Cliente Sumido</button>
                     </div>
-                    <div id="technique-tags" class="mt-8 flex flex-wrap gap-2">
-                        <span class="px-4 py-2 bg-brand-primary/20 border border-brand-primary/30 rounded-full text-brand-primary text-sm font-semibold">Escassez</span>
-                        <span class="px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-yellow-400 text-sm font-semibold">Urgência</span>
-                        <span class="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-sm font-semibold">Facilidade</span>
+                    <div id="technique-tags" class="flex gap-2">
+                        <span class="px-4 py-2 bg-brand-primary/20 border border-brand-primary/30 rounded-full text-sm">Escassez</span>
+                        <span class="px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-sm text-yellow-400">Urgência</span>
                     </div>
                 </div>
-                
-                <div class="lg:pl-8">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/20 to-brand-accent/10 rounded-3xl blur-2xl transform scale-95"></div>
-                        <div class="relative bg-[#0b141a] rounded-3xl border border-gray-800 shadow-2xl overflow-hidden">
-                            <div class="h-1 bg-gray-800"><div class="sim-progress-bar" id="prog1" style="width: 0%; height: 100%; background: linear-gradient(90deg, #25d366, #8B5CF6); transition: width 0.4s ease;"></div></div>
-                            <div class="bg-[#1f2c34] px-4 py-3 flex items-center gap-3 border-b border-gray-800">
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white font-bold text-sm">A</div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="text-white font-semibold text-sm truncate" id="chat-header-name">Seu Salão de Beleza</div>
-                                    <div class="text-gray-400 text-xs flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block"></span><span id="chat-header-status">online</span></div>
-                                </div>
-                                <div class="flex gap-4 text-gray-400">
-                                    <button class="hover:text-white transition" aria-label="Vídeo"><i class="fa-solid fa-video text-sm"></i></button>
-                                    <button class="hover:text-white transition" aria-label="Ligação"><i class="fa-solid fa-phone text-sm"></i></button>
-                                    <button class="hover:text-white transition" aria-label="Opções"><i class="fa-solid fa-ellipsis-vertical text-sm"></i></button>
-                                </div>
-                            </div>
-                            <div class="chat-area-new" id="chat1" style="height: 420px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #0b141a; background-image: url('image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
-                                <div class="enc-note" style="align-self: center; background: rgba(255,215,64,.06); color: rgba(255,215,64,.7); font-size: 10px; padding: 6px 10px; border-radius: 6px; text-align: center; line-height: 1.4; margin-bottom: 8px;">🔒 Mensagens criptografadas de ponta a ponta</div>
-                                <div class="date-sep" style="align-self: center; background: rgba(11,20,26,.85); color: #8696a0; font-size: 11px; padding: 5px 14px; border-radius: 8px; margin: 6px 0;">HOJE</div>
-                                <div class="typing-new" id="typ1" style="display: none; align-self: flex-start; background: #1f2c34; border-radius: 12px; border-top-left-radius: 4px; padding: 12px 16px; gap: 4px; align-items: center;">
-                                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite;"></div>
-                                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.2s;"></div>
-                                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.4s;"></div>
-                                </div>
-                            </div>
-                            <div class="bg-[#1f2c34] px-4 py-3 flex items-center gap-3 border-t border-gray-800">
-                                <span class="text-gray-400 text-xl cursor-pointer hover:text-white transition" aria-label="Emoji">😊</span>
-                                <input type="text" placeholder="Mensagem" disabled class="flex-1 bg-[#2a3942] border-none rounded-full px-4 py-2.5 text-white text-sm focus:outline-none placeholder-gray-500">
-                                <div class="w-10 h-10 rounded-full bg-[#00a884] flex items-center justify-center cursor-pointer hover:opacity-90 transition" aria-label="Enviar áudio"><i class="fa-solid fa-microphone text-white text-sm"></i></div>
-                            </div>
-                            <div class="bg-[#141218] p-6 border-t border-gray-800">
-                                <div id="chat-explanation" class="text-center mb-4">
-                                    <p class="text-gray-400 text-sm leading-relaxed">Essa resposta usa <strong class="text-white">escassez</strong> + <span class="text-yellow-400 font-semibold">urgência</span> + <strong class="text-white">facilidade</strong> — técnicas que estão no kit.</p>
-                                </div>
-                                <div class="flex items-center justify-center gap-3">
-                                    <button onclick="replay(1)" class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-primary to-brand-accent rounded-full text-white font-semibold text-sm hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-purple-900/30"><i class="fa-solid fa-rotate"></i> Assistir conversa novamente</button>
-                                </div>
-                            </div>
+                <div class="bg-[#0b141a] rounded-3xl border border-gray-800 p-4">
+                    <div class="h-1 bg-gray-800 rounded"><div id="prog1" class="h-full bg-gradient-to-r from-green-500 to-purple-500 rounded" style="width: 0%"></div></div>
+                    <div class="chat-area-new" id="chat1">
+                        <div class="text-center text-xs text-gray-500 py-2">HOJE</div>
+                        <div id="typ1" style="display:none;" class="self-start bg-[#1f2c34] rounded-2xl px-4 py-3 flex gap-1">
+                            <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce"></div>
+                            <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                            <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Painéis ocultos para controle de estado -->
-            <div class="talk-panel active" id="talk1" data-techniques='[{"name":"Escassez","color":"purple"},{"name":"Urgência","color":"yellow"},{"name":"Facilidade","color":"green"}]' data-explanation='Essa resposta usa <strong class="text-white">escassez</strong> + <span class="text-yellow-400 font-semibold">urgência</span> + <strong class="text-white">facilidade</strong> — técnicas que estão no kit.'></div>
-            <div class="talk-panel" id="talk2" data-techniques='[{"name":"Urgência Temporal","color":"yellow"},{"name":"Prova Social","color":"pink"},{"name":"Ancoragem","color":"purple"}]' data-explanation='Essa resposta usa <span class="text-yellow-400 font-semibold">urgência temporal</span> + <strong class="text-white">prova social</strong> + <strong class="text-white">ancoragem de preço</strong>.'></div>
-            <div class="talk-panel" id="talk3" data-techniques='[{"name":"Empatia","color":"blue"},{"name":"Oferta Exclusiva","color":"yellow"},{"name":"Reconexão","color":"pink"}]' data-explanation='Essa resposta usa <strong class="text-white">empatia</strong> + <span class="text-yellow-400 font-semibold">oferta exclusiva</span> + <strong class="text-white">reconexão emocional</strong>.'></div>
         </div>
     </section>
 
-    <!-- WhatsApp Modal - CLEAN VERSION -->
-    <div class="wa-modal-overlay" id="waModal" role="dialog" aria-modal="true" aria-label="Simulação de conversa WhatsApp">
+    <!-- Modal WhatsApp -->
+    <div class="wa-modal-overlay" id="waModal">
         <div class="wa-modal">
-            <!-- Progress Bar -->
-            <div class="wa-modal-progress"><div class="wa-modal-progress-bar" id="waSimProgress"></div></div>
-            
-            <!-- Chat Area - SEM HEADER, SEM NOTA DE CRIPTOGRAFIA -->
+            <div class="wa-modal-progress"><div id="waSimProgress" class="wa-modal-progress-bar"></div></div>
+            <button onclick="closeWaModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white z-20"><i class="fa-solid fa-xmark"></i></button>
             <div class="wa-chat-area" id="waChatArea">
-                <!-- Separador de data discreto -->
-                <div class="date-sep" style="align-self: center; background: rgba(11,20,26,.85); color: #8696a0; font-size: 11px; padding: 5px 14px; border-radius: 8px; margin: 6px 0;">
-                    HOJE
-                </div>
-                
-                <!-- Indicador de digitação -->
-                <div class="typing-new" id="waTyping" style="display: none; align-self: flex-start; background: #1f2c34; border-radius: 12px; border-top-left-radius: 4px; padding: 12px 16px; gap: 4px; align-items: center;">
-                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite;"></div>
-                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.2s;"></div>
-                    <div style="width: 7px; height: 7px; background: rgba(255,255,255,.35); border-radius: 50%; animation: typingBounce 1.4s infinite 0.4s;"></div>
+                <div class="text-center text-xs text-gray-500 py-2">HOJE</div>
+                <div id="waTyping" style="display:none;" class="self-start bg-[#1f2c34] rounded-2xl px-4 py-3 flex gap-1">
+                    <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce"></div>
+                    <div class="w-2 h-2 bg-white/35 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
                 </div>
             </div>
-            
-            <!-- Botão de Fechar Flutuante -->
-            <button onclick="closeWaModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center hover:bg-black/80 transition z-20" aria-label="Fechar">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            
-            <!-- Botão de Replay Flutuante -->
-            <button class="wa-modal-replay" id="waReplayBtn" onclick="replayWaConversation()" aria-label="Reproduzir novamente">↻</button>
+            <button class="wa-modal-replay" id="waReplayBtn" onclick="replayWaConversation()">↻</button>
         </div>
     </div>
 
-    <!-- Catalog Section - Preços Unificados -->
-    <section id="catalogo" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Catálogo -->
+    <section id="catalogo" class="py-24">
+        <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <p class="text-brand-accent font-bold text-sm uppercase tracking-widest mb-3"><span class="inline-block w-2 h-2 bg-brand-accent rounded-full mr-2 animate-pulse"></span>Catálogo de Packs</p>
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Escolha seu <span class="gradient-text">Pack de Mensagens</span></h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Conteúdo testado e validado para aumentar suas vendas. <strong class="text-white">Todos os packs por apenas R$ 19,90.</strong></p>
-                <div class="flex flex-wrap justify-center gap-3 mt-8">
-                    <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2.5 rounded-full border border-brand-primary bg-brand-primary/20 text-white text-sm font-medium hover:bg-brand-primary transition">Todos</button>
-                    <button onclick="filterProducts('beleza')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Beleza & Estética</button>
-                    <button onclick="filterProducts('delivery')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Delivery & Comida</button>
-                    <button onclick="filterProducts('servicos')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-gray-300 text-sm font-medium hover:border-brand-accent hover:text-white transition">Prestadores de Serviço</button>
-                </div>
+                <h2 class="text-4xl font-black mb-4">Escolha seu <span class="gradient-text">Pack</span></h2>
+                <p class="text-gray-400 text-lg">Todos por <strong class="text-white">R$ 19,90</strong></p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
-                <!-- Pack Beleza -->
-                <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover border-brand-primary/20" data-category="beleza">
-                    <div class="relative h-56 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center overflow-hidden">
-                        <i class="fa-solid fa-spa text-7xl text-pink-400/40 group-hover:scale-110 transition duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-black/70 backdrop-blur px-4 py-2 rounded-full text-sm font-bold text-green-400 border border-green-500/30">R$ 19,90</div>
-                        <div class="absolute top-4 left-4 bg-brand-accent/20 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-brand-accent border border-brand-accent/30">POPULAR</div>
+            <div class="grid md:grid-cols-3 gap-8" id="product-grid">
+                <div class="glass-card rounded-2xl overflow-hidden" data-category="beleza">
+                    <div class="h-56 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center">
+                        <i class="fa-solid fa-spa text-6xl text-pink-400/40"></i>
+                        <div class="absolute top-4 right-4 bg-black/70 px-4 py-2 rounded-full text-green-400 font-bold">R$ 19,90</div>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3"><span class="text-xs font-semibold text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full">Beleza</span><span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 15 Scripts</span></div>
-                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-brand-primary transition">Pack Salão & Estética</h3>
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">Mensagens de antes e depois, promoções de dia da beleza, lembretes de horário e ofertas de pacotes.</p>
-                        <ul class="text-xs text-gray-500 mb-6 space-y-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> 15 mensagens prontas</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Scripts de agendamento</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Ofertas sazonais</li>
-                        </ul>
-                        <button onclick="openCheckout('Pack Salão & Estética', 19.90)" class="w-full py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2 group-hover:border-brand-primary/50">Quero esse pack <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i></button>
+                        <h3 class="text-xl font-bold mb-2">Pack Beleza</h3>
+                        <p class="text-gray-400 text-sm mb-4">15 mensagens prontas para salões e estética.</p>
+                        <button onclick="openCheckout('Pack Beleza', 19.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold transition">Quero este pack →</button>
                     </div>
                 </div>
-                <!-- Pack Delivery -->
-                <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover border-brand-primary/20" data-category="delivery">
-                    <div class="relative h-56 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center overflow-hidden">
-                        <i class="fa-solid fa-burger text-7xl text-orange-400/40 group-hover:scale-110 transition duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-black/70 backdrop-blur px-4 py-2 rounded-full text-sm font-bold text-green-400 border border-green-500/30">R$ 19,90</div>
+                <div class="glass-card rounded-2xl overflow-hidden" data-category="delivery">
+                    <div class="h-56 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
+                        <i class="fa-solid fa-burger text-6xl text-orange-400/40"></i>
+                        <div class="absolute top-4 right-4 bg-black/70 px-4 py-2 rounded-full text-green-400 font-bold">R$ 19,90</div>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3"><span class="text-xs font-semibold text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full">Delivery</span><span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 20 Scripts</span></div>
-                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-brand-primary transition">Pack Lanchonete & Delivery</h3>
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">Mensagens suculentas de hambúrgueres, combos, promoções do dia e frete grátis. Alto apetite!</p>
-                        <ul class="text-xs text-gray-500 mb-6 space-y-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> 20 mensagens prontas</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Combos e promoções</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Scripts de pedidos</li>
-                        </ul>
-                        <button onclick="openCheckout('Pack Lanchonete & Delivery', 19.90)" class="w-full py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2 group-hover:border-brand-primary/50">Quero esse pack <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i></button>
+                        <h3 class="text-xl font-bold mb-2">Pack Delivery</h3>
+                        <p class="text-gray-400 text-sm mb-4">20 mensagens para lanchonetes e delivery.</p>
+                        <button onclick="openCheckout('Pack Delivery', 19.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold transition">Quero este pack →</button>
                     </div>
                 </div>
-                <!-- Pack Serviços -->
-                <div class="product-card group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover border-brand-primary/20" data-category="servicos">
-                    <div class="relative h-56 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center overflow-hidden">
-                        <i class="fa-solid fa-briefcase text-7xl text-blue-400/40 group-hover:scale-110 transition duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-black/70 backdrop-blur px-4 py-2 rounded-full text-sm font-bold text-green-400 border border-green-500/30">R$ 19,90</div>
+                <div class="glass-card rounded-2xl overflow-hidden" data-category="servicos">
+                    <div class="h-56 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                        <i class="fa-solid fa-briefcase text-6xl text-blue-400/40"></i>
+                        <div class="absolute top-4 right-4 bg-black/70 px-4 py-2 rounded-full text-green-400 font-bold">R$ 19,90</div>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3"><span class="text-xs font-semibold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full">Serviços</span><span class="text-xs text-gray-500"><i class="fa-solid fa-file-pdf mr-1"></i> 12 Scripts</span></div>
-                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-brand-primary transition">Pack Consultoria & Serviços</h3>
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">Mensagens de autoridade, prova social, agendamento de consultas e dicas rápidas de valor.</p>
-                        <ul class="text-xs text-gray-500 mb-6 space-y-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> 12 mensagens prontas</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Scripts de autoridade</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Agendamento inteligente</li>
-                        </ul>
-                        <button onclick="openCheckout('Pack Consultoria & Serviços', 19.90)" class="w-full py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2 group-hover:border-brand-primary/50">Quero esse pack <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-16 text-center">
-                <div class="inline-block glass-card rounded-2xl p-6 border-brand-primary/30">
-                    <p class="text-gray-400 text-sm mb-2"><i class="fa-solid fa-tag text-brand-accent mr-2"></i>Todos os packs por apenas</p>
-                    <p class="text-4xl font-black text-white">R$ 19<span class="text-2xl">,90</span></p>
-                    <p class="text-gray-500 text-xs mt-2">Acesso imediato • PDF pronto para usar</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bonus Section -->
-    <section id="bonus" class="py-20 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="glass-card rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border-brand-primary/30 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                <div class="md:w-1/2 relative z-10">
-                    <div class="inline-block px-3 py-1 bg-brand-accent/20 text-brand-accent rounded-full text-xs font-bold mb-4">PROGRAMA DE INDICAÇÃO</div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Compartilhe e Ganhe <span class="text-brand-accent">Bônus</span></h2>
-                    <p class="text-gray-400 mb-6">Ajudamos você a crescer organicamente. Quando você indica um amigo e ele compra, você ganha 10% de crédito na sua próxima compra.</p>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">1</div><div><h4 class="font-semibold text-white">Compartilhe seu link único</h4><p class="text-sm text-gray-500">Use os botões abaixo para enviar para seus amigos.</p></div></div>
-                        <div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">2</div><div><h4 class="font-semibold text-white">Amigo faz a primeira compra</h4><p class="text-sm text-gray-500">Ele ganha 5% de desconto e você ganha 10% de bônus.</p></div></div>
-                    </div>
-                    <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                        <button onclick="shareReferral('whatsapp')" class="flex-1 py-3 bg-[#25D366] hover:bg-[#20BD5A] text-black font-bold rounded-xl transition flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp text-xl"></i> Indicar no WhatsApp</button>
-                        <button onclick="shareReferral('telegram')" class="flex-1 py-3 bg-[#0088CC] hover:bg-[#0077B5] text-white font-bold rounded-xl transition flex items-center justify-center gap-2"><i class="fa-brands fa-telegram text-xl"></i> Indicar no Telegram</button>
-                    </div>
-                </div>
-                <div class="md:w-1/2 relative z-10 w-full">
-                    <div class="bg-black/50 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-gray-400 text-sm mb-2">Seu link de indicação:</p>
-                        <div class="flex items-center gap-2 bg-gray-800 rounded-lg p-2">
-                            <input type="text" id="referral-link" value="ativavendas.com.br/ref/user123" readonly class="bg-transparent text-white text-sm w-full focus:outline-none">
-                            <button onclick="copyLink()" class="text-brand-primary hover:text-white transition p-1"><i class="fa-regular fa-copy"></i></button>
-                        </div>
-                        <div class="mt-6 p-4 bg-brand-success/10 border border-brand-success/20 rounded-xl flex items-center justify-between">
-                            <div><p class="text-xs text-brand-success">Saldo de Bônus Disponível</p><p class="text-2xl font-bold text-white">R$ 0,00</p></div>
-                            <i class="fa-solid fa-piggy-bank text-3xl text-brand-success/50"></i>
-                        </div>
+                        <h3 class="text-xl font-bold mb-2">Pack Serviços</h3>
+                        <p class="text-gray-400 text-sm mb-4">12 mensagens para consultorias.</p>
+                        <button onclick="openCheckout('Pack Serviços', 19.90)" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold transition">Quero este pack →</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-16 border-t border-gray-800 bg-black relative overflow-hidden">
-        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-brand-primary/50 to-transparent"></div>
-        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <img src="logo.png" alt="AtivaVendas" class="h-12 w-auto object-contain mb-6 opacity-80 grayscale hover:grayscale-0 transition duration-500">
-            <div class="text-center space-y-4">
-                <p class="text-brand-primary font-bold tracking-widest text-sm uppercase">AtivaVendas</p>
-                <p class="text-gray-400 text-sm">Estratégia que gera resultados.</p>
-                <div class="flex gap-6 mt-6">
-                    <a href="#" class="text-gray-500 hover:text-brand-accent transition" aria-label="Instagram"><i class="fa-brands fa-instagram text-xl"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-green-500 transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-xl"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-blue-400 transition" aria-label="Telegram"><i class="fa-brands fa-telegram text-xl"></i></a>
-                </div>
-            </div>
-            <div class="mt-12 pt-8 border-t border-gray-800/50 w-full text-center text-gray-600 text-xs">
-                <p>&copy; 2024 AtivaVendas. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Checkout Modal - Com Bônus & Segurança -->
-    <div id="checkout-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-label="Finalizar compra">
+    <!-- Modal Checkout -->
+    <div id="checkout-modal" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-black/85 backdrop-blur-md" onclick="closeModal('checkout')"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#141218] border border-gray-700 rounded-3xl p-8 shadow-2xl overflow-hidden relative max-h-[90vh] overflow-y-auto">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-accent via-brand-primary to-brand-accent"></div>
-            <div class="flex justify-center mb-6"><img src="logo.png" alt="AtivaVendas" class="h-14 w-auto object-contain"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#141218] border border-gray-700 rounded-3xl p-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold text-white">Finalizar Compra</h3>
-                <button onclick="closeModal('checkout')" class="text-gray-500 hover:text-white transition w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center" aria-label="Fechar"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <h3 class="text-2xl font-bold">Finalizar Compra</h3>
+                <button onclick="closeModal('checkout')" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <div class="mb-6 bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-5 rounded-2xl border border-gray-700/50">
-                <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Produto selecionado</p>
-                <p class="text-lg font-bold text-brand-primary mb-1" id="modal-product-name">Nome do Pack</p>
-                <div class="flex items-center justify-between mt-3">
-                    <p class="text-3xl font-black text-white" id="modal-product-price">R$ 19,90</p>
-                    <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full border border-green-500/30">✓ Disponível</span>
-                </div>
+            <div class="mb-6 bg-gray-800/50 p-5 rounded-2xl">
+                <p class="text-xs text-gray-400 uppercase mb-2">Produto</p>
+                <p class="text-lg font-bold text-brand-primary" id="modal-product-name">Pack</p>
+                <p class="text-3xl font-black mt-2" id="modal-product-price">R$ 19,90</p>
             </div>
-            <form id="checkout-form" onsubmit="handleCheckout(event)" novalidate>
+            <form id="checkout-form" onsubmit="handleCheckout(event)">
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-2 ml-1 font-medium">Seu Nome Completo</label>
-                        <input type="text" name="name" required autocomplete="name" minlength="2" maxlength="80" class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition placeholder-gray-600" placeholder="Ex: João Silva">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-2 ml-1 font-medium">Seu WhatsApp (com DDD)</label>
-                        <input type="tel" name="whatsapp" required autocomplete="tel" inputmode="tel" pattern="[0-9()\s+\-]{10,20}" placeholder="(11) 99999-9999" class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition placeholder-gray-600">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-2 ml-1 font-medium">Seu Melhor E-mail</label>
-                        <input type="email" name="email" required autocomplete="email" maxlength="120" class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition placeholder-gray-600" placeholder="seu@email.com">
-                    </div>
+                    <input type="text" name="name" required placeholder="Nome completo" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:border-brand-primary outline-none">
+                    <input type="tel" name="whatsapp" required placeholder="WhatsApp (11) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:border-brand-primary outline-none">
+                    <input type="email" name="email" required placeholder="Email" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 focus:border-brand-primary outline-none">
                 </div>
                 <div class="mt-6 p-4 bg-brand-accent/10 border border-brand-accent/20 rounded-xl">
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-brand-accent/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-gift text-brand-accent"></i></div>
-                        <div class="flex-1">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" name="bonus" value="sim" class="w-5 h-5 rounded border-gray-600 text-brand-accent focus:ring-brand-accent bg-gray-800">
-                                <div><p class="text-white font-semibold text-sm">Desejo receber o Bônus</p><p class="text-gray-400 text-xs mt-0.5">Marque para ganhar conteúdo extra exclusivo</p></div>
-                            </label>
-                        </div>
-                    </div>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" name="bonus" value="sim" class="w-5 h-5 rounded">
+                        <div><p class="font-semibold">Desejo receber o Bônus</p><p class="text-gray-400 text-xs">Conteúdo extra exclusivo</p></div>
+                    </label>
                 </div>
-                <button type="submit" class="w-full mt-8 py-4 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary rounded-xl font-bold text-white shadow-lg shadow-purple-900/40 hover:opacity-90 transition transform hover:scale-[1.02] flex items-center justify-center gap-3 text-lg"><span>Ir para Pagamento</span><i class="fa-solid fa-arrow-right"></i></button>
-                <div class="flex items-center justify-center gap-4 mt-6">
-                    <div class="flex items-center gap-2 text-gray-500 text-xs"><i class="fa-solid fa-shield-halved text-green-500"></i><span>Pagamento seguro</span></div>
-                    <div class="w-px h-4 bg-gray-700"></div>
-                    <div class="flex items-center gap-2 text-gray-500 text-xs"><i class="fa-brands fa-pix text-blue-400"></i><span>Pix, Cartão, Boleto</span></div>
-                </div>
+                <button type="submit" class="w-full mt-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl font-bold text-white shadow-lg">Ir para Pagamento →</button>
             </form>
         </div>
     </div>
 
     <!-- Toast -->
-    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brand-success text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]"><span id="toast-message">Sucesso!</span></div>
+    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-300 z-[200]"></div>
 
-    <!-- ===== JAVASCRIPT PRINCIPAL ===== -->
     <script>
-    // 🔒 SEGURANÇA: Sanitização básica contra XSS
+    // Configurações
+    const EMAILJS_CONFIG = {
+        publicKey: "SUA_PUBLIC_KEY_AQUI",
+        serviceId: "service_ativavendas",
+        templateId: "template_lead_notify",
+        recipient: "wagnerpersoli@hotmail.com"
+    };
+    
+    const MP_CONFIG = {
+        links: {
+            "Pack Beleza": "https://mpago.la/1KXgCxg",
+            "Pack Delivery": "https://mpago.la/2noHfPB",
+            "Pack Serviços": "https://mpago.la/1KXgCxg"
+        },
+        prices: { "Pack Beleza": 19.90, "Pack Delivery": 19.90, "Pack Serviços": 19.90 }
+    };
+
+    let currentProduct = {name:'', price:0};
+    const state = {1:{idx:0, playing:false, tos:[]}, 2:{idx:0, playing:false, tos:[]}, 3:{idx:0, playing:false, tos:[]}};
+    let waState = {idx:0, playing:false, tos:[]};
+
+    const SCRIPTS = {
+        1: [
+            {t:'recv',x:'Oi! Tem horário?',d:800,ty:1200},
+            {t:'sent',x:'Tenho sim! Posso mandar os horários?',d:2200},
+            {t:'recv',x:'Pode mandar!',d:2800},
+            {t:'sent',x:'Tenho hoje às 18h! Quer reservar?',d:2000}
+        ],
+        2: [
+            {t:'recv',x:'Quanto tá o combo?',d:800,ty:1200},
+            {t:'sent',x:'R$ 42,90 no normal',d:2200},
+            {t:'recv',x:'Caro...',d:2500},
+            {t:'sent',x:'Mas hoje tem promoção: R$ 29,90!',d:1500}
+        ],
+        3: [
+            {t:'recv',x:'Faz tempo que não venho...',d:800,ty:1500},
+            {t:'sent',x:'Que bom que escreveu! Sentimos sua falta!',d:2200},
+            {t:'recv',x:'Quero voltar!',d:3500},
+            {t:'sent',x:'Temos 25% OFF pra você!',d:1500}
+        ]
+    };
+
+    const FULL_SCRIPT = SCRIPTS[1];
+
     function sanitize(str) {
         const div = document.createElement('div');
         div.textContent = str;
         return div.innerHTML;
     }
 
-    // ===== CONFIGURAÇÃO EMAILJS =====
-    // ⚠️ EDITE APENAS ESTAS 4 LINHAS COM SEUS DADOS DO EMAILJS:
-    const EMAILJS_CONFIG = {
-        publicKey: "SUA_PUBLIC_KEY_AQUI",        // ← EmailJS → Account → Public Key
-        serviceId: "service_ativavendas",         // ← EmailJS → Services → Service ID
-        templateId: "template_lead_notify",       // ← EmailJS → Templates → Template ID
-        recipient: "wagnerpersoli@hotmail.com"    // ← Seu email para receber notificações
-    };
-    
-    (function(){
-        if (EMAILJS_CONFIG.publicKey !== "SUA_PUBLIC_KEY_AQUI") {
-            emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-        }
-    })();
-
-    // ===== CONFIGURAÇÃO MERCADO PAGO =====
-    const MP_CONFIG = {
-        links: {
-            "Pack Salão & Estética": "https://mpago.la/1KXgCxg",
-            "Pack Lanchonete & Delivery": "https://mpago.la/2noHfPB", 
-            "Pack Consultoria & Serviços": "https://mpago.la/1KXgCxg" // Edite se criar 3º link
-        },
-        prices: {
-            "Pack Salão & Estética": 19.90,
-            "Pack Lanchonete & Delivery": 19.90,
-            "Pack Consultoria & Serviços": 19.90
-        }
-    };
-
-    // ===== VARIÁVEIS GLOBAIS =====
-    let currentProduct = {name:'', price:0};
-    const state = {};
-    [1,2,3].forEach(id => { state[id] = {idx:0, playing:false, tos:[], done:false}; });
-    let waState = {idx:0, playing:false, tos:[]};
-
-    // ===== SCRIPTS DAS CONVERSAS =====
-    const SCRIPTS = {
-        1: [
-            {t:'recv',x:'Oi! Boa tarde 😊',d:800,ty:1200},
-            {t:'sent',x:'Boa tarde! Tudo bem? Como posso te ajudar? 💜',d:2200},
-            {t:'recv',x:'Vocês têm horário para o final de semana?',d:2800},
-            {t:'sent',x:'Se você conseguir, tenho um horário para <strong>hoje no final do dia</strong>! 😊',d:2000},
-            {t:'sent',x:'É um horário exclusivo que acabou de abrir agora. Quer que eu reserve pra você?',d:1500,ty:2200},
-            {t:'recv',x:'Sim! Quero reservar 🙌',d:3000},
-            {t:'sent',x:'Perfeito! ✅ Reserva confirmada! Te espero às 18h. Vai adorar o resultado! 💜',d:1800,ty:2000},
-            {t:'sent',x:'🔥',d:500,ty:400}
-        ],
-        2: [
-            {t:'recv',x:'Oi, quanto tá o combo hambúrguer + batata + refri?',d:800,ty:1200},
-            {t:'sent',x:'Oi! Tudo bem? 😊\n\nO combo completo tá <strong>R$ 42,90</strong> no valor normal.',d:2200,ty:1800},
-            {t:'recv',x:'Hmm um pouco caro...',d:2500},
-            {t:'sent',x:'Te entendo! Mas olha só, agora às 18h começou nossa <strong>hora relâmpago</strong>! ⚡',d:1500,ty:2200},
-            {t:'sent',x:'Até às 19h o combo sai por <strong>R$ 29,90</strong> + FRETE GRÁTIS! 🍔',d:1000,ty:2000},
-            {t:'sent',x:'Já são <strong>47 pedidos</strong> nessa promoção só na última hora! Vai esgotar rapidinho...',d:1200,ty:1800},
-            {t:'recv',x:'Sério?! Pô então manda 2 combos!',d:2800},
-            {t:'sent',x:'Perfeito! 2 combos + frete grátis = R$ 59,80! 🎉',d:1500,ty:1200},
-            {t:'sent',x:'Pix ou cartão? Mando o link de pagamento! 💳',d:1000,ty:1500},
-            {t:'recv',x:'Pix! Manda aí!',d:2000},
-            {t:'sent',x:'Pronto! Link enviado ✅\n\nTeu pedido chega em ~35min. Bom apetite! 🍟❤️',d:1800,ty:2000},
-            {t:'sent',x:'🔥',d:500,ty:400}
-        ],
-        3: [
-            {t:'recv',x:'Boa tarde! Faz tanto tempo que não venho... como estão as coisas aí? 😊',d:800,ty:1500},
-            {t:'sent',x:'Oi, Ana! 💜 Que bom que você escreveu!',d:2200,ty:1800},
-            {t:'sent',x:'Confesso que senti sua falta por aqui! Sempre lembro da última sessão que você fez — ficou maravilhosa! ✨',d:1000,ty:2800},
-            {t:'recv',x:'Ah que lindo! Sim, eu preciso voltar, a rotina tá corrida mas queria muito cuidar de mim de novo 🥹',d:3500},
-            {t:'sent',x:'Te entendo perfeitamente, Ana. A vida corre mesmo! 💛',d:1500,ty:1800},
-            {t:'sent',x:'E já que você voltou a pensar em se cuidar, tenho algo especial pra você...',d:1000,ty:2200},
-            {t:'sent',x:'Como você é uma cliente que a gente ama e sente falta, liberei um <strong>cupom exclusivo de 25% OFF</strong> no seu próximo procedimento! 🎁',d:1200,ty:2800},
-            {t:'sent',x:'Válido até o dia 31. É nosso jeitinho de te trazer de volta com carinho! 💜',d:1000,ty:1800},
-            {t:'recv',x:'Gente, vocês são demais! 🥰 25%?? Que incrível!',d:3000},
-            {t:'recv',x:'Posso agendar pra semana que vem então?',d:1500},
-            {t:'sent',x:'Claro! Tenho horário na terça às 14h e quinta às 10h. Qual prefere? 😊',d:1500,ty:2000},
-            {t:'recv',x:'Terça às 14h fica perfeito! Me coloca na lista! 🙌',d:2500},
-            {t:'sent',x:'Fechado! ✅ Terça, 14h, com seu cupom de 25%. Te espero! 💜',d:1500,ty:1800},
-            {t:'sent',x:'Vai ser ótimo te ter aqui de novo! ❤️',d:1000,ty:1500},
-            {t:'recv',x:'Obrigada demais! ❤️',d:2000},
-            {t:'recv',x:'❤️❤️',d:500,ty:400}
-        ]
-    };
-    const FULL_SCRIPT = [
-        {t:'recv',x:'Oi! Boa tarde 😊',d:800,ty:1200},
-        {t:'sent',x:'Boa tarde! Tudo bem? Como posso te ajudar? 💜',d:2200},
-        {t:'recv',x:'Vocês têm horário para o final de semana?',d:2800},
-        {t:'sent',x:'Se você conseguir, tenho um horário para <strong>hoje no final do dia</strong>! 😊',d:2000},
-        {t:'sent',x:'É um horário exclusivo que acabou de abrir agora. Quer que eu reserve pra você?',d:1500,ty:2200},
-        {t:'recv',x:'Sim! Quero reservar 🙌',d:3000},
-        {t:'sent',x:'Perfeito! ✅ Reserva confirmada! Te espero às 18h. Vai adorar o resultado! 💜',d:1800,ty:2000},
-        {t:'sent',x:'🔥',d:500,ty:400}
-    ];
-
-    // ===== FUNÇÕES AUXILIARES =====
     function getTimestamp(offset) {
-        const n = new Date(), h = n.getHours(), m = (n.getMinutes() + offset) % 60;
-        return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+        const n = new Date();
+        return `${String(n.getHours()).padStart(2,'0')}:${String((n.getMinutes()+offset)%60).padStart(2,'0')}`;
     }
-    function mkMsgNew(m, i, type) {
+
+    // ===== CHECKOUT - FUNÇÕES CORRIGIDAS =====
+    function openCheckout(name, price) {
+        console.log('Abrindo checkout:', name, price);
+        currentProduct = {name, price};
+        document.getElementById('modal-product-name').textContent = sanitize(name);
+        document.getElementById('modal-product-price').textContent = `R$ ${price.toFixed(2).replace('.', ',')}`;
+        const modal = document.getElementById('checkout-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(type) {
+        if (type === 'checkout') {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    async function handleCheckout(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const userData = {
+            name: formData.get("name")?.trim(),
+            whatsapp: formData.get("whatsapp")?.trim(),
+            email: formData.get("email")?.trim(),
+            wantsBonus: formData.get("bonus") === "sim"
+        };
+
+        if (!userData.name || !userData.whatsapp) {
+            showToast("⚠️ Preencha nome e WhatsApp!");
+            return;
+        }
+
+        const btn = e.target.querySelector('button[type="submit"]');
+        const originalHTML = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
+
+        try {
+            const mpLink = MP_CONFIG.links[currentProduct.name];
+            if (!mpLink) throw new Error("Link não encontrado");
+            
+            showToast("🔗 Redirecionando...");
+            setTimeout(() => {
+                window.location.href = mpLink;
+            }, 1500);
+        } catch (error) {
+            showToast("⚠️ Erro: " + error.message);
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+        }
+    }
+
+    // ===== CONVERSAS - FUNÇÕES CORRIGIDAS =====
+    function mkMsg(m, i) {
         const el = document.createElement('div');
         el.className = `msg-new ${m.t === 'sent' ? 'sent' : 'recv'}`;
         const tm = getTimestamp(i);
-        const safeText = m.x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>');
-        if (m.t === 'sent') el.innerHTML = `<span class="mtext">${safeText}</span><span class="mmeta"><span class="mtime">${tm}</span><span class="mcheck">✓✓</span></span>`;
-        else el.innerHTML = `<span class="mtext">${safeText}</span><span class="mmeta"><span class="mtime">${tm}</span></span>`;
+        el.innerHTML = `<span class="mtext">${m.x.replace(/\n/g, '<br>')}</span><span class="mmeta"><span class="mtime">${tm}</span>${m.t==='sent'?'<span class="mcheck">✓✓</span>':''}</span>`;
         return el;
     }
-    function updProg(id, p) { document.getElementById('prog'+id).style.width = p+'%'; }
 
-    // ===== FUNÇÕES DE EMAIL E RASTREAMENTO =====
-    async function notifyWagner(userData, productData) {
-        if (EMAILJS_CONFIG.publicKey === "SUA_PUBLIC_KEY_AQUI") {
-            console.log("📧 EmailJS não configurado. Dados do lead:", { userData, productData });
-            return Promise.resolve();
-        }
-        const params = {
-            user_name: sanitize(userData.name || "Não informado"),
-            user_whatsapp: sanitize(userData.whatsapp || "Não informado"),
-            user_email: sanitize(userData.email || "Não informado"),
-            product_name: sanitize(productData.name),
-            product_price: productData.price.toFixed(2).replace('.', ','),
-            page_url: window.location.href.split('#')[0],
-            date: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
-            wants_bonus: userData.wantsBonus ? "✅ Sim" : "❌ Não"
-        };
-        try {
-            await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, params, EMAILJS_CONFIG.recipient);
-            console.log("✅ Notificação enviada para", EMAILJS_CONFIG.recipient);
-            return true;
-        } catch (error) {
-            console.error("❌ Erro ao enviar notificação:", error);
-            return false;
+    function playNext(id) {
+        const s = state[id];
+        const script = SCRIPTS[id];
+        if (s.idx >= script.length) return;
+        
+        const m = script[s.idx];
+        const area = document.getElementById('chat' + id);
+        const typ = document.getElementById('typ' + id);
+        
+        if (m.t === 'recv' && m.ty) {
+            typ.style.display = 'flex';
+            const t = setTimeout(() => {
+                typ.style.display = 'none';
+                area.insertBefore(mkMsg(m, s.idx), typ);
+                area.scrollTop = area.scrollHeight;
+                document.getElementById('prog' + id).style.width = ((s.idx + 1) / script.length * 100) + '%';
+                s.idx++;
+                setTimeout(() => playNext(id), m.d || 800);
+            }, m.ty);
+            s.tos.push(t);
+        } else {
+            area.insertBefore(mkMsg(m, s.idx), typ);
+            area.scrollTop = area.scrollHeight;
+            document.getElementById('prog' + id).style.width = ((s.idx + 1) / script.length * 100) + '%';
+            s.idx++;
+            setTimeout(() => playNext(id), m.d || 800);
         }
     }
-    function trackActivity(type, details = {}) {
-        const key = "av_track_last", last = localStorage.getItem(key
+
+    function startTalk(id) {
+        const area = document.getElementById('chat' + id);
+        const typ = document.getElementById('typ' + id);
+        // Limpa mensagens antigas
+        Array.from(area.children).forEach(c => {
+            if (!c.classList.contains('text-center') && !c.classList.contains('typing')) {
+                area.removeChild(c);
+            }
+        });
+        typ.style.display = 'none';
+        document.getElementById('prog' + id).style.width = '0%';
+        state[id].idx = 0;
+        state[id].playing = true;
+        setTimeout(() => playNext(id), 500);
+    }
+
+    function switchTalk(id) {
+        document.querySelectorAll('.talk-tab').forEach((t, i) => {
+            t.classList.toggle('active', i + 1 === id);
+        });
+        // Limpa timers antigos
+        [1,2,3].forEach(i => {
+            state[i].tos.forEach(t => clearTimeout(t));
+            state[i].tos = [];
+        });
+        setTimeout(() => startTalk(id), 100);
+    }
+
+    // ===== MODAL WHATSAPP =====
+    function waPlayNext() {
+        if (waState.idx >= FULL_SCRIPT.length) {
+            document.getElementById('waReplayBtn').classList.add('show');
+            return;
+        }
+        const m = FULL_SCRIPT[waState.idx];
+        const area = document.getElementById('waChatArea');
+        const typ = document.getElementById('waTyping');
+        
+        if (m.t === 'recv' && m.ty) {
+            typ.style.display = 'flex';
+            const t = setTimeout(() => {
+                typ.style.display = 'none';
+                area.insertBefore(mkMsg(m, waState.idx), typ);
+                area.scrollTop = area.scrollHeight;
+                document.getElementById('waSimProgress').style.width = ((waState.idx + 1) / FULL_SCRIPT.length * 100) + '%';
+                waState.idx++;
+                setTimeout(waPlayNext, m.d || 800);
+            }, m.ty);
+            waState.tos.push(t);
+        } else {
+            area.insertBefore(mkMsg(m, waState.idx), typ);
+            area.scrollTop = area.scrollHeight;
+            document.getElementById('waSimProgress').style.width = ((waState.idx + 1) / FULL_SCRIPT.length * 100) + '%';
+            waState.idx++;
+            setTimeout(waPlayNext, m.d || 800);
+        }
+    }
+
+    function openWaModal() {
+        document.getElementById('waModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        waState.idx = 0;
+        waState.playing = true;
+        document.getElementById('waReplayBtn').classList.remove('show');
+        document.getElementById('waSimProgress').style.width = '0%';
+        // Limpa chat
+        const area = document.getElementById('waChatArea');
+        Array.from(area.children).forEach(c => {
+            if (!c.classList.contains('text-center') && !c.classList.contains('typing')) {
+                area.removeChild(c);
+            }
+        });
+        setTimeout(waPlayNext, 500);
+    }
+
+    function closeWaModal() {
+        waState.tos.forEach(t => clearTimeout(t));
+        waState.tos = [];
+        document.getElementById('waModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function replayWaConversation() {
+        waState.tos.forEach(t => clearTimeout(t));
+        waState.tos = [];
+        openWaModal();
+    }
+
+    // ===== UTILS =====
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+    }
+
+    function openModal(type) {
+        showToast('Em breve!');
+    }
+
+    function filterProducts(cat) {
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+        });
+    }
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM carregado');
+        // Inicia primeira conversa
+        setTimeout(() => startTalk(1), 1000);
+        
+        // Verifica se tem hash na URL
+        if (window.location.hash === '#catalogo') {
+            document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'});
+        }
+    });
+
+    document.getElementById('waModal').addEventListener('click', e => {
+        if (e.target.id === 'waModal') closeWaModal();
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            closeWaModal();
+            closeModal('checkout');
+        }
+    });
+    </script>
+</body>
+</html>
